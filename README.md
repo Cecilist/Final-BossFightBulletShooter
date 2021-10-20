@@ -1,5 +1,9 @@
 # Final Project
 
+## Made By
+- Jacob Cecil
+- Lucas Harris
+
 ## Keybinds & Objectives
 
 
