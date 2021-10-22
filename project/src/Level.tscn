@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 0, -126.227 )
+b = Vector2( 0, 955.385 )
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 0, -3.767 )
+b = Vector2( 0, 730.206 )
+
+[node name="Level" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 343.654, 1006.92 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="LevelBorders" type="StaticBody2D" parent="."]
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="LevelBorders"]
+position = Vector2( -1.50747, 124.726 )
+shape = SubResource( 1 )
+
+[node name="RightBoundary" type="CollisionShape2D" parent="LevelBorders"]
+position = Vector2( 721.51, 124.726 )
+shape = SubResource( 1 )
+
+[node name="TopBoundary" type="CollisionShape2D" parent="LevelBorders"]
+position = Vector2( 0, -1.53553 )
+rotation = -1.5708
+shape = SubResource( 2 )
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="LevelBorders"]
+position = Vector2( 0, 1081.44 )
+rotation = -1.5708
+shape = SubResource( 2 )
