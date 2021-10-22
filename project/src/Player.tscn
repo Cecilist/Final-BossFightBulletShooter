@@ -26,12 +26,17 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
+frame = 2
 playing = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 25.4846 )
 shape = SubResource( 2 )
 
 [node name="Sprite Boundaries" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1.68182 )
 shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
