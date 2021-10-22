@@ -19,11 +19,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -345.74
 margin_top = -525.845
-margin_right = -261.74
+margin_right = -252.74
 margin_bottom = -477.845
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Back"
+text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
