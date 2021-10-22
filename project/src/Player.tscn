@@ -26,6 +26,7 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
+frame = 1
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
