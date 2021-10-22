@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/HUD.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 0, -126.227 )
@@ -35,3 +36,7 @@ shape = SubResource( 2 )
 position = Vector2( 0, 1081.44 )
 rotation = -1.5708
 shape = SubResource( 2 )
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
