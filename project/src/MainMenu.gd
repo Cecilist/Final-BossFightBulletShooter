@@ -11,11 +11,11 @@ func _input(_event) -> void:
 		_on_QuitButton_pressed()
 
 func _on_PlayButton_pressed() -> void:
-	get_tree().change_scene("res://src/Level.tscn")
+	var _ignored = get_tree().change_scene("res://src/Level.tscn")
 
 
 func _on_InstructionsButton_pressed() -> void:
-	get_tree().change_scene("res://src/Instructions.tscn")
+	var _ignored = get_tree().change_scene("res://src/Instructions.tscn")
 
 
 func _on_QuitButton_pressed() -> void:

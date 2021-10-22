@@ -8,4 +8,4 @@ func _input(_event) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	get_tree().change_scene("res://src/MainMenu.tscn")
+	var _ignored = get_tree().change_scene("res://src/MainMenu.tscn")

@@ -2,7 +2,7 @@ class_name Level
 extends Node2D
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if $Player.player_health_percent <= 100:
 		$HUD/HealthBar.play("100")
 	elif $Player.player_health_percent <= 90:
