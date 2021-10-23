@@ -21,10 +21,9 @@ height = 119.461
 extents = Vector2( 240.9, 157.252 )
 
 [node name="Player" type="KinematicBody2D"]
-pause_mode = 2
 script = ExtResource( 4 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="ShipSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
 frame = 2

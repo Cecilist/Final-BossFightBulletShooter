@@ -16,15 +16,22 @@ func _physics_process(_delta) -> void:
 	#  keys are pressed
 	_ship_velocity = Vector2(0,0)
 	
-	# Moves the player based on which keys they press
-	if Input.is_action_pressed("move_up"):
-		_ship_velocity.y = player_movement_speed * -1
-	if Input.is_action_pressed("move_down"):
-		_ship_velocity.y = player_movement_speed
-	if Input.is_action_pressed("move_left"):
-		_ship_velocity.x = player_movement_speed * -1
-	if Input.is_action_pressed("move_right"):
-		_ship_velocity.x = player_movement_speed
+	# If the game isn't paused, plays the animation and
+	#  moves the player based on which keys they press
+	if get_parent().game_paused == false:
+		$ShipSprite.playing = true
+		if Input.is_action_pressed("move_up"):
+			_ship_velocity.y = player_movement_speed * -1
+		if Input.is_action_pressed("move_down"):
+			_ship_velocity.y = player_movement_speed
+		if Input.is_action_pressed("move_left"):
+			_ship_velocity.x = player_movement_speed * -1
+		if Input.is_action_pressed("move_right"):
+			_ship_velocity.x = player_movement_speed
+
+	# If the game is paused, stops playing the sprite's animation
+	if get_parent().game_paused == true:
+		$ShipSprite.playing = false
 	
 	# Applies the velocity to the player
 	_ship_velocity = move_and_slide(_ship_velocity, Vector2.UP)
