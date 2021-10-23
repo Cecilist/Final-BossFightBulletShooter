@@ -14,6 +14,13 @@ func _input(_event) -> void:
 			_pause_game()
 		elif get_tree().paused == true:
 			_unpause_game()
+	if game_paused == true:
+		if Input.is_action_just_pressed("previous_menu"):
+			_on_InGameToMenuButton_pressed()
+		if Input.is_action_just_pressed("to_next_screen"):
+			_on_InGameRestartButton_pressed()
+		if Input.is_action_just_pressed("quit_game"):
+			_on_InGameQuitButton_pressed()
 
 
 func _process(_delta) -> void:
@@ -115,12 +122,16 @@ func _on_InGameResumeButton_pressed() -> void:
 func _on_InGameRestartButton_pressed() -> void:
 	if game_paused == true:
 		var _ignored = get_tree().change_scene("res://src/Level.tscn")
+		get_tree().paused = false
+		game_paused = false
 
 
 # Returns to the menu
 func _on_InGameToMenuButton_pressed() -> void:
 	if game_paused == true:
 		var _ignored = get_tree().change_scene("res://src/MainMenu.tscn")
+		get_tree().paused = false
+		game_paused = false
 
 
 # Quits the game
