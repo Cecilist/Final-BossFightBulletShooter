@@ -6,19 +6,23 @@ export var player_health := 100
 export var player_movement_speed := 250
 
 var player_health_percent := 100
+var ship_paused = false
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
 
 
 func _physics_process(_delta) -> void:
+	# Checks if the game has been paused
+	ship_paused = get_parent().game_paused
+	
 	# Resets the player's velocity to stop them if no movement
 	#  keys are pressed
 	_ship_velocity = Vector2(0,0)
 	
 	# If the game isn't paused, plays the animation and
 	#  moves the player based on which keys they press
-	if get_parent().game_paused == false:
+	if ship_paused == false:
 		$ShipSprite.playing = true
 		if Input.is_action_pressed("move_up"):
 			_ship_velocity.y = player_movement_speed * -1
@@ -30,7 +34,7 @@ func _physics_process(_delta) -> void:
 			_ship_velocity.x = player_movement_speed
 
 	# If the game is paused, stops playing the sprite's animation
-	if get_parent().game_paused == true:
+	if ship_paused == true:
 		$ShipSprite.playing = false
 	
 	# Applies the velocity to the player
