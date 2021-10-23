@@ -2,8 +2,18 @@ class_name Level
 extends Node2D
 
 
-var game_over = false
-var won_game = false
+var game_paused := false
+var game_over := false
+var won_game := false
+
+
+# Pauses the game
+func _input(_event) -> void:
+	if Input.is_action_just_pressed("pause"):
+		if get_tree().paused == false:
+			_pause_game()
+		elif get_tree().paused == true:
+			_unpause_game()
 
 
 func _process(_delta) -> void:
@@ -58,6 +68,25 @@ func _process(_delta) -> void:
 #		_show_won_game()
 
 
+func _pause_game() -> void:
+	get_tree().paused = true
+	$PauseMenu/InGameResumeButton.disabled = false
+	$PauseMenu/InGameRestartButton.disabled = false
+	$PauseMenu/InGameToMenuButton.disabled = false
+	$PauseMenu/InGameQuitButton.disabled = false
+	$PauseMenu.visible = true
+	game_paused = true
+
+
+func _unpause_game() -> void:
+	get_tree().paused = false
+	$PauseMenu/InGameResumeButton.disabled = true
+	$PauseMenu/InGameRestartButton.disabled = true
+	$PauseMenu/InGameToMenuButton.disabled = true
+	$PauseMenu/InGameQuitButton.disabled = true
+	$PauseMenu.visible = false
+	game_paused = false
+
 
 # Displays the game over message and allows the player to replay,
 #  go the the main menu, or quit the game
@@ -75,3 +104,26 @@ func _show_won_game() -> void:
 	$WonGame/ReplayButton.disabled = false
 	$WonGame/ToMenuButton.disabled = false
 	$WonGame/QuitButton.disabled = false
+
+
+# Resumes the game
+func _on_InGameResumeButton_pressed() -> void:
+	game_paused = false
+
+
+# Restarts the level
+func _on_InGameRestartButton_pressed() -> void:
+	if game_paused == true:
+		var _ignored = get_tree().change_scene("res://src/Level.tscn")
+
+
+# Returns to the menu
+func _on_InGameToMenuButton_pressed() -> void:
+	if game_paused == true:
+		var _ignored = get_tree().change_scene("res://src/MainMenu.tscn")
+
+
+# Quits the game
+func _on_InGameQuitButton_pressed() -> void:
+	if game_paused == true:
+		get_tree().quit()

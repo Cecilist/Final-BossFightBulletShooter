@@ -5,7 +5,7 @@ extends KinematicBody2D
 export var player_health := 100
 export var player_movement_speed := 250
 
-var player_health_percent := 100.0
+var player_health_percent := 100
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health

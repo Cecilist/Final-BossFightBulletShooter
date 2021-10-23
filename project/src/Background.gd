@@ -2,7 +2,7 @@ extends ParallaxBackground
 
 
 # Starts scrolling the background
-func _ready():
+func _ready() -> void:
 	$AnimationPlayer.play("Scroll")
 
 
