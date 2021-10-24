@@ -5,7 +5,9 @@
 - Lucas Harris
 
 ## Keybinds & Objectives
+WASD or arrow keys to move
 
+Space Bar to shoot
 
 ## Project Report
 
