@@ -26,6 +26,7 @@ script = ExtResource( 4 )
 [node name="ShipSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
+frame = 2
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -44,4 +45,5 @@ position = Vector2( -184.999, -105.492 )
 [node name="RightCannon" type="Position2D" parent="."]
 position = Vector2( 185.819, -106.768 )
 
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
