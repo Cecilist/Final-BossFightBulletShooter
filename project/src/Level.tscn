@@ -17,15 +17,10 @@ b = Vector2( 0, 955.385 )
 a = Vector2( 0, -3.767 )
 b = Vector2( 0, 730.206 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 128
 outline_size = 2
 font_data = ExtResource( 8 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-outline_size = 2
-font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 32
@@ -38,6 +33,11 @@ outline_size = 2
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=7]
+size = 32
+outline_size = 2
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
 size = 32
 outline_size = 2
 font_data = ExtResource( 6 )
@@ -104,7 +104,7 @@ margin_left = -283.5
 margin_top = -364.5
 margin_right = 283.5
 margin_bottom = -27.5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME
 PAUSED"
@@ -123,7 +123,7 @@ margin_left = -65.0
 margin_top = 150.0
 margin_right = 65.0
 margin_bottom = 198.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "RESUME"
 __meta__ = {
@@ -139,7 +139,7 @@ margin_left = -65.0
 margin_top = 225.0
 margin_right = 65.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "REPLAY"
 __meta__ = {
@@ -155,7 +155,7 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TO MENU"
 __meta__ = {
@@ -171,7 +171,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 __meta__ = {

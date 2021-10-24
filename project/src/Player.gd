@@ -12,9 +12,6 @@ var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
 
 
-
-
-
 func _physics_process(_delta) -> void:
 	# Checks if the game has been paused
 	ship_paused = get_parent().game_paused
@@ -48,7 +45,9 @@ func _physics_process(_delta) -> void:
 	# Calculates how much health the player has as a percent
 	#  to display it as part of the HUD
 	player_health_percent = int(_remaining_player_health / player_health)
-	
+
+
+# Shoots 2 bullets at the same time from the player
 func shoot():
 	var bulletL = load("res://src/PlayerBullet.tscn").instance()
 	var bulletR = load("res://src/PlayerBullet.tscn").instance()
@@ -56,9 +55,6 @@ func shoot():
 	bulletL.global_position = $LeftCannon.global_position
 	get_node("/root/Level").add_child(bulletR)
 	bulletR.global_position = $RightCannon.global_position
-	
-	
-	
 
 
 # Reduces the players health if they take damage
@@ -70,5 +66,4 @@ func _on_Hitbox_body_entered(_body) -> void:
 # using area, not body, for boss and bullets
 # this works, but will break if we use areas for anything else
 func _on_Hitbox_area_entered(_area) -> void:
-		_remaining_player_health -= 10
-		
+	_remaining_player_health -= 10

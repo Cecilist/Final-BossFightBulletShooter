@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://src/Boss.gd"
+}, {
+"base": "Area2D",
+"class": "BossBullet",
+"language": "GDScript",
+"path": "res://src/BossBullet.gd"
+}, {
 "base": "Node2D",
 "class": "GameOver",
 "language": "GDScript",
@@ -40,6 +50,8 @@ _global_script_classes=[ {
 "path": "res://src/WonGame.gd"
 } ]
 _global_script_class_icons={
+"Boss": "",
+"BossBullet": "",
 "GameOver": "",
 "Instructions": "",
 "Level": "",
