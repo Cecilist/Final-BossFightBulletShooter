@@ -62,13 +62,13 @@ func shoot():
 
 
 # Reduces the players health if they take damage
-func _on_Hitbox_body_entered(body) -> void:
+func _on_Hitbox_body_entered(_body) -> void:
 	pass
 	#if body == $Boss || body == $Boss_bullet:
 		#_remaining_player_health -= 10
 
 # using area, not body, for boss and bullets
 # this works, but will break if we use areas for anything else
-func _on_Hitbox_area_entered(area) -> void:
+func _on_Hitbox_area_entered(_area) -> void:
 		_remaining_player_health -= 10
-		print(_remaining_player_health)
+		
