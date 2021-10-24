@@ -12,6 +12,9 @@ var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
 
 
+
+
+
 func _physics_process(_delta) -> void:
 	# Checks if the game has been paused
 	ship_paused = get_parent().game_paused
@@ -32,6 +35,8 @@ func _physics_process(_delta) -> void:
 			_ship_velocity.x = player_movement_speed * -1
 		if Input.is_action_pressed("move_right"):
 			_ship_velocity.x = player_movement_speed
+		if Input.is_action_just_pressed("shoot"):
+			shoot();
 
 	# If the game is paused, stops playing the sprite's animation
 	if ship_paused == true:
@@ -43,6 +48,17 @@ func _physics_process(_delta) -> void:
 	# Calculates how much health the player has as a percent
 	#  to display it as part of the HUD
 	player_health_percent = int(_remaining_player_health / player_health)
+	
+func shoot():
+	var bulletL = load("res://src/PlayerBullet.tscn").instance()
+	var bulletR = load("res://src/PlayerBullet.tscn").instance()
+	get_node("/root/Level").add_child(bulletL)
+	bulletL.global_position = $LeftCannon.global_position
+	get_node("/root/Level").add_child(bulletR)
+	bulletR.global_position = $RightCannon.global_position
+	
+	
+	
 
 
 # Reduces the players health if they take damage
