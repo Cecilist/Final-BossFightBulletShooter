@@ -5,6 +5,7 @@ extends Node2D
 var game_paused := false
 var game_over := false
 var won_game := false
+var bullet_velocity := 10
 
 
 func _input(_event) -> void:
@@ -28,98 +29,99 @@ func _input(_event) -> void:
 func _process(_delta) -> void:
 	# Checks the player's health and displays it on the player's health bar
 	if $Player.player_health_percent <= 100:
-		$HUD/PlayerHealthBar.play("100")
+		$Overlay/HUD/PlayerHealthBar.play("100")
 	elif $Player.player_health_percent <= 90:
-		$HUD/PlayerHealthBar.play("90")
+		$Overlay/HUD/PlayerHealthBar.play("90")
 	elif $Player.player_health_percent <= 80:
-		$HUD/PlayerHealthBar.play("80")
+		$Overlay/HUD/PlayerHealthBar.play("80")
 	elif $Player.player_health_percent <= 70:
-		$HUD/PlayerHealthBar.play("70")
+		$Overlay/HUD/PlayerHealthBar.play("70")
 	elif $Player.player_health_percent <= 60:
-		$HUD/PlayerHealthBar.play("60")
+		$Overlay/HUD/PlayerHealthBar.play("60")
 	elif $Player.player_health_percent <= 50:
-		$HUD/PlayerHealthBar.play("50")
+		$Overlay/HUD/PlayerHealthBar.play("50")
 	elif $Player.player_health_percent <= 40:
-		$HUD/PlayerHealthBar.play("40")
+		$Overlay/HUD/PlayerHealthBar.play("40")
 	elif $Player.player_health_percent <= 30:
-		$HUD/PlayerHealthBar.play("30")
+		$Overlay/HUD/PlayerHealthBar.play("30")
 	elif $Player.player_health_percent <= 20:
-		$HUD/PlayerHealthBar.play("20")
+		$Overlay/HUD/PlayerHealthBar.play("20")
 	elif $Player.player_health_percent <= 10:
-		$HUD/PlayerHealthBar.play("10")
+		$Overlay/HUD/PlayerHealthBar.play("10")
 	elif $Player.player_health_percent == 0:
-		$HUD/PlayerHealthBar.play("0")
+		$Overlay/HUD/PlayerHealthBar.play("0")
 		_show_game_over()
 	
 	# Checks the boss's health and displays it on its health bar
 #	if $Boss.boss_health_percent <= 100:
-#		$HUD/BossHealthBar.play("100")
+#		$Overlay/HUD/BossHealthBar.play("100")
 #	elif $Boss.boss_health_percent <= 90:
-#		$HUD/BossHealthBar.play("90")
+#		$Overlay/HUD/BossHealthBar.play("90")
 #	elif $Boss.boss_health_percent <= 80:
-#		$HUD/BossHealthBar.play("80")
+#		$Overlay/HUD/BossHealthBar.play("80")
 #	elif $Boss.boss_health_percent <= 70:
-#		$HUD/BossHealthBar.play("70")
+#		$Overlay/HUD/BossHealthBar.play("70")
 #	elif $Boss.boss_health_percent <= 60:
-#		$HUD/BossHealthBar.play("60")
+#		$Overlay/HUD/BossHealthBar.play("60")
 #	elif $Boss.boss_health_percent <= 50:
-#		$HUD/BossHealthBar.play("50")
+#		$Overlay/HUD/BossHealthBar.play("50")
 #	elif $Boss.boss_health_percent <= 40:
-#		$HUD/BossHealthBar.play("40")
+#		$Overlay/HUD/BossHealthBar.play("40")
 #	elif $Boss.bossy_health_percent <= 30:
-#		$HUD/BossHealthBar.play("30")
+#		$Overlay/HUD/BossHealthBar.play("30")
 #	elif $Boss.boss_health_percent <= 20:
-#		$HUD/BossHealthBar.play("20")
+#		$Overlay/HUD/BossHealthBar.play("20")
 #	elif $Boss.boss_health_percent <= 10:
-#		$HUD/BossHealthBar.play("10")
+#		$Overlay/HUD/BossHealthBar.play("10")
 #	elif $Boss.boss_health_percent == 0:
-#		$HUD/BossHealthBar.play("0")
+#		$Overlay/HUD/BossHealthBar.play("0")
 #		_show_won_game()
 
 
 # Pauses the game and brings up the pause menu
 func _pause_game() -> void:
 	get_tree().paused = true
-	$PauseMenu/InGameResumeButton.disabled = false
-	$PauseMenu/InGameRestartButton.disabled = false
-	$PauseMenu/InGameToMenuButton.disabled = false
-	$PauseMenu/InGameQuitButton.disabled = false
-	$PauseMenu.visible = true
+	$Overlay/PauseMenu/InGameResumeButton.disabled = false
+	$Overlay/PauseMenu/InGameRestartButton.disabled = false
+	$Overlay/PauseMenu/InGameToMenuButton.disabled = false
+	$Overlay/PauseMenu/InGameQuitButton.disabled = false
+	$Overlay/PauseMenu.visible = true
 	game_paused = true
 
 
 # Unpauses the game and hides the pause menu
 func _unpause_game() -> void:
 	get_tree().paused = false
-	$PauseMenu/InGameResumeButton.disabled = true
-	$PauseMenu/InGameRestartButton.disabled = true
-	$PauseMenu/InGameToMenuButton.disabled = true
-	$PauseMenu/InGameQuitButton.disabled = true
-	$PauseMenu.visible = false
+	$Overlay/PauseMenu/InGameResumeButton.disabled = true
+	$Overlay/PauseMenu/InGameRestartButton.disabled = true
+	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
+	$Overlay/PauseMenu/InGameQuitButton.disabled = true
+	$Overlay/PauseMenu.visible = false
 	game_paused = false
 
 
 # Displays the game over message and allows the player to replay,
 #  go the the main menu, or quit the game
 func _show_game_over() -> void:
-	$GameOver.visible = true
-	$GameOver/ReplayButton.disabled = false
-	$GameOver/ToMenuButton.disabled = false
-	$GameOver/QuitButton.disabled = false
+	$Overlay/GameOver.visible = true
+	$Overlay/GameOver/ReplayButton.disabled = false
+	$Overlay/GameOver/ToMenuButton.disabled = false
+	$Overlay/GameOver/QuitButton.disabled = false
 
 
 # Displays the won game message and allows the player to replay,
 #  go the the main menu, or quit the game
 func _show_won_game() -> void:
-	$WonGame.visible = true
-	$WonGame/ReplayButton.disabled = false
-	$WonGame/ToMenuButton.disabled = false
-	$WonGame/QuitButton.disabled = false
+	$Overlay/WonGame.visible = true
+	$Overlay/WonGame/ReplayButton.disabled = false
+	$Overlay/WonGame/ToMenuButton.disabled = false
+	$Overlay/WonGame/QuitButton.disabled = false
 
 
 # Resumes the game
 func _on_InGameResumeButton_pressed() -> void:
 	game_paused = false
+	_unpause_game()
 
 
 # Restarts the level

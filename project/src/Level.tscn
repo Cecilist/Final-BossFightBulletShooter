@@ -17,10 +17,15 @@ b = Vector2( 0, 955.385 )
 a = Vector2( 0, -3.767 )
 b = Vector2( 0, 730.206 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 128
 outline_size = 2
 font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+outline_size = 2
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 32
@@ -33,11 +38,6 @@ outline_size = 2
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 32
-outline_size = 2
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=8]
 size = 32
 outline_size = 2
 font_data = ExtResource( 6 )
@@ -75,27 +75,29 @@ position = Vector2( 0, 1081.44 )
 rotation = -1.5708
 shape = SubResource( 2 )
 
-[node name="HUD" parent="." instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-
 [node name="WonGame" parent="." instance=ExtResource( 4 )]
 visible = false
 
 [node name="GameOver" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[node name="PauseMenu" type="Control" parent="."]
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Overlay"]
 visible = false
-margin_left = 360.0
-margin_top = 540.0
-margin_right = 400.0
-margin_bottom = 580.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PauseMenu"]
+[node name="Label" type="Label" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -104,7 +106,7 @@ margin_left = -283.5
 margin_top = -364.5
 margin_right = 283.5
 margin_bottom = -27.5
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME
 PAUSED"
@@ -114,7 +116,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameResumeButton" type="Button" parent="PauseMenu"]
+[node name="InGameResumeButton" type="Button" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -123,14 +125,14 @@ margin_left = -65.0
 margin_top = 150.0
 margin_right = 65.0
 margin_bottom = 198.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "RESUME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameRestartButton" type="Button" parent="PauseMenu"]
+[node name="InGameRestartButton" type="Button" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -139,14 +141,14 @@ margin_left = -65.0
 margin_top = 225.0
 margin_right = 65.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "REPLAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameToMenuButton" type="Button" parent="PauseMenu"]
+[node name="InGameToMenuButton" type="Button" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -155,14 +157,14 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TO MENU"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameQuitButton" type="Button" parent="PauseMenu"]
+[node name="InGameQuitButton" type="Button" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -171,14 +173,18 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
-[connection signal="pressed" from="PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]
-[connection signal="pressed" from="PauseMenu/InGameToMenuButton" to="." method="_on_InGameToMenuButton_pressed"]
-[connection signal="pressed" from="PauseMenu/InGameQuitButton" to="." method="_on_InGameQuitButton_pressed"]
+[node name="HUD" parent="Overlay" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[connection signal="pressed" from="Overlay/PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
+[connection signal="pressed" from="Overlay/PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]
+[connection signal="pressed" from="Overlay/PauseMenu/InGameToMenuButton" to="." method="_on_InGameToMenuButton_pressed"]
+[connection signal="pressed" from="Overlay/PauseMenu/InGameQuitButton" to="." method="_on_InGameQuitButton_pressed"]

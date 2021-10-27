@@ -21,7 +21,7 @@ func _fire_bullet() -> void:
 	var bullet = load("res://src/BossBullet.tscn").instance()
 	rng.randomize()
 	var random_num =  floor(rng.randf_range(0, 5))
-	get_node("/root/Level").add_child(bullet)
+	get_node("/root/Level").call_deferred("add_child", bullet)
 	if random_num == 0:
 		bullet.global_position = $Cannon1.global_position
 	if random_num == 1:
@@ -32,7 +32,6 @@ func _fire_bullet() -> void:
 		bullet.global_position = $Cannon4.global_position
 	if random_num == 4:
 		bullet.global_position = $Cannon5.global_position
-		
 		
 	# Code below will randomly move around cannons
 	#var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
