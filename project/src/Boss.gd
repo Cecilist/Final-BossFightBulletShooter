@@ -23,15 +23,15 @@ func _fire_bullet() -> void:
 	var random_num =  floor(rng.randf_range(0, 5))
 	call_deferred("add_child", bullet)
 	if random_num == 0:
-		bullet.global_position = $Cannon1.global_position
+		bullet.position = $Cannon1.position
 	if random_num == 1:
-		bullet.global_position = $Cannon2.global_position
+		bullet.position = $Cannon2.position
 	if random_num == 2:
-		bullet.global_position = $Cannon3.global_position
+		bullet.position = $Cannon3.position
 	if random_num == 3:
-		bullet.global_position = $Cannon4.global_position
+		bullet.position = $Cannon4.position
 	if random_num == 4:
-		bullet.global_position = $Cannon5.global_position
+		bullet.position = $Cannon5.position
 		
 	# Code below will randomly move around cannons
 	#var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
