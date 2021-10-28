@@ -44,7 +44,7 @@ func _physics_process(_delta) -> void:
 	
 	# Calculates how much health the player has as a percent
 	#  to display it as part of the HUD
-	player_health_percent = int(_remaining_player_health / player_health)
+	player_health_percent = 100*_remaining_player_health / player_health
 
 
 # Shoots 2 bullets at the same time from the player
