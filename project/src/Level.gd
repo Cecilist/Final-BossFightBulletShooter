@@ -2,10 +2,14 @@ class_name Level
 extends Node2D
 
 
-var game_paused := false
+var game_paused := true
 var game_over := false
 var won_game := false
 var bullet_velocity := 10
+
+
+func _ready():
+	$Timers/UnpauseTimer.start()
 
 
 func _input(_event) -> void:
@@ -14,7 +18,7 @@ func _input(_event) -> void:
 		if get_tree().paused == false:
 			_pause_game()
 		elif get_tree().paused == true:
-			_unpause_game()
+			$Timers/UnpauseTimer.start()
 	
 	# Allows the player to use keybinds to interact with the pause menu
 	if game_paused == true:
@@ -144,3 +148,7 @@ func _on_InGameToMenuButton_pressed() -> void:
 func _on_InGameQuitButton_pressed() -> void:
 	if game_paused == true:
 		get_tree().quit()
+
+
+func _on_UnpauseTimer_timeout():
+	_unpause_game()

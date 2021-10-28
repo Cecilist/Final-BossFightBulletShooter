@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Boss.gd" type="Script" id=2]
-[ext_resource path="res://src/BossBullet.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 258.889, 49.4904 )
@@ -14,8 +13,6 @@ font_data = ExtResource( 1 )
 [node name="Boss" type="Area2D"]
 position = Vector2( 350, 0 )
 script = ExtResource( 2 )
-
-[node name="Boss_bullet" parent="." instance=ExtResource( 3 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -249.0

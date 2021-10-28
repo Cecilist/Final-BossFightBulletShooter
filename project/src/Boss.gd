@@ -5,7 +5,7 @@ extends Area2D
 export var boss_health := 1000
 
 var boss_health_percent := 100
-var boss_paused := false
+var boss_paused := true
 var remaining_boss_health = boss_health
 var rng := RandomNumberGenerator.new()
 

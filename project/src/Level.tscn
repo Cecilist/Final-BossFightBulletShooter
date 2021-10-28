@@ -184,7 +184,14 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="UnpauseTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="pressed" from="Overlay/PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameToMenuButton" to="." method="_on_InGameToMenuButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameQuitButton" to="." method="_on_InGameQuitButton_pressed"]
+[connection signal="timeout" from="Timers/UnpauseTimer" to="." method="_on_UnpauseTimer_timeout"]
