@@ -5,7 +5,7 @@ extends KinematicBody2D
 export var player_health := 100
 export var player_movement_speed := 250
 
-var player_health_percent := 100
+var player_health_percent := 100.0
 var ship_paused = true
 
 var _ship_velocity := Vector2(0,0)
@@ -14,7 +14,7 @@ var _remaining_player_health = player_health
 
 func _physics_process(_delta) -> void:
 	# Checks if the game has been paused
-	ship_paused = get_parent().game_paused
+	ship_paused = get_parent().game_paused	
 	
 	# Resets the player's velocity to stop them if no movement
 	#  keys are pressed
@@ -44,7 +44,33 @@ func _physics_process(_delta) -> void:
 	
 	# Calculates how much health the player has as a percent
 	#  to display it as part of the HUD
-	player_health_percent = 100*_remaining_player_health / player_health
+	player_health_percent = 100 * _remaining_player_health / player_health
+	player_health_percent = clamp(player_health_percent, 0, 100)
+	
+	# Checks the player's health and displays it on the player's health bar
+	if player_health_percent <= 100:
+		$Overlay/HUD/PlayerHealthBar.play("100")
+	if player_health_percent <= 90:
+		$Overlay/HUD/PlayerHealthBar.play("90")
+	if player_health_percent <= 80:
+		$Overlay/HUD/PlayerHealthBar.play("80")
+	if player_health_percent <= 70:
+		$Overlay/HUD/PlayerHealthBar.play("70")
+	if player_health_percent <= 60:
+		$Overlay/HUD/PlayerHealthBar.play("60")
+	if player_health_percent <= 50:
+		$Overlay/HUD/PlayerHealthBar.play("50")
+	if player_health_percent <= 40:
+		$Overlay/HUD/PlayerHealthBar.play("40")
+	if player_health_percent <= 30:
+		$Overlay/HUD/PlayerHealthBar.play("30")
+	if player_health_percent <= 20:
+		$Overlay/HUD/PlayerHealthBar.play("20")
+	if player_health_percent <= 10:
+		$Overlay/HUD/PlayerHealthBar.play("10")
+	if player_health_percent == 0:
+		$Overlay/HUD/PlayerHealthBar.play("0")
+		get_parent().show_game_over()
 
 
 # Shoots 2 bullets at the same time from the player

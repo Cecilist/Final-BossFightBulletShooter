@@ -33,29 +33,7 @@ func _input(_event) -> void:
 
 func _process(_delta) -> void:
 	# Checks the player's health and displays it on the player's health bar
-	if $Player.player_health_percent <= 100:
-		$Overlay/HUD/PlayerHealthBar.play("100")
-	elif $Player.player_health_percent <= 90:
-		$Overlay/HUD/PlayerHealthBar.play("90")
-	elif $Player.player_health_percent <= 80:
-		$Overlay/HUD/PlayerHealthBar.play("80")
-	elif $Player.player_health_percent <= 70:
-		$Overlay/HUD/PlayerHealthBar.play("70")
-	elif $Player.player_health_percent <= 60:
-		$Overlay/HUD/PlayerHealthBar.play("60")
-	elif $Player.player_health_percent <= 50:
-		$Overlay/HUD/PlayerHealthBar.play("50")
-	elif $Player.player_health_percent <= 40:
-		$Overlay/HUD/PlayerHealthBar.play("40")
-	elif $Player.player_health_percent <= 30:
-		$Overlay/HUD/PlayerHealthBar.play("30")
-	elif $Player.player_health_percent <= 20:
-		$Overlay/HUD/PlayerHealthBar.play("20")
-	elif $Player.player_health_percent <= 10:
-		$Overlay/HUD/PlayerHealthBar.play("10")
-	elif $Player.player_health_percent == 0:
-		$Overlay/HUD/PlayerHealthBar.play("0")
-		_show_game_over()
+		pass
 	
 	# Checks the boss's health and displays it on its health bar
 #	if $Boss.boss_health_percent <= 100:
@@ -106,7 +84,7 @@ func _unpause_game() -> void:
 
 # Displays the game over message and allows the player to replay,
 #  go the the main menu, or quit the game
-func _show_game_over() -> void:
+func show_game_over() -> void:
 	$Overlay/GameOver.visible = true
 	$Overlay/GameOver/ReplayButton.disabled = false
 	$Overlay/GameOver/ToMenuButton.disabled = false
