@@ -10,6 +10,7 @@ var bullet_velocity := 10
 
 func _ready():
 	$Timers/UnpauseTimer.start()
+	get_tree().paused = true
 
 
 func _input(_event) -> void:
@@ -18,7 +19,7 @@ func _input(_event) -> void:
 		if get_tree().paused == false:
 			_pause_game()
 		elif get_tree().paused == true:
-			$Timers/UnpauseTimer.start()
+			_unpause_game()
 	
 	# Allows the player to use keybinds to interact with the pause menu
 	if game_paused == true:
@@ -95,13 +96,12 @@ func _pause_game() -> void:
 
 # Unpauses the game and hides the pause menu
 func _unpause_game() -> void:
-	get_tree().paused = false
 	$Overlay/PauseMenu/InGameResumeButton.disabled = true
 	$Overlay/PauseMenu/InGameRestartButton.disabled = true
 	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
 	$Overlay/PauseMenu/InGameQuitButton.disabled = true
 	$Overlay/PauseMenu.visible = false
-	game_paused = false
+	$Timers/UnpauseTimer.start()
 
 
 # Displays the game over message and allows the player to replay,
@@ -151,4 +151,5 @@ func _on_InGameQuitButton_pressed() -> void:
 
 
 func _on_UnpauseTimer_timeout():
-	_unpause_game()
+	game_paused = false
+	get_tree().paused = false

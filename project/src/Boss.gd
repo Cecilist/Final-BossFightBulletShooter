@@ -21,7 +21,7 @@ func _fire_bullet() -> void:
 	var bullet = load("res://src/BossBullet.tscn").instance()
 	rng.randomize()
 	var random_num =  floor(rng.randf_range(0, 5))
-	get_node("/root/Level").call_deferred("add_child", bullet)
+	call_deferred("add_child", bullet)
 	if random_num == 0:
 		bullet.global_position = $Cannon1.global_position
 	if random_num == 1:

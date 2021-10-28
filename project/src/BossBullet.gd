@@ -6,4 +6,5 @@ var angle := 0
 
 
 func _physics_process(_delta) -> void:
-	position.y += 10
+	if get_parent().boss_paused == false:
+		position.y += 10
