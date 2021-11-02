@@ -10,6 +10,7 @@ var ship_paused = true
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
+var _player_invulnerable := false
 
 
 func _physics_process(_delta) -> void:
@@ -92,4 +93,11 @@ func _on_Hitbox_body_entered(_body) -> void:
 # using area, not body, for boss and bullets
 # this works, but will break if we use areas for anything else
 func _on_Hitbox_area_entered(_area) -> void:
-	_remaining_player_health -= 10
+	if _player_invulnerable == false:
+		_remaining_player_health -= 10
+		_player_invulnerable = true
+		$InvulnerabilityTimer.start()
+
+
+func _on_InvulnerabilityTimer_timeout():
+	_player_invulnerable = false
