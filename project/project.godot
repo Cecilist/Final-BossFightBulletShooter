@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
+"base": "KinematicBody2D",
 "class": "Boss",
 "language": "GDScript",
 "path": "res://src/Boss.gd"
@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Player.gd"
 }, {
+"base": "Area2D",
+"class": "PlayerBullet",
+"language": "GDScript",
+"path": "res://src/PlayerBullet.gd"
+}, {
 "base": "Node2D",
 "class": "WonGame",
 "language": "GDScript",
@@ -57,6 +62,7 @@ _global_script_class_icons={
 "Level": "",
 "MainMenu": "",
 "Player": "",
+"PlayerBullet": "",
 "WonGame": ""
 }
 

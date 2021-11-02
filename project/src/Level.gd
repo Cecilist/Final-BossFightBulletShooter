@@ -11,6 +11,8 @@ var bullet_velocity := 10
 func _ready():
 	$Timers/UnpauseTimer.start()
 	get_tree().paused = true
+	game_over = false
+	won_game = false
 
 
 func _input(_event) -> void:
@@ -33,7 +35,9 @@ func _input(_event) -> void:
 
 func _process(_delta) -> void:
 	# Checks the player's health and displays it on the player's health bar
-		pass
+	if won_game || game_over == true:
+		_pause_game()
+	$Overlay/BossHealth.text  = "Boss Health %d" %lerp($Boss.boss_health, $Boss.boss_health_next, 0.1)
 	
 	# Checks the boss's health and displays it on its health bar
 #	if $Boss.boss_health_percent <= 100:
@@ -64,12 +68,14 @@ func _process(_delta) -> void:
 # Pauses the game and brings up the pause menu
 func _pause_game() -> void:
 	get_tree().paused = true
-	$Overlay/PauseMenu/InGameResumeButton.disabled = false
-	$Overlay/PauseMenu/InGameRestartButton.disabled = false
-	$Overlay/PauseMenu/InGameToMenuButton.disabled = false
-	$Overlay/PauseMenu/InGameQuitButton.disabled = false
-	$Overlay/PauseMenu.visible = true
 	game_paused = true
+	if won_game == false && game_over == false:
+		$Overlay/PauseMenu/InGameResumeButton.disabled = false
+		$Overlay/PauseMenu/InGameRestartButton.disabled = false
+		$Overlay/PauseMenu/InGameToMenuButton.disabled = false
+		$Overlay/PauseMenu/InGameQuitButton.disabled = false
+		$Overlay/PauseMenu.visible = true
+
 
 
 # Unpauses the game and hides the pause menu

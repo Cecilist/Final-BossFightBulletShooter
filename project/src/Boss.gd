@@ -4,6 +4,8 @@ extends KinematicBody2D
 
 export var boss_health := 1000
 
+
+var boss_health_next = boss_health - 10
 var boss_health_percent := 100
 var boss_paused := true
 var remaining_boss_health = boss_health
@@ -11,6 +13,8 @@ var rng := RandomNumberGenerator.new()
 
 
 func _physics_process(_delta) -> void:
+	boss_health = clamp(boss_health, 0.0, 1000.0)
+	
 	boss_paused = get_parent().game_paused
 	if boss_health == 0:
 		get_parent().show_won_game()
