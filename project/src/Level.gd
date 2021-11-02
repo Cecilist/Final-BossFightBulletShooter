@@ -95,7 +95,7 @@ func show_game_over() -> void:
 
 # Displays the won game message and allows the player to replay,
 #  go the the main menu, or quit the game
-func _show_won_game() -> void:
+func show_won_game() -> void:
 	won_game = true
 	$Overlay/WonGame.visible = true
 	$Overlay/EndButtons.visible = true

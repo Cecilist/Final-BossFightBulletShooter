@@ -1,5 +1,5 @@
 class_name Boss
-extends Area2D
+extends KinematicBody2D
 
 
 export var boss_health := 1000
@@ -12,6 +12,8 @@ var rng := RandomNumberGenerator.new()
 
 func _physics_process(_delta) -> void:
 	boss_paused = get_parent().game_paused
+	if boss_health == 0:
+		get_parent().show_won_game()
 	
 	if boss_paused == false:
 		_fire_bullet();
@@ -41,3 +43,8 @@ func _fire_bullet() -> void:
 	#$Cannon3.set_position(cannonMovement)
 	#$Cannon4.set_position(cannonMovement)
 	#$Cannon5.set_position(cannonMovement)
+
+
+func _on_Area2D_area_entered(_area):
+		boss_health -= 10
+		
