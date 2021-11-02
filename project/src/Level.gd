@@ -85,19 +85,23 @@ func _unpause_game() -> void:
 # Displays the game over message and allows the player to replay,
 #  go the the main menu, or quit the game
 func show_game_over() -> void:
+	game_over = true
 	$Overlay/GameOver.visible = true
-	$Overlay/GameOver/ReplayButton.disabled = false
-	$Overlay/GameOver/ToMenuButton.disabled = false
-	$Overlay/GameOver/QuitButton.disabled = false
+	$Overlay/EndButtons.visible = true
+	$Overlay/EndButtons/ReplayButton.disabled = false
+	$Overlay/EndButtons/ToMenuButton.disabled = false
+	$Overlay/EndButtons/QuitButton.disabled = false
 
 
 # Displays the won game message and allows the player to replay,
 #  go the the main menu, or quit the game
 func _show_won_game() -> void:
+	won_game = true
 	$Overlay/WonGame.visible = true
-	$Overlay/WonGame/ReplayButton.disabled = false
-	$Overlay/WonGame/ToMenuButton.disabled = false
-	$Overlay/WonGame/QuitButton.disabled = false
+	$Overlay/EndButtons.visible = true
+	$Overlay/EndButtons/ReplayButton.disabled = false
+	$Overlay/EndButtons/ToMenuButton.disabled = false
+	$Overlay/EndButtons/QuitButton.disabled = false
 
 
 # Resumes the game
@@ -131,3 +135,21 @@ func _on_InGameQuitButton_pressed() -> void:
 func _on_UnpauseTimer_timeout():
 	game_paused = false
 	get_tree().paused = false
+
+
+# Reloads the level
+func _on_ReplayButton_pressed():
+	if won_game == true || game_over == true:
+		var _ignored = get_tree().change_scene("res://src/Level.tscn")
+
+
+# Returns to the menu
+func _on_ToMenuButton_pressed():
+	if won_game == true || game_over == true:
+		var _ignored = get_tree().change_scene("res://src/MainMenu.tscn")
+
+
+# Quits the game
+func _on_QuitButton_pressed():
+	if won_game == true || game_over == true:
+		get_tree().quit()
