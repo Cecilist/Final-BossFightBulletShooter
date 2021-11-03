@@ -42,7 +42,7 @@ func _process(_delta) -> void:
 		_pause_game()
 	
 	# Displays the unpause timer
-	if game_paused && _unpaused == true:
+	if game_paused && _unpaused == true && won_game == false:
 		_show_unpause_timer()
 	
 	# Displays the boss's remaining health
