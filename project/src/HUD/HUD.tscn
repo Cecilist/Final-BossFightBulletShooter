@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/HUD/Health_Bar_0.png" type="Texture" id=1]
+[ext_resource path="res://src/HUD/Health_Bar_40.png" type="Texture" id=2]
+[ext_resource path="res://src/HUD/Health_Bar_30.png" type="Texture" id=3]
+[ext_resource path="res://src/HUD/Health_Bar_50.png" type="Texture" id=4]
+[ext_resource path="res://src/HUD/Health_Bar_60.png" type="Texture" id=5]
+[ext_resource path="res://src/HUD/Health_Bar_70.png" type="Texture" id=6]
+[ext_resource path="res://src/HUD/Health_Bar_90.png" type="Texture" id=7]
+[ext_resource path="res://src/HUD/Health_Bar_10.png" type="Texture" id=8]
+[ext_resource path="res://src/HUD/Health_Bar_20.png" type="Texture" id=9]
+[ext_resource path="res://src/HUD/Health_Bar_80.png" type="Texture" id=10]
+[ext_resource path="res://src/HUD/Health_Bar_100.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "60",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "10",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "20",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "30",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "40",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "90",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "100",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "70",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "50",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "80",
+"speed": 5.0
+} ]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHealthBar" type="AnimatedSprite" parent="."]
+position = Vector2( 110.471, 39.1902 )
+scale = Vector2( 0.35, 0.25 )
+frames = SubResource( 1 )
+animation = "100"
+playing = true

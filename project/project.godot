@@ -12,37 +12,37 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Boss",
 "language": "GDScript",
-"path": "res://src/Boss.gd"
+"path": "res://src/Boss/Boss.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "BossBullet",
 "language": "GDScript",
-"path": "res://src/BossBullet.gd"
+"path": "res://src/Boss/BossBullet.gd"
 }, {
 "base": "Node2D",
 "class": "Instructions",
 "language": "GDScript",
-"path": "res://src/Instructions.gd"
+"path": "res://src/Menu/Instructions.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
-"path": "res://src/Level.gd"
+"path": "res://src/Level/Level.gd"
 }, {
 "base": "Node2D",
 "class": "MainMenu",
 "language": "GDScript",
-"path": "res://src/MainMenu.gd"
+"path": "res://src/Menu/MainMenu.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://src/Player.gd"
+"path": "res://src/Player/Player.gd"
 }, {
 "base": "Area2D",
 "class": "PlayerBullet",
 "language": "GDScript",
-"path": "res://src/PlayerBullet.gd"
+"path": "res://src/Player/PlayerBullet.gd"
 } ]
 _global_script_class_icons={
 "Boss": "",
@@ -57,12 +57,12 @@ _global_script_class_icons={
 [application]
 
 config/name="FinalProject"
-run/main_scene="res://src/MainMenu.tscn"
+run/main_scene="res://src/Menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Background="*res://src/Background.tscn"
+Background="*res://src/Background/Background.tscn"
 
 [display]
 
