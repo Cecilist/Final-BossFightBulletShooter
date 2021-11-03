@@ -46,7 +46,7 @@ script = ExtResource( 4 )
 [node name="ExhaustSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
-frame = 1
+frame = 2
 playing = true
 
 [node name="ShipSprite" type="AnimatedSprite" parent="."]

@@ -53,6 +53,7 @@ func _fire_bullet() -> void:
 
 
 # Lowers the boss's health if they are hit
-func _on_Area2D_area_entered(_area):
+#  and removes the bullets that hit them
+func _on_Area2D_area_entered(area):
+		area.queue_free()
 		boss_health -= 10
-		

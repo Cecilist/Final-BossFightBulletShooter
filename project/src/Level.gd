@@ -179,3 +179,8 @@ func _on_ToMenuButton_pressed():
 func _on_QuitButton_pressed():
 	if won_game == true || game_over == true:
 		get_tree().quit()
+
+
+# Once the bullets are offscreen, they are removed from the game
+func _on_BulletDespawnPoint_area_entered(area):
+	area.queue_free()

@@ -93,8 +93,10 @@ func shoot():
 
 
 # Reduces the player's health if they are hit
-func _on_Hitbox_area_entered(_area) -> void:
+#  and removes the bullets that hit them
+func _on_Hitbox_area_entered(area) -> void:
 	if _player_invulnerable == false:
+		area.queue_free()
 		_remaining_player_health -= 10
 		_player_invulnerable = true
 		$ShipSprite.play("damaged")
