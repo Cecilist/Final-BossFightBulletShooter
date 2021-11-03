@@ -9,6 +9,7 @@ var boss_paused := true
 var rng := RandomNumberGenerator.new()
 
 var _remaining_boss_health = boss_health
+var _boss_can_shoot = true
 
 
 func _physics_process(_delta) -> void:
@@ -21,7 +22,7 @@ func _physics_process(_delta) -> void:
 		get_parent().show_won_game()
 	
 	# Shoots the bullets if the game isn't paused
-	if boss_paused == false:
+	if boss_paused == false && _boss_can_shoot == true:
 		_fire_bullet();
 
 
@@ -46,13 +47,16 @@ func _fire_bullet() -> void:
 	#$BossShootingSound.play()
 	
 	# Code below will randomly move around cannons
-	#var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
-	#var cannonMovement := Vector2(randomX, 97) # magic number represetning current general y location of cannons
-	#$Cannon1.set_position(cannonMovement)
-	#$Cannon2.set_position(cannonMovement)
-	#$Cannon3.set_position(cannonMovement)
-	#$Cannon4.set_position(cannonMovement)
-	#$Cannon5.set_position(cannonMovement)
+	var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
+	var cannonMovement := Vector2(randomX, 97) # magic number represetning current general y location of cannons
+	$Cannon1.set_position(cannonMovement)
+	$Cannon2.set_position(cannonMovement)
+	$Cannon3.set_position(cannonMovement)
+	$Cannon4.set_position(cannonMovement)
+	$Cannon5.set_position(cannonMovement)
+	
+	_boss_can_shoot = false
+	$BossShotTimer.start()
 
 
 # Lowers the boss's health if they are hit
@@ -60,3 +64,7 @@ func _fire_bullet() -> void:
 func _on_Area2D_area_entered(area) -> void:
 		area.queue_free()
 		boss_health -= 10
+
+
+func _on_BossShotTimer_timeout() -> void:
+	_boss_can_shoot = true

@@ -11,7 +11,7 @@ var ship_paused := true
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
 var _player_invulnerable := false
-var _can_shoot := true
+var _player_can_shoot := true
 
 
 func _physics_process(_delta) -> void:
@@ -39,7 +39,7 @@ func _physics_process(_delta) -> void:
 		if Input.is_action_pressed("move_right"):
 			_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
-			if _can_shoot == true:
+			if _player_can_shoot == true:
 				shoot();
 
 	# If the game is paused, stops playing the sprite's animation
@@ -89,8 +89,8 @@ func shoot() -> void:
 	get_node("/root/Level").add_child(bulletR)
 	bulletR.global_position = $RightCannon.global_position
 	$PlayerShootingSound.play()
-	_can_shoot = false
-	$ShootTimer.start()
+	_player_can_shoot = false
+	$PlayerShotTimer.start()
 
 
 # Reduces the player's health if they are hit
@@ -112,5 +112,5 @@ func _on_InvulnerabilityTimer_timeout() -> void:
 
 # Allows the cannons to shoot again, giving the shots a delay
 #  when the player holds the shoot key
-func _on_ShootTimer_timeout() -> void:
-	_can_shoot = true
+func _on_PlayerShotTimer_timeout() -> void:
+	_player_can_shoot = true
