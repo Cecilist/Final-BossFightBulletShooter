@@ -4,25 +4,28 @@ extends KinematicBody2D
 
 export var boss_health := 1000
 
-
-var boss_health_next = boss_health - 10
 var boss_health_percent := 100
 var boss_paused := true
-var remaining_boss_health = boss_health
 var rng := RandomNumberGenerator.new()
+
+var _remaining_boss_health = boss_health
 
 
 func _physics_process(_delta) -> void:
-	boss_health = clamp(boss_health, 0.0, 1000.0)
+	# Keeps the boss's health from going below 0, mostly for the counter
+	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
 	
+	# Shows that the player has won the game
 	boss_paused = get_parent().game_paused
 	if boss_health == 0:
 		get_parent().show_won_game()
 	
+	# Shoots the bullets if the game isn't paused
 	if boss_paused == false:
 		_fire_bullet();
 
 
+# Creates instances of the bullets to fire at the player
 func _fire_bullet() -> void:
 	var bullet = load("res://src/BossBullet.tscn").instance()
 	rng.randomize()
@@ -49,6 +52,7 @@ func _fire_bullet() -> void:
 	#$Cannon5.set_position(cannonMovement)
 
 
+# Lowers the boss's health if they are hit
 func _on_Area2D_area_entered(_area):
 		boss_health -= 10
 		

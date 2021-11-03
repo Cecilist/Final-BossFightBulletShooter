@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://src/WonGame.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -26,7 +25,6 @@ font_data = ExtResource( 2 )
 
 [node name="WonGame" type="Node2D"]
 position = Vector2( 360, 540 )
-script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5

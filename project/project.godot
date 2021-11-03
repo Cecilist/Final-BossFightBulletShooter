@@ -20,11 +20,6 @@ _global_script_classes=[ {
 "path": "res://src/BossBullet.gd"
 }, {
 "base": "Node2D",
-"class": "GameOver",
-"language": "GDScript",
-"path": "res://src/GameOver.gd"
-}, {
-"base": "Node2D",
 "class": "Instructions",
 "language": "GDScript",
 "path": "res://src/Instructions.gd"
@@ -48,22 +43,15 @@ _global_script_classes=[ {
 "class": "PlayerBullet",
 "language": "GDScript",
 "path": "res://src/PlayerBullet.gd"
-}, {
-"base": "Node2D",
-"class": "WonGame",
-"language": "GDScript",
-"path": "res://src/WonGame.gd"
 } ]
 _global_script_class_icons={
 "Boss": "",
 "BossBullet": "",
-"GameOver": "",
 "Instructions": "",
 "Level": "",
 "MainMenu": "",
 "Player": "",
-"PlayerBullet": "",
-"WonGame": ""
+"PlayerBullet": ""
 }
 
 [application]

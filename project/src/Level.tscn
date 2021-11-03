@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Level.gd" type="Script" id=3]
@@ -66,6 +66,12 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=13]
 size = 32
+outline_size = 2
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 128
+outline_size = 2
 font_data = ExtResource( 8 )
 
 [node name="Level" type="Node2D"]
@@ -73,7 +79,7 @@ pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 387.434, 1005.75 )
+position = Vector2( 360, 1000 )
 scale = Vector2( 0.25, 0.25 )
 
 [node name="Boss" parent="." groups=[
@@ -332,7 +338,27 @@ margin_top = -2.17839
 margin_right = 724.238
 margin_bottom = 57.8216
 custom_fonts/font = SubResource( 13 )
-text = "Boss Health:"
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "BossHealth"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnpauseLabel" type="Label" parent="Overlay"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -273.0
+margin_top = -83.5
+margin_right = 273.0
+margin_bottom = 83.5
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "TimeLeft"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

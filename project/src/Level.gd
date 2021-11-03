@@ -7,6 +7,9 @@ var game_over := false
 var won_game := false
 var bullet_velocity := 10
 
+var _unpause_time_remaining : String = "3"
+var _unpaused = true
+
 
 func _ready():
 	$Timers/UnpauseTimer.start()
@@ -37,7 +40,13 @@ func _process(_delta) -> void:
 	# Checks the player's health and displays it on the player's health bar
 	if won_game || game_over == true:
 		_pause_game()
-	$Overlay/BossHealth.text  = "Boss Health %d" %lerp($Boss.boss_health, $Boss.boss_health_next, 0.1)
+	
+	# Displays the unpause timer
+	if game_paused && _unpaused == true:
+		_show_unpause_timer()
+	
+	# Displays the boss's remaining health
+	$Overlay/BossHealth.text  = "Boss Health: %d" % $Boss.boss_health
 	
 	# Checks the boss's health and displays it on its health bar
 #	if $Boss.boss_health_percent <= 100:
@@ -70,6 +79,7 @@ func _pause_game() -> void:
 	get_tree().paused = true
 	game_paused = true
 	if won_game == false && game_over == false:
+		_unpaused = false
 		$Overlay/PauseMenu/InGameResumeButton.disabled = false
 		$Overlay/PauseMenu/InGameRestartButton.disabled = false
 		$Overlay/PauseMenu/InGameToMenuButton.disabled = false
@@ -80,6 +90,7 @@ func _pause_game() -> void:
 
 # Unpauses the game and hides the pause menu
 func _unpause_game() -> void:
+	_unpaused = true
 	$Overlay/PauseMenu/InGameResumeButton.disabled = true
 	$Overlay/PauseMenu/InGameRestartButton.disabled = true
 	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
@@ -110,6 +121,13 @@ func show_won_game() -> void:
 	$Overlay/EndButtons/QuitButton.disabled = false
 
 
+# Shows the time remaining until the game unpauses
+func _show_unpause_timer():
+	_unpause_time_remaining = str(int(ceil($Timers/UnpauseTimer.get_time_left())))
+	$Overlay/UnpauseLabel.visible = true
+	$Overlay/UnpauseLabel.text = _unpause_time_remaining
+
+
 # Resumes the game
 func _on_InGameResumeButton_pressed() -> void:
 	game_paused = false
@@ -138,9 +156,11 @@ func _on_InGameQuitButton_pressed() -> void:
 		get_tree().quit()
 
 
+# Unpauses the game after the timer finishes
 func _on_UnpauseTimer_timeout():
 	game_paused = false
 	get_tree().paused = false
+	$Overlay/UnpauseLabel.visible = false
 
 
 # Reloads the level

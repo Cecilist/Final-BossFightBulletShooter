@@ -14,6 +14,9 @@ var _player_invulnerable := false
 
 
 func _physics_process(_delta) -> void:
+	# Clamps the player's health
+	_remaining_player_health = clamp(_remaining_player_health, 0, player_health)
+	
 	# Checks if the game has been paused
 	ship_paused = get_parent().game_paused	
 	
@@ -84,14 +87,7 @@ func shoot():
 	bulletR.global_position = $RightCannon.global_position
 
 
-# Reduces the players health if they take damage
-func _on_Hitbox_body_entered(_body) -> void:
-	pass
-	#if body == $Boss || body == $Boss_bullet:
-		#_remaining_player_health -= 10
-
-# using area, not body, for boss and bullets
-# this works, but will break if we use areas for anything else
+# Reduces the player's health if they are hit
 func _on_Hitbox_area_entered(_area) -> void:
 	if _player_invulnerable == false:
 		_remaining_player_health -= 10
@@ -99,5 +95,6 @@ func _on_Hitbox_area_entered(_area) -> void:
 		$InvulnerabilityTimer.start()
 
 
+# Removes the invulnerability on the player after they were hit
 func _on_InvulnerabilityTimer_timeout():
 	_player_invulnerable = false
