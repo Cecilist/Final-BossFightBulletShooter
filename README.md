@@ -48,3 +48,4 @@ This project effectively accomplishes all of the necessary requirements, so it d
 
 ## Third Party Assets
 - [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), licensed under [OFL](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
+- Bullet Sprites from [Kenny](https://www.kenney.nl/assets/pixel-shmup) licensed under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)

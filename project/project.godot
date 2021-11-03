@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Boss/Boss.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "BossBullet",
 "language": "GDScript",
 "path": "res://src/Boss/BossBullet.gd"
