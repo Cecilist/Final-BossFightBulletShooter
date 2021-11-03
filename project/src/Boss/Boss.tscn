@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Boss/Boss.gd" type="Script" id=2]
+[ext_resource path="res://src/Boss/Boss Shooting.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 258.889, 49.4904 )
@@ -61,5 +62,9 @@ position = Vector2( 226.982, 94.0454 )
 [node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 9.53503, 46.6164 )
 shape = SubResource( 3 )
+
+[node name="BossShootingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

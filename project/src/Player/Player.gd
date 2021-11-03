@@ -88,6 +88,7 @@ func shoot() -> void:
 	bulletL.global_position = $LeftCannon.global_position
 	get_node("/root/Level").add_child(bulletR)
 	bulletR.global_position = $RightCannon.global_position
+	$PlayerShootingSound.play()
 	_can_shoot = false
 	$ShootTimer.start()
 

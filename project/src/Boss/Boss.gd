@@ -41,7 +41,10 @@ func _fire_bullet() -> void:
 		bullet.global_position = $Cannon4.global_position
 	if random_num == 4:
 		bullet.global_position = $Cannon5.global_position
-		
+	
+	# Needs to be implemented in a less overwhelming way
+	#$BossShootingSound.play()
+	
 	# Code below will randomly move around cannons
 	#var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
 	#var cannonMovement := Vector2(randomX, 97) # magic number represetning current general y location of cannons
