@@ -1,7 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/textures/Player/Player_Ship_2.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/Player/Player_Ship_3.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/Player/Player_Ship_1.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=4]
+size = 128
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "flying",
+"speed": 7.0
+} ]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -18,9 +35,64 @@ size = 32
 outline_size = 2
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "TitleFadeIn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TitleLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TitleShipSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 360, 540 )
 script = ExtResource( 2 )
+
+[node name="TitleLabel" type="Label" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -254.5
+margin_top = -294.901
+margin_right = 254.5
+margin_bottom = -127.901
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Star Cry"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleShipSprite" type="AnimatedSprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 28.7341 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 6 )
+animation = "flying"
+playing = true
 
 [node name="PlayButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -69,6 +141,9 @@ text = "QUIT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/TitleFadeIn = SubResource( 5 )
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]

@@ -2,6 +2,11 @@ class_name MainMenu
 extends Node2D
 
 
+# Fades in the title
+func _ready():
+	$AnimationPlayer.play("TitleFadeIn")
+
+
 # Checks if the player pressed any of the buttons' corresponding keybinds
 func _input(_event) -> void:
 	if Input.is_action_just_pressed("play_game"):
