@@ -28,6 +28,7 @@ func _physics_process(_delta) -> void:
 	#  moves the player based on which keys they press
 	if ship_paused == false:
 		$ShipSprite.playing = true
+		$ExhaustSprite.playing = true
 		if Input.is_action_pressed("move_up"):
 			_ship_velocity.y = player_movement_speed * -1
 		if Input.is_action_pressed("move_down"):
@@ -92,9 +93,11 @@ func _on_Hitbox_area_entered(_area) -> void:
 	if _player_invulnerable == false:
 		_remaining_player_health -= 10
 		_player_invulnerable = true
+		$ShipSprite.play("damaged")
 		$InvulnerabilityTimer.start()
 
 
 # Removes the invulnerability on the player after they were hit
 func _on_InvulnerabilityTimer_timeout():
 	_player_invulnerable = false
+	$ShipSprite.play("flying")
