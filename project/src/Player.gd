@@ -6,11 +6,12 @@ export var player_health := 100
 export var player_movement_speed := 250
 
 var player_health_percent := 100.0
-var ship_paused = true
+var ship_paused := true
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health = player_health
 var _player_invulnerable := false
+var _can_shoot := true
 
 
 func _physics_process(_delta) -> void:
@@ -37,8 +38,9 @@ func _physics_process(_delta) -> void:
 			_ship_velocity.x = player_movement_speed * -1
 		if Input.is_action_pressed("move_right"):
 			_ship_velocity.x = player_movement_speed
-		if Input.is_action_just_pressed("shoot"):
-			shoot();
+		if Input.is_action_pressed("shoot"):
+			if _can_shoot == true:
+				shoot();
 
 	# If the game is paused, stops playing the sprite's animation
 	if ship_paused == true:
@@ -86,6 +88,8 @@ func shoot():
 	bulletL.global_position = $LeftCannon.global_position
 	get_node("/root/Level").add_child(bulletR)
 	bulletR.global_position = $RightCannon.global_position
+	_can_shoot = false
+	$ShootTimer.start()
 
 
 # Reduces the player's health if they are hit
@@ -101,3 +105,7 @@ func _on_Hitbox_area_entered(_area) -> void:
 func _on_InvulnerabilityTimer_timeout():
 	_player_invulnerable = false
 	$ShipSprite.play("flying")
+
+
+func _on_ShootTimer_timeout():
+	_can_shoot = true
