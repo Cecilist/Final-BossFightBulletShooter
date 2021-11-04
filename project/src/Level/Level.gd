@@ -173,7 +173,7 @@ func _on_ReplayButton_pressed() -> void:
 func _on_ToMenuButton_pressed() -> void:
 	if won_game == true || game_over == true:
 		var _ignored = get_tree().change_scene("res://src/Menu/MainMenu.tscn")
-	game_paused = false
+		game_paused = false
 
 
 # Quits the game
