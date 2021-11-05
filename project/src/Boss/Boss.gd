@@ -2,17 +2,17 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health := 1000
+export var boss_health = 1000
 
-var boss_health_percent := 100
-var boss_paused := true
-var rng := RandomNumberGenerator.new()
+var boss_health_percent = 100
+var boss_paused = true
+var rng = RandomNumberGenerator.new()
 
 var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
 
 
-func _physics_process(_delta) -> void:
+func _physics_process(_delta):
 	# Keeps the boss's health from going below 0, mostly for the counter
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
 	
@@ -22,12 +22,12 @@ func _physics_process(_delta) -> void:
 		get_parent().show_won_game()
 	
 	# Shoots the bullets if the game isn't paused
-	if boss_paused == false && _boss_can_shoot == true:
+	if boss_paused == false and _boss_can_shoot == true:
 		_fire_bullet();
 
 
 # Creates instances of the bullets to fire at the player
-func _fire_bullet() -> void:
+func _fire_bullet():
 	var bullet = load("res://src/Boss/BossBullet.tscn").instance()
 	rng.randomize()
 	var random_num =  floor(rng.randf_range(0, 5))
@@ -61,10 +61,11 @@ func _fire_bullet() -> void:
 
 # Lowers the boss's health if they are hit
 #  and removes the bullets that hit them
-func _on_Area2D_area_entered(area) -> void:
+func _on_Area2D_area_entered(area):
 		area.queue_free()
 		boss_health -= 10
 
 
-func _on_BossShotTimer_timeout() -> void:
+# Allows the boss to shoot again
+func _on_BossShotTimer_timeout():
 	_boss_can_shoot = true

@@ -2,19 +2,19 @@ class_name Player
 extends KinematicBody2D
 
 
-export var player_health := 100
-export var player_movement_speed := 250
+export var player_health = 100
+export var player_movement_speed = 250
 
-var player_health_percent := 100.0
-var ship_paused := true
+var player_health_percent = 100.0
+var ship_paused = true
 
-var _ship_velocity := Vector2(0,0)
+var _ship_velocity = Vector2(0,0)
 var _remaining_player_health = player_health
-var _player_invulnerable := false
-var _player_can_shoot := true
+var _player_invulnerable = false
+var _player_can_shoot = true
 
 
-func _physics_process(_delta) -> void:
+func _physics_process(_delta):
 	# Clamps the player's health
 	_remaining_player_health = clamp(_remaining_player_health, 0, player_health)
 	
@@ -81,7 +81,7 @@ func _physics_process(_delta) -> void:
 
 
 # Shoots 2 bullets at the same time from the player
-func shoot() -> void:
+func shoot():
 	var bulletL = load("res://src/Player/PlayerBullet.tscn").instance()
 	var bulletR = load("res://src/Player/PlayerBullet.tscn").instance()
 	get_node("/root/Level").add_child(bulletL)
@@ -95,7 +95,7 @@ func shoot() -> void:
 
 # Reduces the player's health if they are hit
 #  and removes the bullets that hit them
-func _on_Hitbox_area_entered(area) -> void:
+func _on_Hitbox_area_entered(area):
 	if _player_invulnerable == false:
 		area.queue_free()
 		_remaining_player_health -= 10
@@ -105,12 +105,12 @@ func _on_Hitbox_area_entered(area) -> void:
 
 
 # Removes the invulnerability on the player after they were hit
-func _on_InvulnerabilityTimer_timeout() -> void:
+func _on_InvulnerabilityTimer_timeout():
 	_player_invulnerable = false
 	$ShipSprite.play("flying")
 
 
 # Allows the cannons to shoot again, giving the shots a delay
 #  when the player holds the shoot key
-func _on_PlayerShotTimer_timeout() -> void:
+func _on_PlayerShotTimer_timeout():
 	_player_can_shoot = true
