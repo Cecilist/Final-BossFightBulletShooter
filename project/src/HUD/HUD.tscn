@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/HUD/Boss Health Bar.png" type="Texture" id=1]
+[ext_resource path="res://src/HUD/Health Bar.png" type="Texture" id=1]
 [ext_resource path="res://src/HUD/Boss Health Outline.png" type="Texture" id=2]
-[ext_resource path="res://src/HUD/Player Health Bar.png" type="Texture" id=3]
 [ext_resource path="res://src/HUD/Player Health Outline.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Medium.ttf" type="DynamicFontData" id=5]
 
@@ -27,16 +26,6 @@ __meta__ = {
 position = Vector2( 151.191, 75 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="PlayerHealth" type="Sprite" parent="PlayerHealthBar"]
-position = Vector2( -310.568, -83 )
-scale = Vector2( 1, 1.1 )
-texture = ExtResource( 3 )
-centered = false
-
-[node name="PlayerHealthOutline" type="Sprite" parent="PlayerHealthBar"]
-scale = Vector2( 0.99, 1 )
-texture = ExtResource( 4 )
-
 [node name="PlayerHPLabel" type="Label" parent="PlayerHealthBar"]
 margin_left = -291.647
 margin_top = -140.0
@@ -51,18 +40,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerHealth" type="Sprite" parent="PlayerHealthBar"]
+position = Vector2( -290, -55 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="PlayerHealthOutline" type="Sprite" parent="PlayerHealthBar"]
+z_index = 1
+texture = ExtResource( 4 )
+
 [node name="BossHealthBar" type="Node2D" parent="."]
 position = Vector2( 568.224, 75 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="BossHealth" type="Sprite" parent="BossHealthBar"]
-position = Vector2( -310.459, -83 )
-scale = Vector2( 1, 1.1 )
+position = Vector2( -290, -55 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="BossHealthOutline" type="Sprite" parent="BossHealthBar"]
-scale = Vector2( 0.99, 1 )
 texture = ExtResource( 2 )
 
 [node name="BossHPLabel" type="Label" parent="BossHealthBar"]
