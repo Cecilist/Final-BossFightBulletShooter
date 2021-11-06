@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Health_Bar_100.png-e0f287eac310de8862fdcbf17add2145.stex"
+path="res://.import/Player Health Outline.png-c21fe689bf14bf1ac144130591a4d7bd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/HUD/Health_Bar_100.png"
-dest_files=[ "res://.import/Health_Bar_100.png-e0f287eac310de8862fdcbf17add2145.stex" ]
+source_file="res://src/HUD/Player Health Outline.png"
+dest_files=[ "res://.import/Player Health Outline.png-c21fe689bf14bf1ac144130591a4d7bd.stex" ]
 
 [params]
 

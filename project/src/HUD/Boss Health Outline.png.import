@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Health_Bar_10.png-db5fcb7ed38ba2760040a049e318ba89.stex"
+path="res://.import/Boss Health Outline.png-e24f0be8473844cc0b40ac5c64c4dbd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/HUD/Health_Bar_10.png"
-dest_files=[ "res://.import/Health_Bar_10.png-db5fcb7ed38ba2760040a049e318ba89.stex" ]
+source_file="res://src/HUD/Boss Health Outline.png"
+dest_files=[ "res://.import/Boss Health Outline.png-e24f0be8473844cc0b40ac5c64c4dbd8.stex" ]
 
 [params]
 

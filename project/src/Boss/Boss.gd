@@ -2,9 +2,9 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health = 1000
+export var boss_health = 1000.0
 
-var boss_health_percent = 100
+var boss_health_percent = 100.0
 var boss_paused = true
 var rng = RandomNumberGenerator.new()
 

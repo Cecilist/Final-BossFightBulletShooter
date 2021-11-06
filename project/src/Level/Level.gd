@@ -9,6 +9,7 @@ var bullet_velocity = 10
 
 var _unpause_time_remaining = "3"
 var _unpaused = true
+var _previous_player_health = 100.0
 
 
 func _ready():
@@ -45,8 +46,14 @@ func _process(_delta):
 	if (game_paused == true and _unpaused == true) and (won_game == false and game_over == false):
 		_show_unpause_timer()
 	
+	# Displays the player's health
+	#This line isn't working yet, and the scaling needs to be done in a way that the health bar stays alligned to the left
+#	if not $Player.player_health == _previous_player_health:
+	$Overlay/HUD/PlayerHealthBar/PlayerHealth.scale.x *= $Player.player_health_percent
+#	_previous_player_health = $Player.player_health
+	
 	# Displays the boss's remaining health
-	$Overlay/BossHealth.text  = "Boss Health: %d" % $Boss.boss_health
+	$Overlay/HUD/BossHealthBar/BossHealth.scale.x *= $Boss.boss_health_percent
 	#if Boss.boss_health == 0
 #		_show_won_game()
 

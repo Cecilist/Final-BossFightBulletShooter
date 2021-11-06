@@ -2,7 +2,9 @@ class_name Player
 extends KinematicBody2D
 
 
-export var player_health = 100
+signal health_changed
+
+export var player_health = 100.0
 export var player_movement_speed = 250
 
 var player_health_percent = 100.0
@@ -51,33 +53,8 @@ func _physics_process(_delta):
 	
 	# Calculates how much health the player has as a percent
 	#  to display it as part of the HUD
-	player_health_percent = 100 * _remaining_player_health / player_health
+	player_health_percent = _remaining_player_health / player_health
 	player_health_percent = clamp(player_health_percent, 0, 100)
-	
-	# Checks the player's health and displays it on the player's health bar
-	if player_health_percent <= 100:
-		$Overlay/HUD/PlayerHealthBar.play("100")
-	if player_health_percent <= 90:
-		$Overlay/HUD/PlayerHealthBar.play("90")
-	if player_health_percent <= 80:
-		$Overlay/HUD/PlayerHealthBar.play("80")
-	if player_health_percent <= 70:
-		$Overlay/HUD/PlayerHealthBar.play("70")
-	if player_health_percent <= 60:
-		$Overlay/HUD/PlayerHealthBar.play("60")
-	if player_health_percent <= 50:
-		$Overlay/HUD/PlayerHealthBar.play("50")
-	if player_health_percent <= 40:
-		$Overlay/HUD/PlayerHealthBar.play("40")
-	if player_health_percent <= 30:
-		$Overlay/HUD/PlayerHealthBar.play("30")
-	if player_health_percent <= 20:
-		$Overlay/HUD/PlayerHealthBar.play("20")
-	if player_health_percent <= 10:
-		$Overlay/HUD/PlayerHealthBar.play("10")
-	if player_health_percent == 0:
-		$Overlay/HUD/PlayerHealthBar.play("0")
-		get_parent().show_game_over()
 
 
 # Shoots 2 bullets at the same time from the player
@@ -102,6 +79,7 @@ func _on_Hitbox_area_entered(area):
 		_player_invulnerable = true
 		$ShipSprite.play("damaged")
 		$InvulnerabilityTimer.start()
+		emit_signal("health_changed")
 
 
 # Removes the invulnerability on the player after they were hit
