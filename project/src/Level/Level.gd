@@ -50,11 +50,13 @@ func _process(_delta):
 	#This line isn't working yet, and the scaling needs to be done in a way that the health bar stays alligned to the left
 #	if not $Player.player_health == _previous_player_health:
 	$Overlay/HUD/PlayerHealthBar/PlayerHealth.scale.x *= $Player.player_health_percent
+#	if $Player.player_health == 0:
+#		_show_game_over()
 #	_previous_player_health = $Player.player_health
 	
 	# Displays the boss's remaining health
-	$Overlay/HUD/BossHealthBar/BossHealth.scale.x *= $Boss.boss_health_percent
-	#if Boss.boss_health == 0
+#	$Overlay/HUD/BossHealthBar/BossHealth.scale.x *= $Boss.boss_health_percent
+	#if $Boss.boss_health == 0:
 #		_show_won_game()
 
 

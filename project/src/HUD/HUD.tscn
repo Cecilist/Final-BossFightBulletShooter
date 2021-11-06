@@ -28,9 +28,13 @@ position = Vector2( 151.191, 75 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="PlayerHealth" type="Sprite" parent="PlayerHealthBar"]
+position = Vector2( -310.568, -83 )
+scale = Vector2( 1, 1.1 )
 texture = ExtResource( 3 )
+centered = false
 
 [node name="PlayerHealthOutline" type="Sprite" parent="PlayerHealthBar"]
+scale = Vector2( 0.99, 1 )
 texture = ExtResource( 4 )
 
 [node name="PlayerHPLabel" type="Label" parent="PlayerHealthBar"]
@@ -51,11 +55,15 @@ __meta__ = {
 position = Vector2( 568.224, 75 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="BossHealthOutline" type="Sprite" parent="BossHealthBar"]
-texture = ExtResource( 2 )
-
 [node name="BossHealth" type="Sprite" parent="BossHealthBar"]
+position = Vector2( -310.459, -83 )
+scale = Vector2( 1, 1.1 )
 texture = ExtResource( 1 )
+centered = false
+
+[node name="BossHealthOutline" type="Sprite" parent="BossHealthBar"]
+scale = Vector2( 0.99, 1 )
+texture = ExtResource( 2 )
 
 [node name="BossHPLabel" type="Label" parent="BossHealthBar"]
 margin_left = 42.226
