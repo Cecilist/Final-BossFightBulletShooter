@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var _bullet = preload("res://src/Boss/SpinnerBullets.tscn")
+var _bullet = preload("res://src/Boss/Spinner/SpinnerBullets.tscn")
 onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 

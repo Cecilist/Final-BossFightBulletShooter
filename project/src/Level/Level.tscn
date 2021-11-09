@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://src/HUD/HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://CannonSpinner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Boss/Spinner/CannonSpinner.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 0, -126.227 )

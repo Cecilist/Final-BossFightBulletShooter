@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://CannonSpinner.gd" type="Script" id=1]
+[ext_resource path="res://src/Boss/Spinner/CannonSpinner.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20.1688, 19.2364 )
 
 [node name="CannonSpinner" type="KinematicBody2D"]
 script = ExtResource( 1 )
+_rotation_speed = 200
+_cannons_count = 8
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 40.0
