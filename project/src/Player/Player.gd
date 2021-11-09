@@ -61,6 +61,8 @@ func _physics_process(_delta):
 func shoot():
 	var bulletL = load("res://src/Player/PlayerBullet.tscn").instance()
 	var bulletR = load("res://src/Player/PlayerBullet.tscn").instance()
+	bulletL.add_to_group("Player")
+	bulletR.add_to_group("Player")
 	get_node("/root/Level").add_child(bulletL)
 	bulletL.global_position = $LeftCannon.global_position
 	get_node("/root/Level").add_child(bulletR)

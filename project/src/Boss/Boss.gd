@@ -62,8 +62,10 @@ func _fire_bullet():
 # Lowers the boss's health if they are hit
 #  and removes the bullets that hit them
 func _on_Area2D_area_entered(area):
+	if area.is_in_group("Player"):
 		area.queue_free()
 		boss_health -= 10
+		print(boss_health)
 
 
 # Allows the boss to shoot again
