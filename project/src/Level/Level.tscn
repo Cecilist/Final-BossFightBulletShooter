@@ -89,7 +89,7 @@ scale = Vector2( 0.25, 0.25 )
 [node name="Boss" parent="." groups=[
 "hazard",
 ] instance=ExtResource( 2 )]
-position = Vector2( 360, 76 )
+position = Vector2( 360, 225.907 )
 
 [node name="LevelBorders" type="StaticBody2D" parent="."]
 

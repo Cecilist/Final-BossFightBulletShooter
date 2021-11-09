@@ -47,13 +47,13 @@ func _fire_bullet():
 	#$BossShootingSound.play()
 	
 	# Code below will randomly move around cannons
-	var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
-	var cannonMovement := Vector2(randomX, 97) # magic number represetning current general y location of cannons
-	$Cannon1.set_position(cannonMovement)
-	$Cannon2.set_position(cannonMovement)
-	$Cannon3.set_position(cannonMovement)
-	$Cannon4.set_position(cannonMovement)
-	$Cannon5.set_position(cannonMovement)
+	#var randomX = rng.randf_range(-249, 269) # magic numbers representing current width of boss "sprite"
+	#var cannonMovement := Vector2(randomX, 97) # magic number represetning current general y location of cannons
+	#$Cannon1.set_position(cannonMovement)
+	#$Cannon2.set_position(cannonMovement)
+	#$Cannon3.set_position(cannonMovement)
+	#$Cannon4.set_position(cannonMovement)
+	#$Cannon5.set_position(cannonMovement)
 	
 	_boss_can_shoot = false
 	$BossShotTimer.start()
