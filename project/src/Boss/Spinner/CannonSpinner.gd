@@ -29,9 +29,7 @@ func _process(delta: float) -> void:
 	if get_parent().boss_paused == false:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
-	#else:
-		#is_paused = true
-		
+
 	
 func _on_Timer_timeout() -> void:
 		for i in rotater.get_children():
