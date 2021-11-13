@@ -4,7 +4,6 @@ var _bullet = preload("res://src/Boss/Spinner/SpinnerBullets.tscn")
 onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
-#var is_paused = get_parent().game_paused
 export var _rotation_speed = 100
 export var _shoot_time = 0.2
 export var _cannons_count = 4
@@ -32,7 +31,8 @@ func _process(delta: float) -> void:
 
 	
 func _on_Timer_timeout() -> void:
-		for i in rotater.get_children():
+	for i in rotater.get_children():
+		if get_parent().boss_paused == false:
 			var bullet = _bullet.instance()
 			get_tree().root.add_child(bullet)
 			bullet.position = i.global_position

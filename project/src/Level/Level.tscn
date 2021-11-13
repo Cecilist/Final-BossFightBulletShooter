@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Boss/Boss.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://src/HUD/HUD.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/Boss/Spinner/CannonSpinner.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 0, -126.227 )
@@ -90,9 +89,6 @@ scale = Vector2( 0.25, 0.25 )
 [node name="Boss" parent="." instance=ExtResource( 2 )]
 position = Vector2( 360, 225.907 )
 
-[node name="CannonSpinner" parent="Boss" instance=ExtResource( 7 )]
-position = Vector2( -9.64163, 289.275 )
-
 [node name="LevelBorders" type="StaticBody2D" parent="."]
 
 [node name="LeftBoundary" type="CollisionShape2D" parent="LevelBorders"]
@@ -116,6 +112,10 @@ shape = SubResource( 2 )
 [node name="Overlay" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="Overlay" instance=ExtResource( 6 )]
+margin_left = -0.657349
+margin_top = -2.81311
+margin_right = -0.657288
+margin_bottom = -2.81311
 
 [node name="PauseMenu" type="Control" parent="Overlay"]
 visible = false

@@ -18,6 +18,10 @@ font_data = ExtResource( 5 )
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 842.79
+margin_top = -28.5088
+margin_right = 842.79
+margin_bottom = -28.5088
 __meta__ = {
 "_edit_use_anchors_": false
 }
