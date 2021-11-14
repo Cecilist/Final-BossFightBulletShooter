@@ -18,14 +18,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "flying",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "damaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "flying",
 "speed": 5.0
 } ]
 
@@ -42,7 +42,6 @@ script = ExtResource( 3 )
 [node name="ExhaustSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
-frame = 3
 playing = true
 
 [node name="ShipSprite" type="AnimatedSprite" parent="."]

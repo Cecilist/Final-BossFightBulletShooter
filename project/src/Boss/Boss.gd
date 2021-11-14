@@ -24,6 +24,11 @@ func _physics_process(_delta):
 	# Shoots the bullets if the game isn't paused
 	if boss_paused == false and _boss_can_shoot == true:
 		_fire_bullet();
+	
+	# Calculates how much health the boss has as a percent
+	#  to display it as part of the HUD
+	boss_health_percent = _remaining_boss_health / boss_health
+	boss_health_percent = clamp(boss_health_percent, 0, 100)
 
 
 # Creates instances of the bullets to fire at the player
@@ -64,8 +69,7 @@ func _fire_bullet():
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		area.queue_free()
-		boss_health -= 10
-		print(boss_health)
+		_remaining_boss_health -= 10
 
 
 # Allows the boss to shoot again
