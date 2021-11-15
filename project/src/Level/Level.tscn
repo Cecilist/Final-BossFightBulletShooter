@@ -80,6 +80,7 @@ extents = Vector2( 452.637, 10 )
 
 [node name="Level" type="Node2D"]
 pause_mode = 2
+position = Vector2( 600, 0 )
 script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -112,10 +113,10 @@ shape = SubResource( 2 )
 [node name="Overlay" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="Overlay" instance=ExtResource( 6 )]
-margin_left = -0.657349
-margin_top = -2.81311
-margin_right = -0.657288
-margin_bottom = -2.81311
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PauseMenu" type="Control" parent="Overlay"]
 visible = false

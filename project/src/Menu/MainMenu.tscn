@@ -63,7 +63,7 @@ tracks/1/keys = {
 }
 
 [node name="MainMenu" type="Node2D"]
-position = Vector2( 360, 540 )
+position = Vector2( 960, 540 )
 script = ExtResource( 3 )
 
 [node name="TitleLabel" type="Label" parent="."]

@@ -32,6 +32,8 @@ tracks/1/keys = {
 }
 
 [node name="Background" type="ParallaxBackground"]
+scale = Vector2( 2.379, 1 )
+transform = Transform2D( 2.379, 0, 0, 1, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
