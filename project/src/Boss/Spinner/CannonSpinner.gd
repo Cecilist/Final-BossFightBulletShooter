@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var _bullet = preload("res://src/Boss/Spinner/SpinnerBullets.tscn")
+
 onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
@@ -8,6 +9,8 @@ export var _rotation_speed = 100
 export var _shoot_time = 0.2
 export var _cannons_count = 4
 export var _radius = 100
+
+var _health = 100
 
 
 func _ready():
@@ -28,6 +31,8 @@ func _process(delta: float) -> void:
 	if get_parent().boss_paused == false:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
+		if _health <= 0:
+			queue_free()
 
 	
 func _on_Timer_timeout() -> void:
@@ -38,3 +43,10 @@ func _on_Timer_timeout() -> void:
 			bullet.position = i.global_position
 			bullet.rotation = i.global_rotation
 			
+
+
+func _on_DamageBox_area_entered(area):
+	if area.is_in_group("Player"):
+		area.queue_free()
+		_health -= 10
+		
