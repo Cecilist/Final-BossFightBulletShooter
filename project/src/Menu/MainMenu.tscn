@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Chakra_Petch/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=2]
@@ -62,6 +62,9 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 1207.41, 871.501 )
+
 [node name="MainMenu" type="Node2D"]
 position = Vector2( 960, 540 )
 script = ExtResource( 3 )
@@ -91,7 +94,7 @@ position = Vector2( 0, 28.7341 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
-frame = 1
+frame = 3
 playing = true
 
 [node name="PlayButton" type="Button" parent="."]
@@ -145,6 +148,12 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/TitleFadeIn = SubResource( 6 )
 
+[node name="DespawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
+shape = SubResource( 7 )
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="area_entered" from="DespawnArea" to="." method="_on_DespawnArea_area_entered"]

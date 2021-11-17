@@ -30,3 +30,7 @@ func _on_InstructionsButton_pressed():
 # Quits the game
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_DespawnArea_area_entered(area):
+	area.queue_free()

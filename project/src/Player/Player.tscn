@@ -18,14 +18,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "damaged",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "flying",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "damaged",
 "speed": 5.0
 } ]
 

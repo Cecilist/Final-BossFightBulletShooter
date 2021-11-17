@@ -48,13 +48,13 @@ func _process(_delta):
 	
 	# Displays the player's health
 	$Overlay/HUD/PlayerHealthBar/PlayerHealth.scale.x = $Player.player_health_percent
-	if $Player.player_health == 0:
+	if $Player.player_health_percent == 0:
 		show_game_over()
 
 	
 	# Displays the boss's remaining health
 	$Overlay/HUD/BossHealthBar/BossHealth.scale.x = $Boss.boss_health_percent
-	if $Boss.boss_health == 0:
+	if $Boss.boss_health_percent == 0:
 		show_won_game()
 
 
