@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Boss/BossSprite.png" type="Texture" id=1]
+[ext_resource path="res://Boss/Boss.gd" type="Script" id=2]
+[ext_resource path="res://Boss/Boss Shooting.wav" type="AudioStream" id=3]
+[ext_resource path="res://Boss/Spinner/CannonSpinner.tscn" type="PackedScene" id=4]
+
+[node name="Boss" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.894844, 7.45012 )
+polygon = PoolVector2Array( -247.04, 119.641, -164.633, 118.8, -165.473, -22.4703, -138.565, -46.8563, 145.658, -49.379, 164.999, -24.993, 164.999, 117.959, 251.611, 117.118, 252.452, -128.423, -247.881, -128.423 )
+
+[node name="Cannon1" type="Position2D" parent="."]
+position = Vector2( -223.083, 139.76 )
+
+[node name="Cannon2" type="Position2D" parent="."]
+position = Vector2( -114.46, -13.8747 )
+
+[node name="Cannon3" type="Position2D" parent="."]
+position = Vector2( -0.168183, -15.415 )
+
+[node name="Cannon4" type="Position2D" parent="."]
+position = Vector2( 118.652, -19.2449 )
+
+[node name="Cannon5" type="Position2D" parent="."]
+position = Vector2( 214.369, 138.364 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 1.36353, 0.636429 )
+polygon = PoolVector2Array( -247.49, -117.094, -247.49, 130.127, -165.083, 129.378, -165.832, -18.9549, -139.612, -41.4295, 144.317, -40.6803, 165.294, -16.7074, 166.043, 119.639, 250.697, 118.14, 249.199, -119.341 )
+
+[node name="BossShootingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+
+[node name="BossShotTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="CannonSpinner" parent="." instance=ExtResource( 4 )]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="BossShotTimer" to="." method="_on_BossShotTimer_timeout"]

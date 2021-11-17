@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Font/ChakraPetch-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Menu/Instructions.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[node name="Instructions" type="Node2D"]
+position = Vector2( 360, 540 )
+script = ExtResource( 2 )
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -345.74
+margin_top = -525.845
+margin_right = -252.74
+margin_bottom = -477.845
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeybindsHeader" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -101.5
+margin_top = -331.517
+margin_right = 101.5
+margin_bottom = -268.517
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Keybinds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeybindsText" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -229.0
+margin_top = -201.0
+margin_right = 229.0
+margin_bottom = 246.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Move Up: W or UP ARROW
+Move Down: S or DOWN ARROW
+Move Left: A or LEFT ARROW
+Move Right: D or RIGHT ARROW
+Shoot: Hold SPACEBAR
+Pause/Unpause: ESCAPE
+Back to Menu: BACKSPACE
+Open Keybinds (In Menu): TAB
+Replay Game: TAB
+Quit Game: Q"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
