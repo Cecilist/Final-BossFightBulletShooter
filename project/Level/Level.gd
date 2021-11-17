@@ -47,13 +47,13 @@ func _process(_delta):
 		_show_unpause_timer()
 	
 	# Displays the player's health
-	$Overlay/HUD/PlayerHealthBar/PlayerHealth.scale.x = $Player.player_health_percent
+	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = $Player.player_health_percent
 	if $Player.player_health_percent == 0:
 		show_game_over()
 
 	
 	# Displays the boss's remaining health
-	$Overlay/HUD/BossHealthBar/BossHealth.scale.x = $Boss.boss_health_percent
+	$Overlay/HUD/BossHUD/BossHealth.scale.x = $Boss.boss_health_percent
 	if $Boss.boss_health_percent == 0:
 		show_won_game()
 
