@@ -114,7 +114,6 @@ func _show_unpause_timer():
 
 # Resumes the game
 func _on_InGameResumeButton_pressed():
-	game_paused = false
 	_unpause_game()
 
 

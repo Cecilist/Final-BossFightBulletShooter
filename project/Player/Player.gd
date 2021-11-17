@@ -21,7 +21,7 @@ func _physics_process(_delta):
 	_remaining_player_health = clamp(_remaining_player_health, 0, player_health)
 	
 	# Checks if the game has been paused
-	ship_paused = get_parent().game_paused	
+	ship_paused = get_parent().game_paused
 	
 	# Resets the player's velocity to stop them if no movement
 	#  keys are pressed
