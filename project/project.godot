@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Boss/Boss.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "BossBullet",
 "language": "GDScript",
 "path": "res://Boss/BossBullet.gd"
@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "PlayerBullet",
 "language": "GDScript",
 "path": "res://Player/PlayerBullet.gd"
@@ -131,11 +131,6 @@ pause={
 shoot={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
- ]
-}
-fire_rate_ability={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 

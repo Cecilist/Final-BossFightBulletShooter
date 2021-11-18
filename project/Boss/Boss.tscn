@@ -29,12 +29,8 @@ wait_time = 0.05
 one_shot = true
 
 [node name="PatternSwitcher" type="Timer" parent="."]
-<<<<<<< HEAD
 wait_time = 5.0
 one_shot = true
-=======
-wait_time = 20.0
->>>>>>> 8f46516af7c1916fcdf024c48d1e3f7ce34ae7d5
 
 [node name="SpinnerSpawn3" type="Position2D" parent="."]
 position = Vector2( -8.07416, 178.976 )
