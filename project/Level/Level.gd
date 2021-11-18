@@ -149,7 +149,8 @@ func _on_UnpauseTimer_timeout():
 # Reloads the level
 func _on_ReplayButton_pressed():
 	if won_game == true || game_over == true:
-		var _ignored = get_tree().change_scene("res:///Level/Level.tscn")
+		queue_free()
+		var _ignored = get_tree().reload_current_scene()
 
 
 # Returns to the menu
