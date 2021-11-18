@@ -71,6 +71,14 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="FireRateCooldownTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [node name="PlayerShootingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 volume_db = -15.0
@@ -78,3 +86,5 @@ volume_db = -15.0
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_InvulnerabilityTimer_timeout"]
 [connection signal="timeout" from="PlayerShotTimer" to="." method="_on_PlayerShotTimer_timeout"]
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
+[connection signal="timeout" from="FireRateCooldownTimer" to="." method="_on_FireRateCooldownTimer_timeout"]

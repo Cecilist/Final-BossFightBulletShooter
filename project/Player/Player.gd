@@ -14,6 +14,7 @@ var _ship_velocity = Vector2(0,0)
 var _remaining_player_health = player_health
 var _player_invulnerable = false
 var _player_can_shoot = true
+var _fire_rate_ability_ready = true
 
 
 func _physics_process(_delta):
@@ -43,6 +44,9 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("shoot"):
 			if _player_can_shoot == true:
 				shoot();
+		if Input.is_action_pressed("fire_rate_ability"):
+			if _fire_rate_ability_ready == true:
+				_fire_rate_ability()
 
 	# If the game is paused, stops playing the sprite's animation
 	if ship_paused == true:
@@ -72,6 +76,10 @@ func shoot():
 	$PlayerShotTimer.start()
 
 
+func _fire_rate_ability():
+	$PlayerShotTimer.wait_time = 0.2
+	$FireRateTimer.start()
+
 # Reduces the player's health if they are hit
 #  and removes the bullets that hit them
 func _on_Hitbox_area_entered(area):
@@ -94,3 +102,12 @@ func _on_InvulnerabilityTimer_timeout():
 #  when the player holds the shoot key
 func _on_PlayerShotTimer_timeout():
 	_player_can_shoot = true
+
+
+func _on_FireRateTimer_timeout():
+	$PlayerShotTimer.wait_time = 0.4
+	_fire_rate_ability_ready = false
+
+
+func _on_FireRateCooldownTimer_timeout():
+	_fire_rate_ability_ready = true
