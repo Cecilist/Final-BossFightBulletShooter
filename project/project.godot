@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Boss/Boss.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "BossBullet",
 "language": "GDScript",
 "path": "res://Boss/BossBullet.gd"
@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "PlayerBullet",
 "language": "GDScript",
 "path": "res://Player/PlayerBullet.gd"
