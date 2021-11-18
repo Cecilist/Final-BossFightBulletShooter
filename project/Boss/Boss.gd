@@ -10,6 +10,9 @@ var boss_paused = true
 var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
 
+func _ready():
+	$PatternSwitcher.start()
+
 
 func _physics_process(_delta):
 	# Keeps the boss's health from going below 0, mostly for the counter
@@ -39,7 +42,7 @@ func _fire_bullet():
 	
 	_boss_can_shoot = false
 	$BossShotTimer.start()
-	$PatternSwitcher.start()
+	
 
 
 # Lowers the boss's health if they are hit
@@ -57,8 +60,16 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
-	var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-	get_node("/root/Level/Boss").call_deferred("add_child", spinner)
-	spinner.global_position = $SpinnerSpawn1.position
-	spinner.global_position = $SpinnerSpawn2.position
+	var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner1)
+	spinner1.global_position = $SpinnerSpawn1.position
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner2)
+	spinner2.global_position = $SpinnerSpawn2.position
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
+	spinner3.global_position = $SpinnerSpawn3.position
+	
+	
+	
 	

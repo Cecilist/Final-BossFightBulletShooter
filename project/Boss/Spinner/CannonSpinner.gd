@@ -11,6 +11,7 @@ export var _cannons_count = 4
 export var _radius = 100
 
 var _health = 100
+var toSpawn = 3
 
 
 func _ready():
