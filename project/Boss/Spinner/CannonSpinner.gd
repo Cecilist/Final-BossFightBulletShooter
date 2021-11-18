@@ -40,6 +40,7 @@ func _on_Timer_timeout() -> void:
 	for i in rotater.get_children():
 		if get_parent().boss_paused == false:
 			var bullet = _bullet.instance()
+			bullet.add_to_group("Boss_Bullet")
 			get_tree().root.add_child(bullet)
 			bullet.position = i.global_position
 			bullet.rotation = i.global_rotation
