@@ -5,13 +5,7 @@
 - Lucas Harris
 
 ## Project Report
-Working on this project was a fun experience, although there were a few challenges.
-Our schedules didn't really work for in-person meetings, so we were only ever able to meet in-person once.
-To overcome this, we used Discord to discuss our plans, who would do what on the project, and to discuss possible additions.
-We also had to make the most of our class time to work on fixing issues we couldn't figure out on our own.
-The in-class work time was definitely beneficial, so we may try to meet up in-person more to make sure we can make good progress on fixing issues or implementing new features.
-Being able to split up the work on the project was really helpful for both of us, as it allowed us to put more effort into our assigned features.
-Overall, we are happy with how this iteration went, and we are excited to see how the next iterations turn out.
+
 
 ## Evaluation
 - [ ] D-1: The repository link is submitted to Canvas before the project deadline.
@@ -44,7 +38,7 @@ Overall, we are happy with how this iteration went, and we are excited to see ho
 - [X] ⭐ Add a pause menu that includes, at minimum, the ability to resume or return to the main menu
 - [ ] ⭐ The game is released publicly on <code>itch.io</code>, with all the recommended accompanying text, screenshots, gameplay videos, <i>etc.</i>
 
-This project effectively accomplishes all of the necessary requirements, so it deserves an **A** grade.
+This project effectively accomplishes all of the necessary requirements, so it deserves an **__** grade.
 
 ## Third Party Assets
 - [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), licensed under [OFL](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
