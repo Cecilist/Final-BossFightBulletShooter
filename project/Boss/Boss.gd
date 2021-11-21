@@ -24,40 +24,30 @@ func _physics_process(_delta):
 	if boss_health == 0:
 		get_parent().show_won_game()
 	
-	# Shoots the bullets if the game isn't paused
-	if boss_paused == false and _boss_can_shoot == true:
-		_fire_bullet();
-	
 	# Calculates how much health the boss has as a percent
 	#  to display it as part of the HUD
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
-
-
-# Creates instances of the bullets to fire at the player
-func _fire_bullet():
-
 	
 	# Needs to be implemented in a less overwhelming way
 	#$BossShootingSound.play()
 	
-	_boss_can_shoot = false
-	$BossShotTimer.start()
+	# Shoots the bullets if the game isn't paused
+	if boss_paused == false and _boss_can_shoot == true:
+		_boss_can_shoot = false
+		$BossShotTimer.start()
 	
-
-
-# Lowers the boss's health if they are hit
-#  and removes the bullets that hit them
-func _on_Area2D_area_entered(area):
-	if area.is_in_group("Player"):
-		area.queue_free()
-		_remaining_boss_health -= 10
-		
+	if _boss_can_shoot == true:
+		$PatternSwitcher.paused = true
+	else:
+		$PatternSwitcher.paused = false
+	
 
 
 # Allows the boss to shoot again
 func _on_BossShotTimer_timeout():
 	_boss_can_shoot = true
+
 
 
 func _on_PatternSwitcher_timeout():
@@ -82,7 +72,11 @@ func _pattern_1_spinner():
 	var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
 	get_node("/root/Level/Boss").call_deferred("add_child", spinner)
 	spinner.global_position = $SpinnerSpawn2.position
-	
-	
-	
-	
+
+
+# Lowers the boss's health if they are hit
+#  and removes the bullets that hit them
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Player"):
+		area.queue_free()
+		_remaining_boss_health -= 10
