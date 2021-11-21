@@ -24,12 +24,12 @@ __meta__ = {
 }
 
 [node name="PlayerHUD" type="Node2D" parent="."]
-position = Vector2( 151.191, 75 )
+position = Vector2( 151.191, 76 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="PlayerHUDBackground" type="Sprite" parent="PlayerHUD"]
-position = Vector2( 315.621, 928.95 )
-scale = Vector2( 1.93, 2 )
+position = Vector2( 59.621, 928.95 )
+scale = Vector2( 1.13, 2 )
 texture = ExtResource( 3 )
 
 [node name="PlayerHPLabel" type="Label" parent="PlayerHUD"]
@@ -57,12 +57,12 @@ z_index = 1
 texture = ExtResource( 4 )
 
 [node name="BossHUD" type="Node2D" parent="."]
-position = Vector2( 1764.65, 75 )
+position = Vector2( 1294, 76 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="BossHUDBackground" type="Sprite" parent="BossHUD"]
-position = Vector2( -296.196, 928.09 )
-scale = Vector2( 1.93, 2 )
+position = Vector2( -48.196, 928.09 )
+scale = Vector2( 1.13, 2 )
 texture = ExtResource( 3 )
 flip_h = true
 
@@ -88,3 +88,8 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1451.0
+margin_right = 1491.0
+margin_bottom = 14.0
