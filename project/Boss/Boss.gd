@@ -9,6 +9,7 @@ var boss_paused = true
 
 var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
+var _pattern_counter = 0
 
 func _ready():
 	$PatternSwitcher.start()
@@ -60,6 +61,13 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
+	_pattern_counter += 1
+	if _pattern_counter % 2 == 0:
+		_pattern_3_spinner()
+	if _pattern_counter % 2 == 1:
+		_pattern_1_spinner()
+	
+func _pattern_3_spinner():
 	var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
 	var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
 	var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
@@ -69,6 +77,11 @@ func _on_PatternSwitcher_timeout():
 	spinner2.global_position = $SpinnerSpawn2.position
 	get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
 	spinner3.global_position = $SpinnerSpawn3.position
+	
+func _pattern_1_spinner():
+	var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner)
+	spinner.global_position = $SpinnerSpawn2.position
 	
 	
 	
