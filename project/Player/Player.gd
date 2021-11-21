@@ -15,6 +15,7 @@ var _remaining_player_health = player_health
 var _player_invulnerable = false
 var _player_can_shoot = true
 var _fire_rate_ability_ready = true
+var _can_dodge = true
 
 
 func _physics_process(_delta):
@@ -38,9 +39,17 @@ func _physics_process(_delta):
 		if Input.is_action_pressed("move_down"):
 			_ship_velocity.y = player_movement_speed
 		if Input.is_action_pressed("move_left"):
-			_ship_velocity.x = player_movement_speed * -1
+			if Input.is_action_pressed("dodge") and _can_dodge == true:
+				position.x -= 100
+				_can_dodge = false
+			else:
+				_ship_velocity.x = player_movement_speed * -1
 		if Input.is_action_pressed("move_right"):
-			_ship_velocity.x = player_movement_speed
+			if Input.is_action_pressed("dodge") and _can_dodge == true:
+				position.x += 100
+				_can_dodge = false
+			else:
+				_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
 			if _player_can_shoot == true:
 				shoot();
@@ -111,3 +120,7 @@ func _on_FireRateTimer_timeout():
 
 func _on_FireRateCooldownTimer_timeout():
 	_fire_rate_ability_ready = true
+
+
+func _on_DodgeCooldownTimer_timeout():
+	_can_dodge = true
