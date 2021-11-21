@@ -11,7 +11,6 @@ export var _cannons_count = 4
 export var _radius = 100
 
 var _health = 100
-var toSpawn = 3
 
 
 func _ready():
@@ -33,6 +32,8 @@ func _process(delta: float) -> void:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
 		if _health <= 0:
+			get_parent().spinners_count -= 1
+			print(get_parent().spinners_count)
 			queue_free()
 
 	

@@ -10,6 +10,7 @@ var boss_paused = true
 var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
 var _pattern_counter = 0
+var spinners_count = 0
 
 func _ready():
 	$PatternSwitcher.start()
@@ -58,20 +59,24 @@ func _on_PatternSwitcher_timeout():
 		_pattern_1_spinner()
 	
 func _pattern_3_spinner():
-	var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-	var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-	var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-	get_node("/root/Level/Boss").call_deferred("add_child", spinner1)
-	spinner1.global_position = $SpinnerSpawn1.position
-	get_node("/root/Level/Boss").call_deferred("add_child", spinner2)
-	spinner2.global_position = $SpinnerSpawn2.position
-	get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
-	spinner3.global_position = $SpinnerSpawn3.position
+	if spinners_count == 0:
+		var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+		var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+		var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+		get_node("/root/Level/Boss").call_deferred("add_child", spinner1)
+		spinner1.global_position = $SpinnerSpawn1.position
+		get_node("/root/Level/Boss").call_deferred("add_child", spinner2)
+		spinner2.global_position = $SpinnerSpawn2.position
+		get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
+		spinner3.global_position = $SpinnerSpawn3.position
+		spinners_count += 3
 	
 func _pattern_1_spinner():
-	var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-	get_node("/root/Level/Boss").call_deferred("add_child", spinner)
-	spinner.global_position = $SpinnerSpawn2.position
+	if spinners_count == 0:
+		var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+		get_node("/root/Level/Boss").call_deferred("add_child", spinner)
+		spinner.global_position = $SpinnerSpawn2.position
+		spinners_count += 1
 
 
 # Lowers the boss's health if they are hit
