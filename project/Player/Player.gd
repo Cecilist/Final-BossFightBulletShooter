@@ -42,12 +42,16 @@ func _physics_process(_delta):
 			if Input.is_action_pressed("dodge") and _can_dodge == true:
 				position.x -= 100
 				_can_dodge = false
+				_player_invulnerable = true
+				$InvulnerabilityTimer.start()
 			else:
 				_ship_velocity.x = player_movement_speed * -1
 		if Input.is_action_pressed("move_right"):
 			if Input.is_action_pressed("dodge") and _can_dodge == true:
 				position.x += 100
 				_can_dodge = false
+				_player_invulnerable = true
+				$InvulnerabilityTimer.start()
 			else:
 				_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
@@ -104,7 +108,8 @@ func _on_Hitbox_area_entered(area):
 # Removes the invulnerability on the player after they were hit
 func _on_InvulnerabilityTimer_timeout():
 	_player_invulnerable = false
-	$ShipSprite.play("flying")
+	if $ShipSprite.animation == "damaged":
+		$ShipSprite.play("flying")
 
 
 # Allows the cannons to shoot again, giving the shots a delay

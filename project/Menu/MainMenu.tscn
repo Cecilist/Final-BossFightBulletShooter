@@ -13,7 +13,7 @@ size = 128
 outline_size = 2
 font_data = ExtResource( 2 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ) ],
 "loop": true,
@@ -21,18 +21,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "flying",
 "speed": 7.0
 } ]
-
-[sub_resource type="DynamicFont" id=3]
-size = 32
-outline_size = 2
-font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -44,7 +39,12 @@ size = 32
 outline_size = 2
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_size = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("TitleLabel:self_modulate")
@@ -83,7 +83,7 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 1207.41, 871.501 )
 
 [node name="MainMenu" type="Node2D"]
@@ -111,14 +111,15 @@ __meta__ = {
 [node name="TitleExhaustSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 8 )
+frames = SubResource( 2 )
 animation = "flying"
+frame = 3
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 28.7341 )
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "flying"
 playing = true
 
@@ -131,7 +132,7 @@ margin_left = -45.0
 margin_top = 225.0
 margin_right = 45.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "PLAY"
 __meta__ = {
@@ -147,7 +148,7 @@ margin_left = -109.5
 margin_top = 300.0
 margin_right = 109.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HOW TO PLAY"
 __meta__ = {
@@ -163,7 +164,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 __meta__ = {
@@ -171,12 +172,12 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/TitleFadeIn = SubResource( 6 )
+anims/TitleFadeIn = SubResource( 7 )
 
 [node name="DespawnArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]
