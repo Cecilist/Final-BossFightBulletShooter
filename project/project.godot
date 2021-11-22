@@ -63,6 +63,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Background="*res://Background/Background.tscn"
+ThemeMusic="*res://Sounds/ThemeMusic.tscn"
 
 [display]
 
