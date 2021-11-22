@@ -1,6 +1,0 @@
-lerp
-linear interpolatioin
-*for scores
-*for healthbars? 
-*bullet patterns?
-lerp(current, where you want to be, float: rate) 
