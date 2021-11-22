@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_Ship_3.png-acf5eb68fa98023feb598cd4f45ee2fb.stex"
+path="res://.import/Ship_Exhaust_3.png-099ae25ecd1a4c6c2ce3565bae778ca5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Player_Ship_3.png"
-dest_files=[ "res://.import/Player_Ship_3.png-acf5eb68fa98023feb598cd4f45ee2fb.stex" ]
+source_file="res://Player/Ship_Exhaust_3.png"
+dest_files=[ "res://.import/Ship_Exhaust_3.png-099ae25ecd1a4c6c2ce3565bae778ca5.stex" ]
 
 [params]
 
