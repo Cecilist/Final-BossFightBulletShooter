@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player_Ship_Default.png" type="Texture" id=1]
 [ext_resource path="res://Player/Ship_Exhaust_2.png" type="Texture" id=2]
@@ -36,13 +36,69 @@ height = 119.461
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 240.9, 157.252 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "EvadeFadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExhaustSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "EvadeFadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExhaustSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 3 )
 
 [node name="ExhaustSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "flying"
-frame = 1
+frame = 3
 playing = true
 
 [node name="ShipSprite" type="AnimatedSprite" parent="."]
@@ -80,7 +136,7 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
-[node name="DodgeCooldownTimer" type="Timer" parent="."]
+[node name="EvadeCooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
@@ -88,9 +144,14 @@ one_shot = true
 stream = ExtResource( 8 )
 volume_db = -15.0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EvadeFadeIn = SubResource( 6 )
+anims/EvadeFadeOut = SubResource( 5 )
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_InvulnerabilityTimer_timeout"]
 [connection signal="timeout" from="PlayerShotTimer" to="." method="_on_PlayerShotTimer_timeout"]
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
 [connection signal="timeout" from="FireRateCooldownTimer" to="." method="_on_FireRateCooldownTimer_timeout"]
-[connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_DodgeCooldownTimer_timeout"]
+[connection signal="timeout" from="EvadeCooldownTimer" to="." method="_on_EvadeCooldownTimer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
