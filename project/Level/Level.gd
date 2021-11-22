@@ -46,6 +46,7 @@ func _process(_delta):
 	if (game_paused == true and _unpaused == true) and (won_game == false and game_over == false):
 		_show_unpause_timer()
 	
+	
 	# Displays the player's health
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = $Player.player_health_percent
 	if $Player.player_health_percent == 0:
@@ -58,6 +59,17 @@ func _process(_delta):
 	
 	# Displays the cooldown for the fire rate ability
 	$Overlay/HUD/PlayerHUD/FireRateStatusLabel.text = $Player.fire_rate_cooldown
+	
+	# Displays the cooldown for the dodge ability
+	$Overlay/HUD/PlayerHUD/EvadeStatusLabel.text = $Player.evade_cooldown
+	
+	# Resets the player inside the level if their evade would take them
+	#  out of the level
+	if $Player.position.x < 0:
+		$Player.position.x = 1
+	if $Player.position.x > 719:
+		$Player.position.x = 718
+	
 
 
 # Pauses the game and brings up the pause menu
