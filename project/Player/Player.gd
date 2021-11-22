@@ -9,12 +9,14 @@ export var player_movement_speed = 250
 
 var player_health_percent = 100.0
 var ship_paused = true
+var fire_rate_cooldown = 5
 
 var _ship_velocity = Vector2(0,0)
 var _remaining_player_health = player_health
 var _player_invulnerable = false
 var _player_can_shoot = true
 var _fire_rate_ability_ready = true
+var _fire_rate_ability_active = false
 var _can_dodge = true
 
 
@@ -44,6 +46,7 @@ func _physics_process(_delta):
 				_can_dodge = false
 				_player_invulnerable = true
 				$InvulnerabilityTimer.start()
+				$DodgeCooldownTimer.start()
 			else:
 				_ship_velocity.x = player_movement_speed * -1
 		if Input.is_action_pressed("move_right"):
@@ -52,6 +55,7 @@ func _physics_process(_delta):
 				_can_dodge = false
 				_player_invulnerable = true
 				$InvulnerabilityTimer.start()
+				$DodgeCooldownTimer.start()
 			else:
 				_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
@@ -72,6 +76,14 @@ func _physics_process(_delta):
 	#  to display it as part of the HUD
 	player_health_percent = _remaining_player_health / player_health
 	player_health_percent = clamp(player_health_percent, 0, 100)
+	
+	# Gets the remaining cooldown time for the fire rate ability for the HUD
+	if _fire_rate_ability_ready == false:
+		fire_rate_cooldown = "ON COOLDOWN (" + str(int(ceil($FireRateCooldownTimer.time_left))) + ")"
+	elif _fire_rate_ability_active == true:
+		fire_rate_cooldown = "ACTIVE (" + str(int(ceil($FireRateTimer.time_left))) + ")"
+	else:
+		fire_rate_cooldown = "READY"
 
 
 # Shoots 2 bullets at the same time from the player
@@ -89,9 +101,12 @@ func shoot():
 	$PlayerShotTimer.start()
 
 
+# Doubles the player's fire rate for the duration of the FireRateTimer
 func _fire_rate_ability():
 	$PlayerShotTimer.wait_time = 0.2
+	_fire_rate_ability_active = true
 	$FireRateTimer.start()
+
 
 # Reduces the player's health if they are hit
 #  and removes the bullets that hit them
@@ -121,6 +136,8 @@ func _on_PlayerShotTimer_timeout():
 func _on_FireRateTimer_timeout():
 	$PlayerShotTimer.wait_time = 0.4
 	_fire_rate_ability_ready = false
+	_fire_rate_ability_active = false
+	$FireRateCooldownTimer.start()
 
 
 func _on_FireRateCooldownTimer_timeout():

@@ -50,12 +50,14 @@ func _process(_delta):
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = $Player.player_health_percent
 	if $Player.player_health_percent == 0:
 		show_game_over()
-
 	
 	# Displays the boss's remaining health
 	$Overlay/HUD/BossHUD/BossHealth.scale.x = $Boss.boss_health_percent
 	if $Boss.boss_health_percent == 0:
 		show_won_game()
+	
+	# Displays the cooldown for the fire rate ability
+	$Overlay/HUD/PlayerHUD/FireRateStatusLabel.text = $Player.fire_rate_cooldown
 
 
 # Pauses the game and brings up the pause menu

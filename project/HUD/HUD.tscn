@@ -98,10 +98,10 @@ __meta__ = {
 }
 
 [node name="FireRateAbilityLabel" type="Label" parent="PlayerHUD"]
-margin_left = -159.77
-margin_top = 371.982
-margin_right = 280.23
-margin_bottom = 434.982
+margin_left = -280.0
+margin_top = 372.0
+margin_right = 399.0
+margin_bottom = 435.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Double Fire Rate (E):"
@@ -112,10 +112,10 @@ __meta__ = {
 }
 
 [node name="FireRateStatusLabel" type="Label" parent="PlayerHUD"]
-margin_left = -15.4597
-margin_top = 438.049
-margin_right = 133.54
-margin_bottom = 501.049
+margin_left = -278.0
+margin_top = 438.0
+margin_right = 400.0
+margin_bottom = 501.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "READY"
@@ -126,10 +126,10 @@ __meta__ = {
 }
 
 [node name="EvadeAbilityLabel" type="Label" parent="PlayerHUD"]
-margin_left = -248.546
-margin_top = 575.14
-margin_right = 370.454
-margin_bottom = 638.14
+margin_left = -279.0
+margin_top = 575.0
+margin_right = 400.0
+margin_bottom = 638.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Evade (SHIFT + LEFT/RIGHT):"
@@ -140,10 +140,10 @@ __meta__ = {
 }
 
 [node name="EvadeStatusLabel" type="Label" parent="PlayerHUD"]
-margin_left = -23.0173
-margin_top = 633.167
-margin_right = 125.983
-margin_bottom = 696.167
+margin_left = -282.0
+margin_top = 645.656
+margin_right = 401.0
+margin_bottom = 708.656
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "READY"
