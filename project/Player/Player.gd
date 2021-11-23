@@ -73,6 +73,7 @@ func _physics_process(_delta):
 	# If the game is paused, stops playing the sprite's animation
 	if ship_paused == true:
 		$ShipSprite.playing = false
+		$ExhaustSprite.playing = false
 	
 	# Applies the velocity to the player
 	_ship_velocity = move_and_slide(_ship_velocity, Vector2.UP)
