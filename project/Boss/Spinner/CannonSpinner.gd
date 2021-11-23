@@ -10,7 +10,7 @@ export var _shoot_time = 0.2
 export var _cannons_count = 4
 export var _radius = 100
 
-var _health = 100
+var _health = 150
 
 
 func _ready():
@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 		rotater.rotation_degrees = fmod(new_rotation, 360)
 		if _health <= 0:
 			get_parent().spinners_count -= 1
-			print(get_parent().spinners_count)
 			queue_free()
 
 	

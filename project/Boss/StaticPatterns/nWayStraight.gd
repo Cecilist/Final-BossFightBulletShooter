@@ -6,7 +6,7 @@ onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
 export var _rotation_speed = 1
-export var _shoot_time = 0.3
+export var _shoot_time = 0.5
 export var _cannons_count = 16
 export var _radius = 100
 
