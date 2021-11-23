@@ -113,6 +113,7 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
+frame = 1
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
