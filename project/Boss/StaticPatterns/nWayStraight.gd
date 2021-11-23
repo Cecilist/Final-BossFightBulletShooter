@@ -5,12 +5,11 @@ var _bullet = preload("res://Boss/BossBullet.tscn")
 onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
-export var _rotation_speed = 0
+export var _rotation_speed = 1
 export var _shoot_time = 0.3
-export var _cannons_count = 10
+export var _cannons_count = 16
 export var _radius = 100
 
-var _health = 100
 
 
 func _ready():
@@ -31,10 +30,6 @@ func _process(delta: float) -> void:
 	if get_parent().boss_paused == false:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
-		if _health <= 0:
-			get_parent().spinners_count -= 1
-			print(get_parent().spinners_count)
-			queue_free()
 
 	
 func _on_Timer_timeout() -> void:
@@ -48,8 +43,5 @@ func _on_Timer_timeout() -> void:
 			
 
 
-func _on_DamageBox_area_entered(area):
-	if area.is_in_group("Player"):
-		area.queue_free()
-		_health -= 10
-		
+func _on_KillTimer_timeout():
+	rotater.queue_free()

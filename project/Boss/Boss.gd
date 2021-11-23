@@ -11,8 +11,10 @@ var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
 var _pattern_counter = 0
 var spinners_count = 0
+var pattern : Node2D
 
 func _ready():
+	_pattern_n_way_Straight()
 	$PatternSwitcher.start()
 
 
@@ -43,6 +45,7 @@ func _physics_process(_delta):
 	else:
 		$PatternSwitcher.paused = false
 	
+	
 
 
 # Allows the boss to shoot again
@@ -52,36 +55,39 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
-	if _pattern_counter % 2 == 0:
-		_pattern_16_way_Straight()
-	if _pattern_counter % 2 == 1:
-		_pattern_3_spinner()
+	if _pattern_counter % 2 == 0 and spinners_count == 0:
+		_pattern_1_spinner() 
 		_pattern_counter += 1
+	if _pattern_counter % 2 == 1:
+		_pattern_3_spinner() and spinners_count == 0
+		_pattern_counter += 1
+	if _pattern_counter >= 2:
+		_pattern_counter = 0
 	
 func _pattern_3_spinner():
-	if spinners_count == 0:
-		var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-		var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-		var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-		get_node("/root/Level/Boss").call_deferred("add_child", spinner1)
-		spinner1.global_position = $SpinnerSpawn1.position
-		get_node("/root/Level/Boss").call_deferred("add_child", spinner2)
-		spinner2.global_position = $SpinnerSpawn2.position
-		get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
-		spinner3.global_position = $SpinnerSpawn3.position
-		spinners_count += 3
+	var spinner1 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	var spinner2 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	var spinner3 = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner1)
+	spinner1.global_position = $SpinnerSpawn1.position
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner2)
+	spinner2.global_position = $SpinnerSpawn2.position
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner3)
+	spinner3.global_position = $SpinnerSpawn3.position
+	spinners_count += 3
 	
 func _pattern_1_spinner():
-	if spinners_count == 0:
-		var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
-		get_node("/root/Level/Boss").call_deferred("add_child", spinner)
-		spinner.global_position = $SpinnerSpawn3.position
-		spinners_count += 1
+	var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", spinner)
+	spinner.global_position = $SpinnerSpawn3.position
+	spinners_count += 1
 		
-func _pattern_16_way_Straight():
+func _pattern_n_way_Straight():
 	var _pattern = load("res://Boss/StaticPatterns/nWayStraight.tscn").instance()
 	get_node("/root/Level/Boss").call_deferred("add_child", _pattern)
 	_pattern.global_position = $AnimatedSprite.position
+	
+	
 
 
 # Lowers the boss's health if they are hit
