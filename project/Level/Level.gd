@@ -2,21 +2,21 @@ class_name Level
 extends Node2D
 
 
-var game_paused = true
-var game_over = false
-var won_game = false
+var is_paused = true
+var is_game_over = false
+var is_won_game = false
 var bullet_velocity = 10
 
 var _unpause_time_remaining = "3"
-var _unpaused = true
+var is_unpaused = true
 var _previous_player_health = 100.0
 
 
 func _ready():
 	$Timers/UnpauseTimer.start()
 	get_tree().paused = true
-	game_over = false
-	won_game = false
+	is_game_over = false
+	is_won_game = false
 
 
 func _input(_event):
@@ -28,7 +28,7 @@ func _input(_event):
 			_unpause_game()
 	
 	# Allows the player to use keybinds to interact with the pause menu
-	if game_paused == true:
+	if is_paused == true:
 		if Input.is_action_just_pressed("previous_menu"):
 			_on_InGameToMenuButton_pressed()
 		if Input.is_action_just_pressed("to_next_screen"):
@@ -39,11 +39,11 @@ func _input(_event):
 
 func _process(_delta):
 	# Checks the player's health and displays it on the player's health bar
-	if won_game == true or game_over == true:
+	if is_won_game == true or is_game_over == true:
 		_pause_game()
 	
 	# Displays the unpause timer
-	if (game_paused == true and _unpaused == true) and (won_game == false and game_over == false):
+	if (is_paused == true and is_unpaused == true) and (is_won_game == false and is_game_over == false):
 		_show_unpause_timer()
 	
 	
@@ -75,9 +75,9 @@ func _process(_delta):
 # Pauses the game and brings up the pause menu
 func _pause_game():
 	get_tree().paused = true
-	game_paused = true
-	if won_game == false and game_over == false:
-		_unpaused = false
+	is_paused = true
+	if is_won_game == false and is_game_over == false:
+		is_unpaused = false
 		$Overlay/PauseMenu/InGameResumeButton.disabled = false # Previous position: -45, 170
 #		$Overlay/PauseMenu/InGameRestartButton.disabled = false
 		$Overlay/PauseMenu/InGameToMenuButton.disabled = false
@@ -88,7 +88,7 @@ func _pause_game():
 
 # Unpauses the game and hides the pause menu
 func _unpause_game():
-	_unpaused = true
+	is_unpaused = true
 	$Overlay/PauseMenu/InGameResumeButton.disabled = true
 #	$Overlay/PauseMenu/InGameRestartButton.disabled = true
 	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
@@ -100,7 +100,7 @@ func _unpause_game():
 # Displays the game over message and allows the player to replay,
 #  go the the main menu, or quit the game
 func show_game_over():
-	game_over = true
+	is_game_over = true
 	$Overlay/GameOver.visible = true
 	$Overlay/EndButtons.visible = true
 #	$Overlay/EndButtons/ReplayButton.disabled = false
@@ -111,7 +111,7 @@ func show_game_over():
 # Displays the won game message and allows the player to replay,
 #  go the the main menu, or quit the game
 func show_won_game():
-	won_game = true
+	is_won_game = true
 	$Overlay/WonGame.visible = true
 	$Overlay/EndButtons.visible = true
 #	$Overlay/EndButtons/ReplayButton.disabled = false
@@ -133,52 +133,52 @@ func _on_InGameResumeButton_pressed():
 
 # Restarts the level
 func _on_InGameRestartButton_pressed():
-	if game_paused == true:
+	if is_paused == true:
 		var _ignored = get_tree().change_scene("res:///Level/Level.tscn")
 		get_tree().paused = false
-		game_paused = false
+		is_paused = false
 
 
 # Returns to the menu
 func _on_InGameToMenuButton_pressed():
-	if game_paused == true:
+	if is_paused == true:
 		var _ignored = get_tree().change_scene("res:///Menu/MainMenu.tscn")
 		get_tree().paused = false
-		game_paused = false
+		is_paused = false
 
 
 # Quits the game
 func _on_InGameQuitButton_pressed():
-	if game_paused == true:
+	if is_paused == true:
 		get_tree().quit()
 
 
 # Unpauses the game after the timer finishes
 func _on_UnpauseTimer_timeout():
-	game_paused = false
+	is_paused = false
 	get_tree().paused = false
 	$Overlay/UnpauseLabel.visible = false
 
 
 # Reloads the level
 func _on_ReplayButton_pressed():
-	if won_game == true || game_over == true:
+	if is_won_game == true || is_game_over == true:
 		queue_free()
 		var _ignored = get_tree().reload_current_scene()
 
 
 # Returns to the menu
 func _on_ToMenuButton_pressed():
-	if won_game == true || game_over == true:
+	if is_won_game == true || is_game_over == true:
 		var _ignored = get_tree().change_scene("res:///Menu/MainMenu.tscn")
-		game_paused = false
-		won_game = false
-		game_over = false
+		is_paused = false
+		is_won_game = false
+		is_game_over = false
 
 
 # Quits the game
 func _on_QuitButton_pressed():
-	if won_game == true || game_over == true:
+	if is_won_game == true || is_game_over == true:
 		get_tree().quit()
 
 

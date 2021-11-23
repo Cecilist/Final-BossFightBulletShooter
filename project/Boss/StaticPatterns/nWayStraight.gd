@@ -1,16 +1,17 @@
+class_name nWayStraight
 extends Node2D
 
 var _bullet = preload("res://Boss/BossBullet.tscn")
 
-onready var _shoot_timer = $Timer
-onready var rotater = $Rotater
+
 
 export var _rotation_speed = 1
 export var _shoot_time = 0.5
 export var _cannons_count = 16
 export var _radius = 100
 
-
+onready var _shoot_timer = $Timer
+onready var rotater = $Rotater
 
 func _ready():
 	var step = 2 * PI / _cannons_count
@@ -27,14 +28,14 @@ func _ready():
 	
 	
 func _process(delta: float) -> void:
-	if get_parent().boss_paused == false:
+	if get_parent().is_paused == false:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
 
 	
 func _on_Timer_timeout() -> void:
 	for i in rotater.get_children():
-		if get_parent().boss_paused == false:
+		if get_parent().is_paused == false:
 			var bullet = _bullet.instance()
 			bullet.add_to_group("Boss_Bullet")
 			get_tree().root.add_child(bullet)

@@ -1,4 +1,6 @@
+class_name BossBullet
 extends Area2D
+
 
 var _speed = 100
 

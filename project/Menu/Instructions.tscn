@@ -52,6 +52,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="KeybindsHeader2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -516.81
+margin_top = 365.61
+margin_right = 557.19
+margin_bottom = 428.61
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "You only take damage if your ship's cockpit is hit!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="KeybindsText" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5

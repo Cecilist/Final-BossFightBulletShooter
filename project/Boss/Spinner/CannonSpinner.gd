@@ -1,9 +1,9 @@
+class_name CannonSpinner
 extends KinematicBody2D
 
 var _bullet = preload("res://Boss/BossBullet.tscn")
 
-onready var _shoot_timer = $Timer
-onready var rotater = $Rotater
+
 
 export var _rotation_speed = 80
 export var _shoot_time = 0.2
@@ -12,6 +12,8 @@ export var _radius = 100
 
 var _health = 150
 
+onready var _shoot_timer = $Timer
+onready var rotater = $Rotater
 
 func _ready():
 	var step = 2 * PI / _cannons_count
@@ -28,7 +30,7 @@ func _ready():
 	
 	
 func _process(delta: float) -> void:
-	if get_parent().boss_paused == false:
+	if get_parent().is_paused == false:
 		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
 		rotater.rotation_degrees = fmod(new_rotation, 360)
 		if _health <= 0:
@@ -38,7 +40,7 @@ func _process(delta: float) -> void:
 	
 func _on_Timer_timeout() -> void:
 	for i in rotater.get_children():
-		if get_parent().boss_paused == false:
+		if get_parent().is_paused == false:
 			var bullet = _bullet.instance()
 			bullet.add_to_group("Boss_Bullet")
 			get_tree().root.add_child(bullet)
