@@ -7,27 +7,22 @@
 [ext_resource path="res://Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=6]
 
-[sub_resource type="SegmentShape2D" id=17]
+[sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 0, 544.57 )
 b = Vector2( 0, -557.43 )
 
-[sub_resource type="SegmentShape2D" id=18]
+[sub_resource type="SegmentShape2D" id=2]
 a = Vector2( 0, -453.651 )
 b = Vector2( 0, 680.57 )
 
-[sub_resource type="SegmentShape2D" id=2]
+[sub_resource type="SegmentShape2D" id=3]
 a = Vector2( 0, -3.767 )
 b = Vector2( 0, 730.206 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 128
 outline_size = 2
 font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-outline_size = 2
-font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 32
@@ -45,9 +40,9 @@ outline_size = 2
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 128
+size = 32
 outline_size = 2
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 128
@@ -55,9 +50,9 @@ outline_size = 2
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=10]
-size = 32
+size = 128
 outline_size = 2
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 32
@@ -72,17 +67,22 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=13]
 size = 32
 outline_size = 2
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=14]
+size = 32
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=15]
 size = 128
 outline_size = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 657.375, 10 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 18.1653, 624.438 )
 
 [node name="Level" type="Node2D"]
@@ -101,21 +101,21 @@ position = Vector2( 360, 225.907 )
 
 [node name="LeftBoundary" type="CollisionShape2D" parent="VerticalLevelBorders"]
 position = Vector2( 0, 542.726 )
-shape = SubResource( 17 )
+shape = SubResource( 1 )
 
 [node name="RightBoundary" type="CollisionShape2D" parent="VerticalLevelBorders"]
 position = Vector2( 720, 432.726 )
-shape = SubResource( 18 )
+shape = SubResource( 2 )
 
 [node name="TopBoundary" type="CollisionShape2D" parent="VerticalLevelBorders"]
 position = Vector2( -1278, -745.536 )
 rotation = -1.5708
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="BottomBoundary" type="CollisionShape2D" parent="VerticalLevelBorders"]
 position = Vector2( 0, 1081.44 )
 rotation = -1.5708
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
@@ -144,7 +144,7 @@ margin_left = -283.5
 margin_top = -364.5
 margin_right = 283.5
 margin_bottom = -27.5
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME
 PAUSED"
@@ -160,10 +160,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -65.0
-margin_top = 150.0
-margin_right = 65.0
-margin_bottom = 198.0
-custom_fonts/font = SubResource( 4 )
+margin_top = 225.0
+margin_right = 73.0
+margin_bottom = 273.0
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "RESUME"
 __meta__ = {
@@ -171,6 +171,7 @@ __meta__ = {
 }
 
 [node name="InGameRestartButton" type="Button" parent="Overlay/PauseMenu"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -179,7 +180,7 @@ margin_left = -65.0
 margin_top = 225.0
 margin_right = 65.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "REPLAY"
 __meta__ = {
@@ -195,7 +196,7 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TO MENU"
 __meta__ = {
@@ -211,7 +212,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 __meta__ = {
@@ -241,7 +242,7 @@ margin_left = -283.5
 margin_top = -280.0
 margin_right = 283.5
 margin_bottom = -112.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "YOU WIN!"
 align = 1
@@ -273,7 +274,7 @@ margin_left = -359.5
 margin_top = -364.5
 margin_right = 359.5
 margin_bottom = -27.5
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME
 OVER"
@@ -294,6 +295,7 @@ __meta__ = {
 }
 
 [node name="ReplayButton" type="Button" parent="Overlay/EndButtons"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -302,7 +304,7 @@ margin_left = -65.0
 margin_top = 225.0
 margin_right = 65.0
 margin_bottom = 273.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 disabled = true
 text = "REPLAY"
@@ -319,7 +321,7 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 disabled = true
 text = "TO MENU"
@@ -336,7 +338,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 disabled = true
 text = "QUIT"
@@ -350,7 +352,7 @@ margin_left = 445.238
 margin_top = -2.17839
 margin_right = 724.238
 margin_bottom = 57.8216
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BossHealth"
 __meta__ = {
@@ -367,7 +369,7 @@ margin_left = -273.0
 margin_top = -83.5
 margin_right = 273.0
 margin_bottom = 83.5
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TimeLeft"
 align = 1
@@ -386,19 +388,19 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 360.338, -71.4718 )
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 360.338, 1138.97 )
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( -275.785, 536.394 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 1028.36, 536.394 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [connection signal="pressed" from="Overlay/PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]

@@ -78,8 +78,8 @@ func _pause_game():
 	game_paused = true
 	if won_game == false and game_over == false:
 		_unpaused = false
-		$Overlay/PauseMenu/InGameResumeButton.disabled = false
-		$Overlay/PauseMenu/InGameRestartButton.disabled = false
+		$Overlay/PauseMenu/InGameResumeButton.disabled = false # Previous position: -45, 170
+#		$Overlay/PauseMenu/InGameRestartButton.disabled = false
 		$Overlay/PauseMenu/InGameToMenuButton.disabled = false
 		$Overlay/PauseMenu/InGameQuitButton.disabled = false
 		$Overlay/PauseMenu.visible = true
@@ -90,7 +90,7 @@ func _pause_game():
 func _unpause_game():
 	_unpaused = true
 	$Overlay/PauseMenu/InGameResumeButton.disabled = true
-	$Overlay/PauseMenu/InGameRestartButton.disabled = true
+#	$Overlay/PauseMenu/InGameRestartButton.disabled = true
 	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
 	$Overlay/PauseMenu/InGameQuitButton.disabled = true
 	$Overlay/PauseMenu.visible = false
@@ -103,7 +103,7 @@ func show_game_over():
 	game_over = true
 	$Overlay/GameOver.visible = true
 	$Overlay/EndButtons.visible = true
-	$Overlay/EndButtons/ReplayButton.disabled = false
+#	$Overlay/EndButtons/ReplayButton.disabled = false
 	$Overlay/EndButtons/ToMenuButton.disabled = false
 	$Overlay/EndButtons/QuitButton.disabled = false
 
@@ -114,7 +114,7 @@ func show_won_game():
 	won_game = true
 	$Overlay/WonGame.visible = true
 	$Overlay/EndButtons.visible = true
-	$Overlay/EndButtons/ReplayButton.disabled = false
+#	$Overlay/EndButtons/ReplayButton.disabled = false
 	$Overlay/EndButtons/ToMenuButton.disabled = false
 	$Overlay/EndButtons/QuitButton.disabled = false
 
