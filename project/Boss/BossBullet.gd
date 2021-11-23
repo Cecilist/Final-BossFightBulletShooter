@@ -1,11 +1,7 @@
-class_name BossBullet
 extends Area2D
 
+var _speed = 100
 
-var angle = 0
-
-
-func _physics_process(_delta):
-	# Moves the bullets if the game is not paused
-	if get_parent().game_paused == false:
-		position.y += 10
+func _process(delta):
+	#if get_parent().is_paused == false:
+	position += transform.x * _speed * delta

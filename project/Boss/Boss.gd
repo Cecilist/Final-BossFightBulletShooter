@@ -52,11 +52,11 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
-	_pattern_counter += 1
 	if _pattern_counter % 2 == 0:
-		_pattern_3_spinner()
+		_pattern_16_way_Straight()
 	if _pattern_counter % 2 == 1:
-		_pattern_1_spinner()
+		_pattern_3_spinner()
+		_pattern_counter += 1
 	
 func _pattern_3_spinner():
 	if spinners_count == 0:
@@ -75,8 +75,13 @@ func _pattern_1_spinner():
 	if spinners_count == 0:
 		var spinner = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
 		get_node("/root/Level/Boss").call_deferred("add_child", spinner)
-		spinner.global_position = $SpinnerSpawn2.position
+		spinner.global_position = $SpinnerSpawn3.position
 		spinners_count += 1
+		
+func _pattern_16_way_Straight():
+	var _pattern = load("res://Boss/StaticPatterns/nWayStraight.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", _pattern)
+	_pattern.global_position = $AnimatedSprite.position
 
 
 # Lowers the boss's health if they are hit

@@ -1,13 +1,13 @@
-extends KinematicBody2D
+extends Node2D
 
 var _bullet = preload("res://Boss/BossBullet.tscn")
 
 onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
-export var _rotation_speed = 80
-export var _shoot_time = 0.2
-export var _cannons_count = 4
+export var _rotation_speed = 0
+export var _shoot_time = 0.3
+export var _cannons_count = 10
 export var _radius = 100
 
 var _health = 100

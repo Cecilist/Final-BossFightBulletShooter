@@ -11,7 +11,6 @@ extents = Vector2( 20.0317, 18.3473 )
 
 [node name="CannonSpinner" type="KinematicBody2D"]
 script = ExtResource( 1 )
-_shoot_time = 0.1
 _radius = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
