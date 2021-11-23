@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Boss/Boss.gd"
 }, {
+"base": "Area2D",
+"class": "BossBullet",
+"language": "GDScript",
+"path": "res://Boss/BossBullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "CannonSpinner",
+"language": "GDScript",
+"path": "res://Boss/Spinner/CannonSpinner.gd"
+}, {
 "base": "Node2D",
 "class": "Instructions",
 "language": "GDScript",
@@ -38,14 +48,22 @@ _global_script_classes=[ {
 "class": "PlayerBullet",
 "language": "GDScript",
 "path": "res://Player/PlayerBullet.gd"
+}, {
+"base": "Node2D",
+"class": "nWayStraight",
+"language": "GDScript",
+"path": "res://Boss/StaticPatterns/nWayStraight.gd"
 } ]
 _global_script_class_icons={
 "Boss": "",
+"BossBullet": "",
+"CannonSpinner": "",
 "Instructions": "",
 "Level": "",
 "MainMenu": "",
 "Player": "",
-"PlayerBullet": ""
+"PlayerBullet": "",
+"nWayStraight": ""
 }
 
 [application]

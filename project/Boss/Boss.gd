@@ -5,7 +5,7 @@ extends KinematicBody2D
 export var boss_health = 1000.0
 
 var boss_health_percent = 100.0
-var boss_paused = true
+var is_paused = true
 
 var _remaining_boss_health = boss_health
 var _boss_can_shoot = true
@@ -23,7 +23,7 @@ func _physics_process(_delta):
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
 	
 	# Shows that the player has won the game
-	boss_paused = get_parent().game_paused
+	is_paused = get_parent().is_paused
 	if boss_health == 0:
 		get_parent().show_won_game()
 	
@@ -37,7 +37,7 @@ func _physics_process(_delta):
 	#$BossShootingSound.play()
 	
 	# Shoots the bullets if the game isn't paused
-	if boss_paused == false and _boss_can_shoot == true:
+	if is_paused == false and _boss_can_shoot == true:
 		_boss_can_shoot = false
 		$BossShotTimer.start()
 	
