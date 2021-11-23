@@ -3,7 +3,6 @@ extends Area2D
 
 
 func _physics_process(_delta):
-	# Moves the player's bullets if the game is not paused
 	if get_parent().is_paused == false:
 		position.y -= 10
 	
