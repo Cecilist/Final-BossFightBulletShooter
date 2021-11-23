@@ -2,13 +2,11 @@ class_name MainMenu
 extends Node2D
 
 
-# Fades in the title
 func _ready():
 	get_tree().paused = false
 	$AnimationPlayer.play("TitleFadeIn")
 
 
-# Checks if the player pressed any of the buttons' corresponding keybinds
 func _input(_event):
 	if Input.is_action_just_pressed("play_game"):
 		_on_PlayButton_pressed()
@@ -18,17 +16,14 @@ func _input(_event):
 		_on_QuitButton_pressed()
 
 
-# Loads the level
 func _on_PlayButton_pressed():
-	var _ignored = get_tree().change_scene("res:///Level/Level.tscn")
+	var _ignored := get_tree().change_scene("res:///Level/Level.tscn")
 
 
-# Loads the instructions scene
 func _on_InstructionsButton_pressed():
-	var _ignored = get_tree().change_scene("res:///Menu/Instructions.tscn")
+	var _ignored := get_tree().change_scene("res:///Menu/Instructions.tscn")
 
 
-# Quits the game
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
