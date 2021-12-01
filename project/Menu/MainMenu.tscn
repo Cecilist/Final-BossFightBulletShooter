@@ -113,7 +113,6 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
-frame = 3
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -161,12 +160,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -41.5
-margin_top = 375.0
+margin_top = 450.0
 margin_right = 41.5
-margin_bottom = 423.0
+margin_bottom = 498.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -65.5
+margin_top = 375.0
+margin_right = 57.5
+margin_bottom = 423.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -177,9 +192,11 @@ anims/TitleFadeIn = SubResource( 7 )
 [node name="DespawnArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
+position = Vector2( 2.37842, 0 )
 shape = SubResource( 8 )
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="area_entered" from="DespawnArea" to="." method="_on_DespawnArea_area_entered"]
