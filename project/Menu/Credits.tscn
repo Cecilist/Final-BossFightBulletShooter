@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Font/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Font/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
@@ -43,6 +43,10 @@ size = 32
 outline_size = 2
 font_data = ExtResource( 8 )
 
+[sub_resource type="DynamicFont" id=11]
+size = 50
+font_data = ExtResource( 2 )
+
 [node name="Credits" type="Node2D"]
 position = Vector2( 725, 540 )
 script = ExtResource( 3 )
@@ -80,9 +84,9 @@ playing = true
 
 [node name="CreatedBy" type="Label" parent="."]
 margin_left = -724.0
-margin_top = 161.0
+margin_top = 100.0
 margin_right = 728.0
-margin_bottom = 306.0
+margin_bottom = 245.0
 custom_fonts/font = SubResource( 8 )
 text = "Created by:
 Jacob Cecil and Lucas Harris"
@@ -117,6 +121,32 @@ margin_bottom = -477.845
 custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThirdPartyAssets" type="Label" parent="."]
+margin_left = -724.0
+margin_top = 250.0
+margin_right = 728.0
+margin_bottom = 395.0
+custom_fonts/font = SubResource( 11 )
+text = "Third-Party Assets:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerBullets" type="Label" parent="."]
+margin_left = -726.0
+margin_top = 445.0
+margin_right = 727.0
+margin_bottom = 590.0
+custom_fonts/font = SubResource( 9 )
+text = "Sprites:
+Player Bullets: from Kenny licensed under CC0 1.0
+ "
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
