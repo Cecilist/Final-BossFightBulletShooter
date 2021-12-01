@@ -113,6 +113,7 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
+frame = 2
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -175,13 +176,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -65.5
+margin_left = -77.0
 margin_top = 375.0
-margin_right = 57.5
+margin_right = 67.0
 margin_bottom = 423.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Credits"
+text = "CREDITS"
 __meta__ = {
 "_edit_use_anchors_": false
 }

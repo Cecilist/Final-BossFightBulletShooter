@@ -72,17 +72,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -333.0
-margin_top = -249.735
+margin_top = -374.752
 margin_right = 333.0
-margin_bottom = 287.265
+margin_bottom = 162.248
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Move Up: W or UP ARROW
-Move Down: S or DOWN ARROW
-Move Left: A or LEFT ARROW
-Move Right: D or RIGHT ARROW
-Shoot: Hold SPACEBAR
-Use Double Fire Rate Ability: E
+text = "Use Double Fire Rate Ability: E
 Use Evade Ability: SHIFT + A/LEFT or D/RIGHT
 Pause/Unpause: ESCAPE
 Back to Menu: BACKSPACE
