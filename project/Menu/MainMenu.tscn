@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Font/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Font/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
@@ -45,42 +45,32 @@ outline_size = 2
 font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=7]
-length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("TitleLabel:self_modulate")
+tracks/0/path = NodePath("ColorRect:rect_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( -725, -540 ), Vector2( -725, -1620 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("TitleShipSprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
+
+[sub_resource type="Animation" id=11]
+resource_name = "TitleFadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TitleExhaustSprite:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( -725, 540 ), Vector2( -725, -540 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -113,6 +103,7 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
+frame = 1
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -188,6 +179,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/TitleFadeIn = SubResource( 7 )
+anims/TitleFadeOut = SubResource( 11 )
 
 [node name="DespawnArea" type="Area2D" parent="."]
 
@@ -195,8 +187,19 @@ anims/TitleFadeIn = SubResource( 7 )
 position = Vector2( 2.37842, 0 )
 shape = SubResource( 8 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -725.0
+margin_top = -1620.0
+margin_right = 725.0
+margin_bottom = -540.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="DespawnArea" to="." method="_on_DespawnArea_area_entered"]
