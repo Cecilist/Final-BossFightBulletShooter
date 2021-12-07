@@ -22,6 +22,9 @@ func _on_PlayButton_pressed():
 
 func _on_InstructionsButton_pressed():
 	var _ignored := get_tree().change_scene("res:///Menu/Instructions.tscn")
+	
+func _on_CreditsButton_pressed():
+	var _ignored := get_tree().change_scene("res:///Menu/Credits.tscn")
 
 
 func _on_QuitButton_pressed():
@@ -30,3 +33,6 @@ func _on_QuitButton_pressed():
 
 func _on_DespawnArea_area_entered(area):
 	area.queue_free()
+
+
+

@@ -34,6 +34,12 @@ func _physics_process(_delta):
 	_ship_velocity = Vector2(0,0)
 	
 	if is_paused == false:
+		$InvulnerabilityTimer.paused = false
+		$PlayerShotTimer.paused = false
+		$FireRateTimer.paused = false
+		$FireRateCooldownTimer.paused = false
+		$EvadeCooldownTimer.paused = false
+		
 		$ShipSprite.playing = true
 		$ExhaustSprite.playing = true
 		if Input.is_action_pressed("move_up"):
@@ -70,6 +76,11 @@ func _physics_process(_delta):
 	if is_paused == true:
 		$ShipSprite.playing = false
 		$ExhaustSprite.playing = false
+		$InvulnerabilityTimer.paused = true
+		$PlayerShotTimer.paused = true
+		$FireRateTimer.paused = true
+		$FireRateCooldownTimer.paused = true
+		$EvadeCooldownTimer.paused = true
 	
 	_ship_velocity = move_and_slide(_ship_velocity, Vector2.UP)
 	
