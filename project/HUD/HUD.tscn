@@ -90,7 +90,6 @@ centered = false
 
 [node name="PlayerHealthOutline" type="Sprite" parent="PlayerHUD"]
 position = Vector2( 60.1719, 50.8542 )
-z_index = 1
 texture = ExtResource( 4 )
 
 [node name="AbilityCooldownLabel" type="Label" parent="PlayerHUD"]
