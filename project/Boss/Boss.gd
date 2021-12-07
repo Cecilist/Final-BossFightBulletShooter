@@ -13,7 +13,8 @@ var _boss_can_shoot: bool = true
 var _pattern_counter: int = 0
 
 
-func _ready():
+func _on_SpawmInTimer_timeout():
+	visible = true 
 	_pattern_n_way_Straight()
 	$PatternSwitcher.start()
 
@@ -96,3 +97,7 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		area.queue_free()
 		_remaining_boss_health -= 5
+
+
+
+
