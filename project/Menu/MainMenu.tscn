@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Font/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Font/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player/Ship_Exhaust_2.png" type="Texture" id=5]
 [ext_resource path="res://Player/Ship_Exhaust_3.png" type="Texture" id=6]
 [ext_resource path="res://Player/Ship_Exhaust_1.png" type="Texture" id=7]
+[ext_resource path="res://Transitions/Transition.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -44,36 +45,7 @@ size = 32
 outline_size = 2
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=7]
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -725, -540 ), Vector2( -725, -1620 ) ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "TitleFadeOut"
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -725, 540 ), Vector2( -725, -540 ) ]
-}
-
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 1207.41, 871.501 )
 
 [node name="MainMenu" type="Node2D"]
@@ -103,7 +75,7 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
-frame = 2
+frame = 1
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -177,29 +149,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/TitleFadeIn = SubResource( 7 )
-anims/TitleFadeOut = SubResource( 8 )
-
 [node name="DespawnArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 position = Vector2( 2.37842, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -725.0
-margin_top = -1620.0
-margin_right = 725.0
-margin_bottom = -540.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Transition" parent="." instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="InstructionsButton" to="." method="_on_InstructionsButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="DespawnArea" to="." method="_on_DespawnArea_area_entered"]
