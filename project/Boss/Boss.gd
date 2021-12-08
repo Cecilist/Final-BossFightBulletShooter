@@ -11,6 +11,7 @@ var spinners_count: int = 0
 var _remaining_boss_health: float = boss_health
 var _boss_can_shoot: bool = true
 var _pattern_counter: int = 0
+var _velocity := Vector2(0,0)
 
 
 
@@ -19,6 +20,7 @@ func _on_SpawnInTimer_timeout():
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
+	_velocity = Vector2(50,0)
 	
 
 
@@ -27,8 +29,10 @@ func _physics_process(_delta):
 
 	is_paused = get_parent().is_paused
 	
-	if boss_health == 0:
+	if _remaining_boss_health == 0:
 		get_parent().show_won_game()
+		_velocity = Vector2(0,0)
+		
 	
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
@@ -44,6 +48,13 @@ func _physics_process(_delta):
 		$PatternSwitcher.paused = true
 	else:
 		$PatternSwitcher.paused = false
+	
+	
+	
+	var _ignored := move_and_slide(_velocity)
+	if get_slide_count() > 0 and _remaining_boss_health > 0:
+		print("Boss Health is ", boss_health)
+		_velocity *= Vector2(-1,0)
 
 
 func _on_BossShotTimer_timeout():
@@ -53,7 +64,6 @@ func _on_BossShotTimer_timeout():
 func _on_PatternSwitcher_timeout():
 	# Spawning in spinning squares of death is the only pattern for now,
 	# Redundant code left in so devs don't forget how to make more patterns appear
-	print("pattern Switch ", _pattern_counter % 2)
 	if _pattern_counter % 2 == 0:
 		if boss_health_percent >= .5:
 			 _pattern_n_way_Straight()
@@ -101,7 +111,7 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		area.queue_free()
 		_remaining_boss_health -= 5
-
+		
 
 
 
