@@ -2,9 +2,9 @@ class_name nWayStraight
 extends Node2D
 
 
-export var _rotation_speed: int = 1
+export var _rotation_speed: int = 0
 export var _shoot_time: float = 0.5
-export var _cannons_count: float  = 16
+export var _cannons_count: float  = 64
 export var _radius: int  = 100
 
 var _bullet: PackedScene = preload("res://Boss/BossBullet.tscn")
@@ -13,6 +13,8 @@ onready var _shoot_timer = $Timer
 onready var rotater = $Rotater
 
 func _ready():
+	$KillTimer.start()
+	$KillTimer.one_shot = true
 	var step = 2 * PI / _cannons_count
 	
 	for i in range(_cannons_count):
@@ -43,4 +45,5 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_KillTimer_timeout():
-	rotater.queue_free()
+	queue_free()
+	
