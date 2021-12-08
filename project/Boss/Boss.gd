@@ -2,7 +2,7 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health: float = 1000.0
+export var boss_health: float = 100.0
 
 var boss_health_percent: float = 100.0
 var is_paused: bool = true

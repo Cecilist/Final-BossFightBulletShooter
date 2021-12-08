@@ -4,7 +4,7 @@ extends Node2D
 
 export var _rotation_speed: int = 1
 export var _shoot_time: float = 0.5
-export var _cannons_count: float  = 16
+export var _cannons_count: float  = 128
 export var _radius: int  = 100
 
 var _bullet: PackedScene = preload("res://Boss/BossBullet.tscn")

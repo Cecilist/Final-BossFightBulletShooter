@@ -58,7 +58,7 @@ tracks/0/keys = {
 "values": [ Vector2( -725, -540 ), Vector2( -725, -1620 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 resource_name = "TitleFadeOut"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:rect_position")
@@ -73,7 +73,7 @@ tracks/0/keys = {
 "values": [ Vector2( -725, 540 ), Vector2( -725, -540 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 1207.41, 871.501 )
 
 [node name="MainMenu" type="Node2D"]
@@ -103,7 +103,7 @@ position = Vector2( -0.16687, 28.6228 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
-frame = 1
+frame = 3
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -179,13 +179,13 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/TitleFadeIn = SubResource( 7 )
-anims/TitleFadeOut = SubResource( 11 )
+anims/TitleFadeOut = SubResource( 8 )
 
 [node name="DespawnArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnArea"]
 position = Vector2( 2.37842, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -725.0
