@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Boss/Spinner/CannonSpinner.gd"
 }, {
 "base": "Node2D",
+"class": "Credits",
+"language": "GDScript",
+"path": "res://Menu/Credits.gd"
+}, {
+"base": "Node2D",
 "class": "Instructions",
 "language": "GDScript",
 "path": "res://Menu/Instructions.gd"
@@ -50,6 +55,11 @@ _global_script_classes=[ {
 "path": "res://Player/PlayerBullet.gd"
 }, {
 "base": "Node2D",
+"class": "Transition",
+"language": "GDScript",
+"path": "res://Transitions/Transition.gd"
+}, {
+"base": "Node2D",
 "class": "nWayStraight",
 "language": "GDScript",
 "path": "res://Boss/StaticPatterns/nWayStraight.gd"
@@ -58,11 +68,13 @@ _global_script_class_icons={
 "Boss": "",
 "BossBullet": "",
 "CannonSpinner": "",
+"Credits": "",
 "Instructions": "",
 "Level": "",
 "MainMenu": "",
 "Player": "",
 "PlayerBullet": "",
+"Transition": "",
 "nWayStraight": ""
 }
 

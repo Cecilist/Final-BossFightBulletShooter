@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Font/ChakraPetch-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Font/ChakraPetch-Bold.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Player/Ship_Exhaust_3.png" type="Texture" id=6]
 [ext_resource path="res://Player/Ship_Exhaust_1.png" type="Texture" id=7]
 [ext_resource path="res://Font/ChakraPetch-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Transitions/Transition.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -30,20 +31,20 @@ animations = [ {
 "speed": 7.0
 } ]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=4]
 size = 54
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=5]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=6]
 size = 32
 outline_size = 2
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=7]
 size = 50
 font_data = ExtResource( 2 )
 
@@ -74,6 +75,7 @@ position = Vector2( -0.167, -0.111 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "flying"
+frame = 3
 playing = true
 
 [node name="TitleShipSprite" type="AnimatedSprite" parent="."]
@@ -87,7 +89,7 @@ margin_left = -724.0
 margin_top = 100.0
 margin_right = 728.0
 margin_bottom = 245.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 4 )
 text = "Created by:
 Jacob Cecil and Lucas Harris"
 align = 1
@@ -100,7 +102,7 @@ margin_left = -726.0
 margin_top = 308.0
 margin_right = 727.0
 margin_bottom = 453.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 5 )
 text = "Fonts:
  Chakra Petch: designed by Cadson Demak, hosted on Google Fonts. 
 Licensed under OFL"
@@ -118,7 +120,7 @@ margin_left = -705.333
 margin_top = -525.845
 margin_right = -612.333
 margin_bottom = -477.845
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BACK"
 __meta__ = {
@@ -130,7 +132,7 @@ margin_left = -724.0
 margin_top = 250.0
 margin_right = 728.0
 margin_bottom = 395.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 7 )
 text = "Third-Party Assets:"
 align = 1
 __meta__ = {
@@ -142,7 +144,7 @@ margin_left = -726.0
 margin_top = 445.0
 margin_right = 727.0
 margin_bottom = 590.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 5 )
 text = "Sprites:
 Player Bullets: from Kenny licensed under CC0 1.0
  "
@@ -150,5 +152,7 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Transition" parent="." instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
