@@ -13,16 +13,20 @@ var _boss_can_shoot: bool = true
 var _pattern_counter: int = 0
 
 
-func _on_SpawmInTimer_timeout():
-	visible = true 
-	_pattern_n_way_Straight()
+
+func _on_SpawnInTimer_timeout():
+	$AnimatedSprite.show() 
+	$CollisionShape2D.disabled = false
+	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
+	
 
 
 func _physics_process(_delta):
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
 
 	is_paused = get_parent().is_paused
+	
 	if boss_health == 0:
 		get_parent().show_won_game()
 	
@@ -49,20 +53,20 @@ func _on_BossShotTimer_timeout():
 func _on_PatternSwitcher_timeout():
 	# Spawning in spinning squares of death is the only pattern for now,
 	# Redundant code left in so devs don't forget how to make more patterns appear
+	print("pattern Switch ", _pattern_counter % 2)
 	if _pattern_counter % 2 == 0:
 		if boss_health_percent >= .5:
-			 _pattern_1_spinner() 
+			 _pattern_n_way_Straight()
 		else:
 			_pattern_3_spinner() 
-		_pattern_counter += 1
 	if _pattern_counter % 2 == 1:
 		if boss_health_percent >= .5:
 			 _pattern_1_spinner() 
 		else:
 			_pattern_3_spinner() 
-		_pattern_counter += 1
 	if _pattern_counter >= 2:
 		_pattern_counter = 0
+	_pattern_counter += 1
 	
 func _pattern_3_spinner():
 	if spinners_count < 2:
