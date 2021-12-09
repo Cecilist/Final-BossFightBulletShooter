@@ -2,7 +2,7 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health: float = 100.0
+export var boss_health: float = 1000.0
 
 var boss_health_percent: float = 100.0
 var is_paused: bool = true
@@ -36,7 +36,7 @@ func _physics_process(_delta):
 		get_parent().show_won_game()
 		_velocity = Vector2(0,0)
 		
-		boss_health_percent = _remaining_boss_health / boss_health
+	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
 	
 	# Needs to be implemented in a less overwhelming way

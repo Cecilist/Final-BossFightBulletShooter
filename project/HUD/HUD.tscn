@@ -38,7 +38,7 @@ size = 48
 outline_size = 2
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=7]
 size = 64
 outline_size = 2
 font_data = ExtResource( 5 )
@@ -184,7 +184,7 @@ margin_left = -155.016
 margin_top = -95.5026
 margin_right = 92.9838
 margin_bottom = -11.5026
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Boss HP"
 align = 1
