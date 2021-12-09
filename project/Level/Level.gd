@@ -50,7 +50,6 @@ func _process(_delta):
 		show_game_over()
 	
 	$Overlay/HUD/BossHUD/BossHealth.scale.x = 2.25 * $Boss.boss_health_percent
-	print($Boss.boss_health_percent)
 	if $Boss.boss_health_percent == 0:
 		show_won_game()
 	
