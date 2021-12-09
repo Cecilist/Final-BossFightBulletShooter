@@ -2,7 +2,7 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health: float = 100.0
+export var boss_health: float = 1000.0
 
 var boss_health_percent: float = 100.0
 var is_paused: bool = true
@@ -15,13 +15,14 @@ var _pattern_counter: int = 0
 var _velocity := Vector2(0,0)
 
 
+func _ready():
+	$AnimationPlayer.play("Spawnin")
 
-func _on_SpawnInTimer_timeout():
-	$AnimatedSprite.show() 
+
+func _on_AnimationPlayer_animation_finished(Spawnin):
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
-	
 	_velocity = Vector2(50,0)
 	
 func _physics_process(_delta):
@@ -45,6 +46,7 @@ func _physics_process(_delta):
 			_velocity = Vector2(125,0)
 		else:
 			get_parent().show_won_game()
+			is_paused = true
 			_velocity = Vector2(0,0)
 			$AnimationPlayer.play("Death")
 		phases_left -= 1
@@ -80,14 +82,15 @@ func _on_PatternSwitcher_timeout():
 		if boss_health_percent >= .5:
 			 _pattern_n_way_Burst()
 		else:
-			_pattern_3_spinner()
+			_pattern_1_spinner()
 	if _pattern_counter % 2 == 1:
 		if boss_health_percent >= .5:
-			 _pattern_n_way_Burst()
+			_pattern_n_way_Straight()
 		else:
-			_pattern_n_way_Burst()
-	if _pattern_counter >= 2:
-		_pattern_counter = 0
+			_pattern_1_spinner()
+	if _pattern_counter >= 2 and boss_health_percent <= .5:
+			_pattern_3_spinner()
+			_pattern_counter = 0
 	_pattern_counter += 1
 
 
@@ -134,5 +137,9 @@ func _pattern_n_way_Burst():
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		area.remove_bullet()
-		_remaining_boss_health -= 5
+		_remaining_boss_health -= 10
+
+
+
+
 

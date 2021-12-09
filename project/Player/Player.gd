@@ -132,7 +132,8 @@ func _fire_rate_ability():
 func _on_Hitbox_area_entered(area):
 	if _is_player_invulnerable == false:
 		player_hit = true
-		area.remove_bullet()
+		if area.is_in_group("Boss_Bullet"):
+			area.remove_bullet()
 		_remaining_player_health -= 10
 		_is_player_invulnerable = true
 		$ShipSprite.play("damaged")
