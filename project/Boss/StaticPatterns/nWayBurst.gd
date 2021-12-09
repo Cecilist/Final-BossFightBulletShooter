@@ -1,11 +1,11 @@
-class_name nWayStraight
+class_name nWayBurst
 extends Node2D
 
 
 export var _rotation_speed: int = 0
 export var _shoot_time: float = 0.5
-export var _cannons_count: float  = 64
-export var _radius: int  = 100
+export var _cannons_count: float  = 5
+export var _radius: int  = 1
 
 var _bullet: PackedScene = preload("res://Boss/BossBullet.tscn")
 
@@ -15,11 +15,11 @@ onready var rotater = $Rotater
 func _ready():
 	$KillTimer.start()
 	$KillTimer.one_shot = true
-	var step = PI * 2 / _cannons_count
+	var step = (2/PI) / _cannons_count
 	
 	for i in range(_cannons_count):
 		var cannon = Node2D.new()
-		var pos = Vector2(_radius, 0).rotated(step * i)
+		var pos = Vector2(_radius, 0).rotated(step * i+1)
 		cannon.position = pos
 		cannon.rotation = pos.angle()
 		rotater.add_child(cannon)

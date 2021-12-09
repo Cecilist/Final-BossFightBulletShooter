@@ -20,11 +20,14 @@ func _on_SpawnInTimer_timeout():
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
+	_pattern_n_way_Burst()
 	_velocity = Vector2(50,0)
+	
 	
 
 
 func _physics_process(_delta):
+	
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
 
 	is_paused = get_parent().is_paused
@@ -33,8 +36,7 @@ func _physics_process(_delta):
 		get_parent().show_won_game()
 		_velocity = Vector2(0,0)
 		
-	
-	boss_health_percent = _remaining_boss_health / boss_health
+		boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
 	
 	# Needs to be implemented in a less overwhelming way
@@ -43,22 +45,22 @@ func _physics_process(_delta):
 	if is_paused == false and _boss_can_shoot == true:
 		_boss_can_shoot = false
 		$BossShotTimer.start()
+		
 	
 	if _boss_can_shoot == true:
 		$PatternSwitcher.paused = true
 	else:
 		$PatternSwitcher.paused = false
-	
-	
-	
-	var _ignored := move_and_slide(_velocity)
-	if get_slide_count() > 0 and _remaining_boss_health > 0:
-		print("Boss Health is ", boss_health)
-		_velocity *= Vector2(-1,0)
+
+	if is_paused == false:
+		var _ignored := move_and_slide(_velocity)
+		if get_slide_count() > 0:
+			_velocity *= Vector2(-1,0)
 
 
 func _on_BossShotTimer_timeout():
 	_boss_can_shoot = true
+	
 
 
 func _on_PatternSwitcher_timeout():
@@ -104,6 +106,17 @@ func _pattern_n_way_Straight():
 	var _pattern: Node2D = load("res://Boss/StaticPatterns/nWayStraight.tscn").instance()
 	get_node("/root/Level/Boss").call_deferred("add_child", _pattern)
 	_pattern.global_position = $AnimatedSprite.position
+	
+func _pattern_n_way_Burst():
+	var _pattern: Node2D = load("res://Boss/StaticPatterns/nWayBurst.tscn").instance()
+	var _pattern1: Node2D = load("res://Boss/StaticPatterns/nWayBurst.tscn").instance()
+	var _pattern2: Node2D = load("res://Boss/StaticPatterns/nWayBurst.tscn").instance()
+	get_node("/root/Level/Boss").call_deferred("add_child", _pattern)
+	get_node("/root/Level/Boss").call_deferred("add_child", _pattern1)
+	get_node("/root/Level/Boss").call_deferred("add_child", _pattern2)
+	_pattern.global_position = $SpinnerSpawn3.position
+	_pattern1.global_position = $SpinnerSpawn2.position
+	_pattern2.global_position = $SpinnerSpawn1.position
 	
 	
 
