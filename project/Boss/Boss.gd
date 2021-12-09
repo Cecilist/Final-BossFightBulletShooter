@@ -2,11 +2,12 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health: float = 1000.0
+export var boss_health: float = 100.0
 
 var boss_health_percent: float = 100.0
 var is_paused: bool = true
 var spinners_count: int = 0
+var phases_left : int = 3
 
 var _remaining_boss_health: float = boss_health
 var _boss_can_shoot: bool = true
@@ -20,12 +21,9 @@ func _on_SpawnInTimer_timeout():
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
-	_pattern_n_way_Burst()
+	
 	_velocity = Vector2(50,0)
 	
-	
-
-
 func _physics_process(_delta):
 	
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
@@ -33,9 +31,23 @@ func _physics_process(_delta):
 	is_paused = get_parent().is_paused
 	
 	if _remaining_boss_health == 0:
-		get_parent().show_won_game()
-		_velocity = Vector2(0,0)
-		
+		if phases_left == 3:
+			$AnimationPlayer.play("Transition")
+			_remaining_boss_health = 100
+			_velocity = Vector2(75,0)
+		elif phases_left == 2:
+			$AnimationPlayer.play("Transition 2")
+			_remaining_boss_health = 100
+			_velocity = Vector2(100,0)
+		elif phases_left == 1:
+			$AnimationPlayer.play("Transition 3")
+			_remaining_boss_health = 100
+			_velocity = Vector2(125,0)
+		else:
+			get_parent().show_won_game()
+			_velocity = Vector2(0,0)
+			$AnimationPlayer.play("Death")
+		phases_left -= 1
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
 	
@@ -64,18 +76,16 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
-	# Spawning in spinning squares of death is the only pattern for now,
-	# Redundant code left in so devs don't forget how to make more patterns appear
 	if _pattern_counter % 2 == 0:
 		if boss_health_percent >= .5:
-			 _pattern_n_way_Straight()
+			 _pattern_n_way_Burst()
 		else:
-			_pattern_3_spinner() 
+			_pattern_3_spinner()
 	if _pattern_counter % 2 == 1:
 		if boss_health_percent >= .5:
-			 _pattern_1_spinner() 
+			 _pattern_n_way_Burst()
 		else:
-			_pattern_3_spinner() 
+			_pattern_n_way_Burst()
 	if _pattern_counter >= 2:
 		_pattern_counter = 0
 	_pattern_counter += 1
@@ -125,3 +135,4 @@ func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		area.remove_bullet()
 		_remaining_boss_health -= 5
+
