@@ -20,7 +20,7 @@ func _on_SpawnInTimer_timeout():
 	$CollisionShape2D.disabled = false
 	$Area2D/CollisionShape2D.disabled = false
 	$PatternSwitcher.start()
-	_pattern_n_way_Burst()
+	
 	_velocity = Vector2(50,0)
 	
 	
@@ -68,14 +68,14 @@ func _on_PatternSwitcher_timeout():
 	# Redundant code left in so devs don't forget how to make more patterns appear
 	if _pattern_counter % 2 == 0:
 		if boss_health_percent >= .5:
-			 _pattern_n_way_Straight()
+			 _pattern_n_way_Burst()
 		else:
-			_pattern_3_spinner() 
+			_pattern_n_way_Burst()
 	if _pattern_counter % 2 == 1:
 		if boss_health_percent >= .5:
-			 _pattern_1_spinner() 
+			 _pattern_n_way_Burst()
 		else:
-			_pattern_3_spinner() 
+			_pattern_n_way_Burst()
 	if _pattern_counter >= 2:
 		_pattern_counter = 0
 	_pattern_counter += 1
