@@ -12,6 +12,7 @@ your wings.
 
 ### Controls: 
 Arrow keys or WASD to move
+
 Space(hold) to fire
 
 ## Project Report
