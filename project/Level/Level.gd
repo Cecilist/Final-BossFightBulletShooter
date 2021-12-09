@@ -2,7 +2,7 @@ class_name Level
 extends Node2D
 
 
-var is_paused: bool = true
+var is_paused: bool = false
 var is_game_over: bool = false
 var is_won_game: bool = false
 var is_unpaused: bool= true
@@ -13,10 +13,10 @@ var _previous_player_health: float = 100.0
 
 
 func _ready():
-	$Timers/UnpauseTimer.start()
-	get_tree().paused = true
+	$Overlay/Transition.fade_in()
 	is_game_over = false
 	is_won_game = false
+	$AnimationPlayer.play("ShowKeybinds")
 
 
 func _input(_event):
@@ -45,11 +45,11 @@ func _process(_delta):
 		_show_unpause_timer()
 	
 	
-	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = $Player.player_health_percent
+	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = 2.25 * $Player.player_health_percent
 	if $Player.player_health_percent == 0:
 		show_game_over()
 	
-	$Overlay/HUD/BossHUD/BossHealth.scale.x = $Boss.boss_health_percent
+	$Overlay/HUD/BossHUD/BossHealth.scale.x = 2.25 * $Boss.boss_health_percent
 	if $Boss.boss_health_percent == 0:
 		show_won_game()
 	
@@ -70,8 +70,7 @@ func _pause_game():
 	is_paused = true
 	if is_won_game == false and is_game_over == false:
 		is_unpaused = false
-		$Overlay/PauseMenu/InGameResumeButton.disabled = false # Previous position: -45, 170
-#		$Overlay/PauseMenu/InGameRestartButton.disabled = false
+		$Overlay/PauseMenu/InGameResumeButton.disabled = false
 		$Overlay/PauseMenu/InGameToMenuButton.disabled = false
 		$Overlay/PauseMenu/InGameQuitButton.disabled = false
 		$Overlay/PauseMenu.visible = true
@@ -80,7 +79,6 @@ func _pause_game():
 func _unpause_game():
 	is_unpaused = true
 	$Overlay/PauseMenu/InGameResumeButton.disabled = true
-	#$Overlay/PauseMenu/InGameRestartButton.disabled = true #currently breaks game
 	$Overlay/PauseMenu/InGameToMenuButton.disabled = true
 	$Overlay/PauseMenu/InGameQuitButton.disabled = true
 	$Overlay/PauseMenu.visible = false
@@ -91,7 +89,6 @@ func show_game_over():
 	is_game_over = true
 	$Overlay/GameOver.visible = true
 	$Overlay/EndButtons.visible = true
-	#$Overlay/EndButtons/ReplayButton.disabled = false #currently breaks game
 	$Overlay/EndButtons/ToMenuButton.disabled = false
 	$Overlay/EndButtons/QuitButton.disabled = false
 
@@ -100,7 +97,6 @@ func show_won_game():
 	is_won_game = true
 	$Overlay/WonGame.visible = true
 	$Overlay/EndButtons.visible = true
-#	$Overlay/EndButtons/ReplayButton.disabled = false #currently breaks game
 	$Overlay/EndButtons/ToMenuButton.disabled = false
 	$Overlay/EndButtons/QuitButton.disabled = false
 
