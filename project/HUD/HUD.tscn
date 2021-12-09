@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://HUD/Health Bar.png" type="Texture" id=1]
 [ext_resource path="res://HUD/Boss Health Outline.png" type="Texture" id=2]
@@ -34,16 +34,6 @@ outline_size = 2
 font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 48
-outline_size = 2
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 64
-outline_size = 2
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=8]
 size = 48
 outline_size = 2
 font_data = ExtResource( 6 )
@@ -84,21 +74,25 @@ __meta__ = {
 }
 
 [node name="PlayerHealth" type="Sprite" parent="PlayerHUD"]
-position = Vector2( -229.828, -4.14578 )
+position = Vector2( -59.1267, 1342.23 )
+rotation = -1.5708
+scale = Vector2( 2.25, 2.25 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="PlayerHealthOutline" type="Sprite" parent="PlayerHUD"]
-position = Vector2( 60.1719, 50.8542 )
+position = Vector2( 65, 690 )
+rotation = -1.5708
+scale = Vector2( 2.25, 2.25 )
 texture = ExtResource( 4 )
 
 [node name="AbilityCooldownLabel" type="Label" parent="PlayerHUD"]
 anchor_left = 0.624
 anchor_right = 0.624
 margin_left = -181.922
-margin_top = 260.936
+margin_top = 1479.68
 margin_right = 299.078
-margin_bottom = 344.936
+margin_bottom = 1563.68
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "ABILITY STATUS"
@@ -108,9 +102,9 @@ __meta__ = {
 
 [node name="FireRateAbilityLabel" type="Label" parent="PlayerHUD"]
 margin_left = -280.0
-margin_top = 372.0
+margin_top = 1590.75
 margin_right = 399.0
-margin_bottom = 435.0
+margin_bottom = 1653.75
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Double Fire Rate (E):"
@@ -122,9 +116,9 @@ __meta__ = {
 
 [node name="FireRateStatusLabel" type="Label" parent="PlayerHUD"]
 margin_left = -278.0
-margin_top = 438.0
+margin_top = 1656.75
 margin_right = 400.0
-margin_bottom = 501.0
+margin_bottom = 1719.75
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "READY"
@@ -136,9 +130,9 @@ __meta__ = {
 
 [node name="EvadeAbilityLabel" type="Label" parent="PlayerHUD"]
 margin_left = -279.0
-margin_top = 575.0
+margin_top = 1793.75
 margin_right = 400.0
-margin_bottom = 638.0
+margin_bottom = 1856.75
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Evade (SHIFT + LEFT/RIGHT):"
@@ -150,44 +144,12 @@ __meta__ = {
 
 [node name="EvadeStatusLabel" type="Label" parent="PlayerHUD"]
 margin_left = -282.0
-margin_top = 645.656
+margin_top = 1864.4
 margin_right = 401.0
-margin_bottom = 708.656
+margin_bottom = 1927.4
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "READY"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GameplayKeybindsHeader" type="Label" parent="PlayerHUD"]
-margin_left = -271.223
-margin_top = 1519.39
-margin_right = 389.777
-margin_bottom = 1603.39
-custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "GAMEPLAY KEYBINDS"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GameplayKeybindsLabel" type="Label" parent="PlayerHUD"]
-margin_left = -161.27
-margin_top = 1592.54
-margin_right = 279.73
-margin_bottom = 1985.54
-custom_fonts/font = SubResource( 8 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "W/Up: Move Up
-A/Left: Move Left
-S/Down: Move Down
-D/Right: Move Right
-SPACE (Hold): Shoot"
 align = 1
 valign = 1
 __meta__ = {
@@ -205,18 +167,22 @@ texture = ExtResource( 3 )
 flip_h = true
 
 [node name="BossHealth" type="Sprite" parent="BossHUD"]
-position = Vector2( -326.022, -10.5026 )
+position = Vector2( -158.966, 1342.38 )
+rotation = -1.5708
+scale = Vector2( 2.25, 2.25 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="BossHealthOutline" type="Sprite" parent="BossHUD"]
-position = Vector2( -36.022, 44.4974 )
+position = Vector2( -35, 690 )
+rotation = -1.5708
+scale = Vector2( 2.25, 2.25 )
 texture = ExtResource( 2 )
 
 [node name="BossHPLabel" type="Label" parent="BossHUD"]
-margin_left = 6.20404
+margin_left = -155.016
 margin_top = -95.5026
-margin_right = 254.204
+margin_right = 92.9838
 margin_bottom = -11.5026
 custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -226,8 +192,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Label" type="Label" parent="."]
-margin_left = 1451.0
-margin_right = 1491.0
-margin_bottom = 14.0
