@@ -6,6 +6,7 @@ var is_paused: bool = false
 var is_game_over: bool = false
 var is_won_game: bool = false
 var is_unpaused: bool= true
+var is_ability_ready_shown : bool = false
 
 var _unpause_time_remaining := "3"
 var _previous_player_health: float = 100.0
@@ -69,6 +70,10 @@ func _process(_delta):
 		$Player.position.x = 1
 	if $Player.position.x > 719:
 		$Player.position.x = 718
+	
+	if $Player.show_ability_label == true and is_ability_ready_shown == false:
+		$AbilityReadyLabel.visible = true
+		$AbilityReadyPlayer.play("AbilityReady")
 	
 	if $Overlay/Transition.can_switch_scene == true:
 		_new_scene()
@@ -179,3 +184,13 @@ func _on_BulletDespawnPoint_area_entered(area):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "WhiteFlash":
 		$Player.player_hit = false
+
+
+func _on_AbilityReadyTimer_timeout():
+	$AbilityReadyPlayer.play("AbilityReady")
+
+
+func _on_AbilityReadyPlayer_animation_finished(anim_name):
+	if anim_name == "AbilityReady":
+		is_ability_ready_shown = true
+		$AbilityReadyLabel.visible = false

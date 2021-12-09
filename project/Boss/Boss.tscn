@@ -9,14 +9,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
@@ -28,7 +28,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 147.405, 146.162 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "Death"
 length = 6.0
 tracks/0/type = "value"
@@ -140,7 +140,7 @@ tracks/8/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Spawnin"
 length = 2.0
 tracks/0/type = "value"
@@ -156,8 +156,7 @@ tracks/0/keys = {
 "values": [ Vector2( 360, -300 ), Vector2( 360, 225.907 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Transition"
+[sub_resource type="Animation" id=5]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
@@ -232,8 +231,7 @@ tracks/5/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.75, 0.75 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Transition 2"
+[sub_resource type="Animation" id=6]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
@@ -308,8 +306,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0.75, 0.75 ), Vector2( 0.5, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Transition 3"
+[sub_resource type="Animation" id=7]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:rotation_degrees")
@@ -498,24 +495,18 @@ position = Vector2( 6.23627, -8.90897 )
 shape = SubResource( 2 )
 disabled = true
 
-[node name="SpawnInTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 method_call_mode = 1
-anims/Death = SubResource( 6 )
-anims/Spawnin = SubResource( 7 )
-anims/Transition = SubResource( 3 )
-"anims/Transition 2" = SubResource( 4 )
-"anims/Transition 3" = SubResource( 5 )
+anims/Death = SubResource( 3 )
+anims/Spawnin = SubResource( 4 )
+anims/Transition = SubResource( 5 )
+"anims/Transition 2" = SubResource( 6 )
+"anims/Transition 3" = SubResource( 7 )
 
 [node name="Explosion" parent="." instance=ExtResource( 6 )]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="BossShotTimer" to="." method="_on_BossShotTimer_timeout"]
 [connection signal="timeout" from="PatternSwitcher" to="." method="_on_PatternSwitcher_timeout"]
-[connection signal="timeout" from="SpawnInTimer" to="." method="_on_SpawnInTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

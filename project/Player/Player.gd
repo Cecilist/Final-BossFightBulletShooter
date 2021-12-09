@@ -12,6 +12,7 @@ var fire_rate_cooldown := "10"
 var evade_cooldown := "5"
 var can_player_shoot: bool = false
 var player_hit : bool = false
+var show_ability_label : bool = false
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health: float = player_health
@@ -162,10 +163,14 @@ func _on_FireRateTimer_timeout():
 
 func _on_FireRateCooldownTimer_timeout():
 	_is_fire_rate_ability_ready = true
+	show_ability_label = true
+	get_parent().is_ability_ready_shown = false
 
 
 func _on_EvadeCooldownTimer_timeout():
 	_is_evade_ability_ready = true
+	show_ability_label = true
+	get_parent().is_ability_ready_shown = false
 
 
 # Makes the player evade, keeping them invulnerable until after
