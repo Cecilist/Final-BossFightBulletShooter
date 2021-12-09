@@ -27,13 +27,6 @@ func _ready():
 	_shoot_timer.wait_time = _shoot_time
 	_shoot_timer.start()
 
-
-func _process(delta: float) -> void:
-	if get_parent().is_paused == false:
-		var new_rotation = rotater.rotation_degrees + _rotation_speed * delta
-		rotater.rotation_degrees = fmod(new_rotation, 360)
-
-
 func _on_Timer_timeout() -> void:
 	for i in rotater.get_children():
 		if get_parent().is_paused == false:

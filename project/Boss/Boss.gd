@@ -2,11 +2,12 @@ class_name Boss
 extends KinematicBody2D
 
 
-export var boss_health: float = 1000.0
+export var boss_health: float = 100.0
 
 var boss_health_percent: float = 100.0
 var is_paused: bool = true
 var spinners_count: int = 0
+var phases_left : int = 3
 
 var _remaining_boss_health: float = boss_health
 var _boss_can_shoot: bool = true
@@ -23,9 +24,6 @@ func _on_SpawnInTimer_timeout():
 	
 	_velocity = Vector2(50,0)
 	
-	
-
-
 func _physics_process(_delta):
 	
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
@@ -33,9 +31,19 @@ func _physics_process(_delta):
 	is_paused = get_parent().is_paused
 	
 	if _remaining_boss_health == 0:
-		get_parent().show_won_game()
-		_velocity = Vector2(0,0)
-		
+		if phases_left == 3:
+			$AnimationPlayer.play("Transition")
+			_remaining_boss_health = 100
+		elif phases_left == 2:
+			$AnimationPlayer.play("Transition 2")
+			_remaining_boss_health = 100
+		elif phases_left == 1:
+			$AnimationPlayer.play("Transition 3")
+			_remaining_boss_health = 100
+		else:
+			get_parent().show_won_game()
+			_velocity = Vector2(0,0)
+		phases_left -= 1
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
 	
@@ -125,6 +133,7 @@ func _on_Area2D_area_entered(area):
 		area.queue_free()
 		_remaining_boss_health -= 5
 		
+
 
 
 

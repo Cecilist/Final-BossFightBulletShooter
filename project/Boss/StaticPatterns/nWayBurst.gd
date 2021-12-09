@@ -3,7 +3,7 @@ extends Node2D
 
 
 export var _rotation_speed: int = 0
-export var _shoot_time: float = 0.25
+export var _shoot_time: float = 0.3
 export var _cannons_count: float  = 5
 export var _radius: int  = 1
 
