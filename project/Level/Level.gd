@@ -7,7 +7,6 @@ var is_game_over: bool = false
 var is_won_game: bool = false
 var is_unpaused: bool= true
 
-
 var _unpause_time_remaining := "3"
 var _previous_player_health: float = 100.0
 var _button_pressed := ""
@@ -33,6 +32,13 @@ func _input(_event):
 			_on_InGameToMenuButton_pressed()
 		if Input.is_action_just_pressed("quit_game"):
 			_on_InGameQuitButton_pressed()
+	
+	# Allows the player to use keybinds to interact with the end menus
+	if (is_game_over == true or is_won_game == true) and $Overlay/Transition.input_locked == false:
+		if Input.is_action_just_pressed("previous_menu"):
+			_on_ToMenuButton_pressed()
+		if Input.is_action_just_pressed("quit_game"):
+			_on_QuitButton_pressed()
 
 
 func _process(_delta):
@@ -44,13 +50,13 @@ func _process(_delta):
 	
 	# Checks the player's health and displays it on the player's health bar
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = 2.25 * $Player.player_health_percent
-	if $Player.player_health_percent == 0 and _button_pressed == "":
+	if $Player.player_health_percent == 0 and _button_pressed == "" and is_won_game == false:
 		$Player.player_death()
 		show_game_over()
 	
 	# Checks the boss's health and displays it on the player's health bar
 	$Overlay/HUD/BossHUD/BossHealth.scale.x = 2.25 * $Boss.boss_health_percent
-	if $Boss.boss_health_percent == 0 and _button_pressed == "":
+	if $Boss.boss_health_percent == 0 and _button_pressed == "" and is_game_over == false:
 		show_won_game()
 	
 	$Overlay/HUD/PlayerHUD/FireRateStatusLabel.text = $Player.fire_rate_cooldown

@@ -19,14 +19,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "flying",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "damaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "flying",
 "speed": 5.0
 } ]
 
@@ -134,6 +134,11 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
 [node name="PlayerShootingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )
 volume_db = -15.0
@@ -151,4 +156,5 @@ scale = Vector2( 20, 20 )
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
 [connection signal="timeout" from="FireRateCooldownTimer" to="." method="_on_FireRateCooldownTimer_timeout"]
 [connection signal="timeout" from="EvadeCooldownTimer" to="." method="_on_EvadeCooldownTimer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

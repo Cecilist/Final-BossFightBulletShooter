@@ -77,7 +77,7 @@ extents = Vector2( 657.375, 10 )
 [sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 18.1653, 624.438 )
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=16]
 resource_name = "BossSpawn"
 length = 2.0
 tracks/0/type = "value"
@@ -93,8 +93,7 @@ tracks/0/keys = {
 "values": [ Vector2( 360, 25 ), Vector2( 360, 225.907 ) ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "ShowKeybinds"
+[sub_resource type="Animation" id=17]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Keybinds/KeybindHeaderLabel:self_modulate")
@@ -121,8 +120,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=17]
-resource_name = "WhiteFlash"
+[sub_resource type="Animation" id=18]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:self_modulate")
@@ -137,12 +135,12 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.203922 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=19]
 size = 64
 outline_size = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=20]
 size = 48
 outline_size = 2
 font_data = ExtResource( 8 )
@@ -157,7 +155,6 @@ position = Vector2( 360, 1000 )
 scale = Vector2( 0.15, 0.15 )
 
 [node name="Boss" parent="." instance=ExtResource( 2 )]
-position = Vector2( 360, 225.907 )
 
 [node name="VerticalLevelBorders" type="StaticBody2D" parent="."]
 
@@ -433,9 +430,9 @@ position = Vector2( 1028.36, 536.394 )
 shape = SubResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/BossSpawn = SubResource( 20 )
-anims/ShowKeybinds = SubResource( 16 )
-anims/WhiteFlash = SubResource( 17 )
+anims/BossSpawn = SubResource( 16 )
+anims/ShowKeybinds = SubResource( 17 )
+anims/WhiteFlash = SubResource( 18 )
 
 [node name="Keybinds" type="Control" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -451,7 +448,7 @@ margin_left = 205.0
 margin_top = 135.975
 margin_right = 515.0
 margin_bottom = 219.975
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEYBINDS"
 align = 1
@@ -465,7 +462,7 @@ margin_left = 62.0
 margin_top = 281.817
 margin_right = 658.0
 margin_bottom = 740.817
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "W/Up: Move Up
 A/Left: Move Left

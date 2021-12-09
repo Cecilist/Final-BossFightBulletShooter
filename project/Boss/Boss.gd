@@ -19,12 +19,14 @@ func _ready():
 	$AnimationPlayer.play("Spawnin")
 
 
-func _on_AnimationPlayer_animation_finished(Spawnin):
-	$CollisionShape2D.disabled = false
-	$Area2D/CollisionShape2D.disabled = false
-	$PatternSwitcher.start()
-	_velocity = Vector2(50,0)
-	
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Spawnin":
+		$CollisionShape2D.disabled = false
+		$Area2D/CollisionShape2D.disabled = false
+		$PatternSwitcher.start()
+		_velocity = Vector2(50,0)
+
+
 func _physics_process(_delta):
 	
 	_remaining_boss_health = clamp(_remaining_boss_health, 0, 1000)
@@ -32,6 +34,7 @@ func _physics_process(_delta):
 	is_paused = get_parent().is_paused
 	
 	if _remaining_boss_health == 0:
+		boss_health = 100
 		if phases_left == 3:
 			$AnimationPlayer.play("Transition")
 			_remaining_boss_health = 100
@@ -53,14 +56,10 @@ func _physics_process(_delta):
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
 	
-	# Needs to be implemented in a less overwhelming way
-	#$BossShootingSound.play()
-	
 	if is_paused == false and _boss_can_shoot == true:
 		_boss_can_shoot = false
 		$BossShotTimer.start()
-		
-	
+
 	if _boss_can_shoot == true:
 		$PatternSwitcher.paused = true
 	else:
@@ -74,7 +73,6 @@ func _physics_process(_delta):
 
 func _on_BossShotTimer_timeout():
 	_boss_can_shoot = true
-	
 
 
 func _on_PatternSwitcher_timeout():
@@ -108,19 +106,22 @@ func _pattern_3_spinner():
 			spinner3.global_position = $SpinnerSpawn3.position
 			spinners_count +=1
 		spinners_count += 2
-	
+
+
 func _pattern_1_spinner(): 
 	if spinners_count < 1:
 		var spinner: KinematicBody2D = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
 		get_node("/root/Level/Boss").call_deferred("add_child", spinner)
 		spinner.global_position = $SpinnerSpawn3.position
 		spinners_count += 1
-			
+
+
 func _pattern_n_way_Straight():
 	var _pattern: Node2D = load("res://Boss/StaticPatterns/nWayStraight.tscn").instance()
 	get_node("/root/Level/Boss").call_deferred("add_child", _pattern)
 	_pattern.global_position = $AnimatedSprite.position
-	
+
+
 func _pattern_n_way_Burst():
 	var _pattern: Node2D = load("res://Boss/StaticPatterns/nWayBurst.tscn").instance()
 	var _pattern1: Node2D = load("res://Boss/StaticPatterns/nWayBurst.tscn").instance()
@@ -131,15 +132,9 @@ func _pattern_n_way_Burst():
 	_pattern.global_position = $SpinnerSpawn3.position
 	_pattern1.global_position = $SpinnerSpawn2.position
 	_pattern2.global_position = $SpinnerSpawn1.position
-	
-	
+
 
 func _on_Area2D_area_entered(area):
-	if area.is_in_group("Player"):
+	if area.is_in_group("Player") and get_parent().is_game_over == false and get_parent().is_won_game == false:
 		area.remove_bullet()
 		_remaining_boss_health -= 10
-
-
-
-
-

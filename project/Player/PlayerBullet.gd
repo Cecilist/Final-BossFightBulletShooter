@@ -1,7 +1,9 @@
 class_name PlayerBullet
 extends Area2D
 
+
 var _bullet_hit : bool = false
+
 
 func _physics_process(_delta):
 	if get_parent().is_paused == false and _bullet_hit == false:

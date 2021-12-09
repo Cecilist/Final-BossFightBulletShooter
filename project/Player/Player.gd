@@ -10,7 +10,7 @@ var player_health_percent: float = 100.0
 var is_paused: bool = true
 var fire_rate_cooldown := "10"
 var evade_cooldown := "5"
-var can_player_shoot: bool = true
+var can_player_shoot: bool = false
 var player_hit : bool = false
 
 var _ship_velocity := Vector2(0,0)
@@ -87,7 +87,7 @@ func _physics_process(_delta):
 	player_health_percent = _remaining_player_health / player_health
 	player_health_percent = clamp(player_health_percent, 0, 100)
 	
-	if _is_fire_rate_ability_ready == false:
+	if _is_fire_rate_ability_ready == false and _is_fire_rate_ability_active == false:
 		fire_rate_cooldown = "ON COOLDOWN (" + str(int(ceil($FireRateCooldownTimer.time_left))) + ")"
 	elif _is_fire_rate_ability_active == true:
 		fire_rate_cooldown = "ACTIVE (" + str(int(ceil($FireRateTimer.time_left))) + ")"
@@ -126,11 +126,12 @@ func player_death():
 func _fire_rate_ability():
 	$PlayerShotTimer.wait_time = 0.2
 	_is_fire_rate_ability_active = true
+	_is_fire_rate_ability_ready = false
 	$FireRateTimer.start()
 
 
 func _on_Hitbox_area_entered(area):
-	if _is_player_invulnerable == false:
+	if _is_player_invulnerable == false and get_parent().is_game_over == false and get_parent().is_won_game == false:
 		player_hit = true
 		if area.is_in_group("Boss_Bullet"):
 			area.remove_bullet()
@@ -179,3 +180,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	elif anim_name == "EvadeFadeIn":
 		_is_player_invulnerable = false
 		can_player_shoot = true
+
+
+func _on_StartTimer_timeout():
+	can_player_shoot = true
