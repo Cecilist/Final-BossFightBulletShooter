@@ -25,6 +25,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$Area2D/CollisionShape2D.disabled = false
 		$PatternSwitcher.start()
 		_velocity = Vector2(50,0)
+		_pattern_n_way_Burst()
 
 
 func _physics_process(_delta):
@@ -34,18 +35,18 @@ func _physics_process(_delta):
 	is_paused = get_parent().is_paused
 	
 	if _remaining_boss_health == 0:
-		boss_health = 100
+		boss_health = 500
 		if phases_left == 3:
 			$AnimationPlayer.play("Transition")
-			_remaining_boss_health = 100
+			_remaining_boss_health = 500
 			_velocity = Vector2(75,0)
 		elif phases_left == 2:
 			$AnimationPlayer.play("Transition 2")
-			_remaining_boss_health = 100
+			_remaining_boss_health = 500
 			_velocity = Vector2(100,0)
 		elif phases_left == 1:
 			$AnimationPlayer.play("Transition 3")
-			_remaining_boss_health = 100
+			_remaining_boss_health = 500
 			_velocity = Vector2(125,0)
 		else:
 			get_parent().show_won_game()

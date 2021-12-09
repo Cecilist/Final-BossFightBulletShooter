@@ -2,7 +2,7 @@ class_name Player
 extends KinematicBody2D
 
 
-export var player_health: float = 100.0
+export var player_health: float = 200.0
 export var player_movement_speed: int = 250
 export var player_evade_distance: int = 200
 
