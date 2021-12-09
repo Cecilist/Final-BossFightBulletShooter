@@ -10,6 +10,8 @@ extents = Vector2( 20.1688, 19.2364 )
 extents = Vector2( 20.0317, 18.3473 )
 
 [node name="CannonSpinner" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
 _radius = 20
 
