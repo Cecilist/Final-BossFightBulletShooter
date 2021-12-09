@@ -15,6 +15,10 @@ Arrow keys or WASD to move
 
 Space(hold) to fire
 
+#### Activating abilities: 
+E to temporarily increase fire rate
+While moving left or right: Shift to Evade
+
 ## Project Report
 For this iteration, we mainly focused on cleaning the project up and making the gameplay experience feel more rewarding.
 Jacob focused on adding more boss patterns and making the boss fight more involved, instead of just requiring the player to hold space and dodge bullets.
