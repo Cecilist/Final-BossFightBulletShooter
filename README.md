@@ -1,8 +1,18 @@
 # Final Project
 
-## Made By
-- Jacob Cecil
-- Lucas Harris
+## Description
+Made By: 
+Jacob Cecil and Lucas Harris
+
+A shoot-em-up game set in space. Your goal is to defeat the red eye square. There are 4 stages
+to the fight, each one has the red eye square getting smaller and faster. 
+
+You only take damage if the main part of your ship is hit. Bullets harmlessly fly over 
+your wings.
+
+### Controls: 
+Arrow keys or WASD to move
+Space(hold) to fire
 
 ## Project Report
 For this iteration, we mainly focused on cleaning the project up and making the gameplay experience feel more rewarding.
