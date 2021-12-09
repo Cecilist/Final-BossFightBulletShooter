@@ -34,15 +34,19 @@ func _physics_process(_delta):
 		if phases_left == 3:
 			$AnimationPlayer.play("Transition")
 			_remaining_boss_health = 100
+			_velocity = Vector2(75,0)
 		elif phases_left == 2:
 			$AnimationPlayer.play("Transition 2")
 			_remaining_boss_health = 100
+			_velocity = Vector2(100,0)
 		elif phases_left == 1:
 			$AnimationPlayer.play("Transition 3")
 			_remaining_boss_health = 100
+			_velocity = Vector2(125,0)
 		else:
 			get_parent().show_won_game()
 			_velocity = Vector2(0,0)
+			$AnimationPlayer.play("Death")
 		phases_left -= 1
 	boss_health_percent = _remaining_boss_health / boss_health
 	boss_health_percent = clamp(boss_health_percent, 0, 100)
@@ -72,13 +76,11 @@ func _on_BossShotTimer_timeout():
 
 
 func _on_PatternSwitcher_timeout():
-	# Spawning in spinning squares of death is the only pattern for now,
-	# Redundant code left in so devs don't forget how to make more patterns appear
 	if _pattern_counter % 2 == 0:
 		if boss_health_percent >= .5:
 			 _pattern_n_way_Burst()
 		else:
-			_pattern_n_way_Burst()
+			_pattern_3_spinner()
 	if _pattern_counter % 2 == 1:
 		if boss_health_percent >= .5:
 			 _pattern_n_way_Burst()
