@@ -8,14 +8,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
@@ -124,13 +124,13 @@ one_shot = true
 wait_time = 5.0
 
 [node name="SpinnerSpawn3" type="Position2D" parent="."]
-position = Vector2( -8.07416, 178.976 )
+position = Vector2( 0, 140 )
 
 [node name="SpinnerSpawn1" type="Position2D" parent="."]
-position = Vector2( -142.643, 174.939 )
+position = Vector2( -143, 140 )
 
 [node name="SpinnerSpawn2" type="Position2D" parent="."]
-position = Vector2( 122.458, 180.322 )
+position = Vector2( 154, 140 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 6.23627, -8.90897 )
