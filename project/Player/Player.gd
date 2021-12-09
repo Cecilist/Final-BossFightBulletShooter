@@ -2,8 +2,6 @@ class_name Player
 extends KinematicBody2D
 
 
-signal health_changed
-
 export var player_health: float = 100.0
 export var player_movement_speed: int = 250
 export var player_evade_distance: int = 200
@@ -13,6 +11,7 @@ var is_paused: bool = true
 var fire_rate_cooldown := "10"
 var evade_cooldown := "5"
 var can_player_shoot: bool = true
+var player_hit : bool = false
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health: float = player_health
@@ -21,6 +20,7 @@ var _is_fire_rate_ability_ready: bool = true
 var _is_fire_rate_ability_active:bool = false
 var _is_evade_ability_ready:bool  = true
 var _evade_direction := "left"
+var _exploded := false
 
 
 func _physics_process(_delta):
@@ -33,7 +33,7 @@ func _physics_process(_delta):
 	#  keys are pressed
 	_ship_velocity = Vector2(0,0)
 	
-	if is_paused == false:
+	if is_paused == false and _remaining_player_health > 0:
 		$InvulnerabilityTimer.paused = false
 		$PlayerShotTimer.paused = false
 		$FireRateTimer.paused = false
@@ -67,7 +67,7 @@ func _physics_process(_delta):
 			else:
 				_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
-			if can_player_shoot == true:
+			if can_player_shoot == true and _remaining_player_health > 0:
 				shoot()
 		if Input.is_action_pressed("fire_rate_ability"):
 			if _is_fire_rate_ability_ready == true:
@@ -114,6 +114,14 @@ func shoot():
 	$PlayerShotTimer.start()
 
 
+func player_death():
+	if _exploded == false:
+		$Explosion.explode()
+		$ShipSprite.visible = false
+		$ExhaustSprite.visible = false
+		_exploded = true
+
+
 # Doubles the player's fire rate for the duration of the FireRateTimer
 func _fire_rate_ability():
 	$PlayerShotTimer.wait_time = 0.2
@@ -123,12 +131,12 @@ func _fire_rate_ability():
 
 func _on_Hitbox_area_entered(area):
 	if _is_player_invulnerable == false:
-		area.queue_free()
+		player_hit = true
+		area.remove_bullet()
 		_remaining_player_health -= 10
 		_is_player_invulnerable = true
 		$ShipSprite.play("damaged")
 		$InvulnerabilityTimer.start()
-		emit_signal("health_changed")
 
 
 func _on_InvulnerabilityTimer_timeout():

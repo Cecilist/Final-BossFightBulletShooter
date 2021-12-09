@@ -48,6 +48,6 @@ func _on_Timer_timeout() -> void:
 
 func _on_DamageBox_area_entered(area):
 	if area.is_in_group("Player"):
-		area.queue_free()
+		area.remove_bullet()
 		_health -= 10
 		
