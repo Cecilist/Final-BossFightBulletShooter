@@ -10,6 +10,7 @@ var is_unpaused: bool= true
 
 var _unpause_time_remaining := "3"
 var _previous_player_health: float = 100.0
+var _button_pressed := ""
 
 
 func _ready():
@@ -27,33 +28,29 @@ func _input(_event):
 			_unpause_game()
 	
 	# Allows the player to use keybinds to interact with the pause menu
-	if is_paused == true:
+	if is_paused == true and $Overlay/Transition.input_locked == false:
 		if Input.is_action_just_pressed("previous_menu"):
 			_on_InGameToMenuButton_pressed()
-		if Input.is_action_just_pressed("to_next_screen"):
-			_on_InGameRestartButton_pressed()
 		if Input.is_action_just_pressed("quit_game"):
 			_on_InGameQuitButton_pressed()
 
 
 func _process(_delta):
-	# Checks the player's health and displays it on the player's health bar
-	if is_won_game == true or is_game_over == true:
-		_pause_game()
-	
 	if (is_paused == true and is_unpaused == true) and (is_won_game == false and is_game_over == false):
 		_show_unpause_timer()
 	
-	if $Player.player_hit == true:
+	if $Player.player_hit == true and (is_won_game == false and is_game_over == false):
 		$AnimationPlayer.play("WhiteFlash")
 	
+	# Checks the player's health and displays it on the player's health bar
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = 2.25 * $Player.player_health_percent
-	if $Player.player_health_percent == 0:
+	if $Player.player_health_percent == 0 and _button_pressed == "":
 		$Player.player_death()
 		show_game_over()
 	
+	# Checks the boss's health and displays it on the player's health bar
 	$Overlay/HUD/BossHUD/BossHealth.scale.x = 2.25 * $Boss.boss_health_percent
-	if $Boss.boss_health_percent == 0:
+	if $Boss.boss_health_percent == 0 and _button_pressed == "":
 		show_won_game()
 	
 	$Overlay/HUD/PlayerHUD/FireRateStatusLabel.text = $Player.fire_rate_cooldown
@@ -66,6 +63,9 @@ func _process(_delta):
 		$Player.position.x = 1
 	if $Player.position.x > 719:
 		$Player.position.x = 718
+	
+	if $Overlay/Transition.can_switch_scene == true:
+		_new_scene()
 
 
 func _pause_game():
@@ -110,27 +110,33 @@ func _show_unpause_timer():
 	$Overlay/UnpauseLabel.text = _unpause_time_remaining
 
 
+func _new_scene():
+	if _button_pressed == "menu":
+		var _ignored := get_tree().change_scene("res:///Menu/MainMenu.tscn")
+	elif _button_pressed == "quit":
+		get_tree().quit()
+
+
 func _on_InGameResumeButton_pressed():
 	_unpause_game()
 
 
-func _on_InGameRestartButton_pressed():
-	if is_paused == true:
-		var _ignored := get_tree().change_scene("res:///Level/Level.tscn")
-		get_tree().paused = false
-		is_paused = false
-
-
 func _on_InGameToMenuButton_pressed():
 	if is_paused == true:
-		var _ignored := get_tree().change_scene("res:///Menu/MainMenu.tscn")
 		get_tree().paused = false
-		is_paused = false
+		$Overlay/PauseMenu.visible = false
+		_button_pressed = "menu"
+		$Overlay/Transition.show_rect()
+		$Overlay/Transition.fade_out()
 
 
 func _on_InGameQuitButton_pressed():
 	if is_paused == true:
-		get_tree().quit()
+		get_tree().paused = false
+		$Overlay/PauseMenu.visible = false
+		_button_pressed = "quit"
+		$Overlay/Transition.show_rect()
+		$Overlay/Transition.fade_out()
 
 
 func _on_UnpauseTimer_timeout():
@@ -139,23 +145,25 @@ func _on_UnpauseTimer_timeout():
 	$Overlay/UnpauseLabel.visible = false
 
 
-func _on_ReplayButton_pressed():
-	if is_won_game == true || is_game_over == true:
-		queue_free()
-		var _ignored := get_tree().reload_current_scene()
-
-
 func _on_ToMenuButton_pressed():
 	if is_won_game == true || is_game_over == true:
-		var _ignored = get_tree().change_scene("res:///Menu/MainMenu.tscn")
+		get_tree().paused = false
+		$Overlay/PauseMenu.visible = false
+		_button_pressed = "menu"
 		is_paused = false
 		is_won_game = false
 		is_game_over = false
+		$Overlay/Transition.show_rect()
+		$Overlay/Transition.fade_out()
 
 
 func _on_QuitButton_pressed():
 	if is_won_game == true || is_game_over == true:
-		get_tree().quit()
+		get_tree().paused = false
+		$Overlay/PauseMenu.visible = false
+		_button_pressed = "quit"
+		$Overlay/Transition.show_rect()
+		$Overlay/Transition.fade_out()
 
 
 func _on_BulletDespawnPoint_area_entered(area):

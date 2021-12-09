@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss/Boss.tscn" type="PackedScene" id=2]
@@ -42,9 +42,9 @@ outline_size = 2
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=8]
-size = 32
+size = 128
 outline_size = 2
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 128
@@ -52,9 +52,9 @@ outline_size = 2
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=10]
-size = 128
+size = 32
 outline_size = 2
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 32
@@ -64,30 +64,20 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=12]
 size = 32
 outline_size = 2
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=13]
-size = 32
-outline_size = 2
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 32
-outline_size = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=13]
 size = 128
 outline_size = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 657.375, 10 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 18.1653, 624.438 )
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=16]
 resource_name = "ShowKeybinds"
 length = 4.0
 tracks/0/type = "value"
@@ -115,7 +105,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=17]
 resource_name = "WhiteFlash"
 length = 0.4
 tracks/0/type = "value"
@@ -131,12 +121,12 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.203922 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=18]
 size = 64
 outline_size = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="DynamicFont" id=19]
 size = 48
 outline_size = 2
 font_data = ExtResource( 8 )
@@ -225,23 +215,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameRestartButton" type="Button" parent="Overlay/PauseMenu"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -65.0
-margin_top = 225.0
-margin_right = 65.0
-margin_bottom = 273.0
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "REPLAY"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="InGameToMenuButton" type="Button" parent="Overlay/PauseMenu"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -251,7 +224,7 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TO MENU"
 __meta__ = {
@@ -267,7 +240,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "QUIT"
 __meta__ = {
@@ -297,7 +270,7 @@ margin_left = -283.5
 margin_top = -280.0
 margin_right = 283.5
 margin_bottom = -112.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "YOU WIN!"
 align = 1
@@ -329,7 +302,7 @@ margin_left = -359.5
 margin_top = -364.5
 margin_right = 359.5
 margin_bottom = -27.5
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "GAME
 OVER"
@@ -349,24 +322,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReplayButton" type="Button" parent="Overlay/EndButtons"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -65.0
-margin_top = 225.0
-margin_right = 65.0
-margin_bottom = 273.0
-custom_fonts/font = SubResource( 11 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-disabled = true
-text = "REPLAY"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ToMenuButton" type="Button" parent="Overlay/EndButtons"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -376,7 +331,7 @@ margin_left = -74.5
 margin_top = 300.0
 margin_right = 74.5
 margin_bottom = 348.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 disabled = true
 text = "TO MENU"
@@ -393,7 +348,7 @@ margin_left = -41.5
 margin_top = 375.0
 margin_right = 41.5
 margin_bottom = 423.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 disabled = true
 text = "QUIT"
@@ -407,7 +362,7 @@ margin_left = 445.238
 margin_top = -2.17839
 margin_right = 724.238
 margin_bottom = 57.8216
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BossHealth"
 __meta__ = {
@@ -424,7 +379,7 @@ margin_left = -273.0
 margin_top = -83.5
 margin_right = 273.0
 margin_bottom = 83.5
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "TimeLeft"
 align = 1
@@ -434,7 +389,6 @@ __meta__ = {
 }
 
 [node name="Transition" parent="Overlay" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 725, 540 )
 z_index = 5
 
@@ -448,23 +402,23 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 360.338, -71.4718 )
-shape = SubResource( 16 )
+shape = SubResource( 14 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 360.338, 1138.97 )
-shape = SubResource( 16 )
+shape = SubResource( 14 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( -275.785, 536.394 )
-shape = SubResource( 17 )
+shape = SubResource( 15 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="BulletDespawnPoint"]
 position = Vector2( 1028.36, 536.394 )
-shape = SubResource( 17 )
+shape = SubResource( 15 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/ShowKeybinds = SubResource( 18 )
-anims/WhiteFlash = SubResource( 21 )
+anims/ShowKeybinds = SubResource( 16 )
+anims/WhiteFlash = SubResource( 17 )
 
 [node name="Keybinds" type="Control" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -481,7 +435,7 @@ margin_left = 205.0
 margin_top = 135.975
 margin_right = 515.0
 margin_bottom = 219.975
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "KEYBINDS"
 align = 1
@@ -496,7 +450,7 @@ margin_left = 62.0
 margin_top = 281.817
 margin_right = 658.0
 margin_bottom = 740.817
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "W/Up: Move Up
 A/Left: Move Left
@@ -520,10 +474,8 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Overlay/PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
-[connection signal="pressed" from="Overlay/PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameToMenuButton" to="." method="_on_InGameToMenuButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameQuitButton" to="." method="_on_InGameQuitButton_pressed"]
-[connection signal="pressed" from="Overlay/EndButtons/ReplayButton" to="." method="_on_ReplayButton_pressed"]
 [connection signal="pressed" from="Overlay/EndButtons/ToMenuButton" to="." method="_on_ToMenuButton_pressed"]
 [connection signal="pressed" from="Overlay/EndButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="timeout" from="Timers/UnpauseTimer" to="." method="_on_UnpauseTimer_timeout"]

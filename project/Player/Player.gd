@@ -67,7 +67,7 @@ func _physics_process(_delta):
 			else:
 				_ship_velocity.x = player_movement_speed
 		if Input.is_action_pressed("shoot"):
-			if can_player_shoot == true:
+			if can_player_shoot == true and _remaining_player_health > 0:
 				shoot()
 		if Input.is_action_pressed("fire_rate_ability"):
 			if _is_fire_rate_ability_ready == true:
