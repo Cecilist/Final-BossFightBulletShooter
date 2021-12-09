@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Boss/Boss.tscn" type="PackedScene" id=2]
@@ -113,6 +113,22 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "WhiteFlash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.203922 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="DynamicFont" id=19]
@@ -448,6 +464,7 @@ shape = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ShowKeybinds = SubResource( 18 )
+anims/WhiteFlash = SubResource( 21 )
 
 [node name="Keybinds" type="Control" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -494,6 +511,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 720.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Overlay/PauseMenu/InGameResumeButton" to="." method="_on_InGameResumeButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameRestartButton" to="." method="_on_InGameRestartButton_pressed"]
 [connection signal="pressed" from="Overlay/PauseMenu/InGameToMenuButton" to="." method="_on_InGameToMenuButton_pressed"]
@@ -503,3 +528,4 @@ __meta__ = {
 [connection signal="pressed" from="Overlay/EndButtons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="timeout" from="Timers/UnpauseTimer" to="." method="_on_UnpauseTimer_timeout"]
 [connection signal="area_entered" from="BulletDespawnPoint" to="." method="_on_BulletDespawnPoint_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

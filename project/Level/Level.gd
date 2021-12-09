@@ -44,6 +44,8 @@ func _process(_delta):
 	if (is_paused == true and is_unpaused == true) and (is_won_game == false and is_game_over == false):
 		_show_unpause_timer()
 	
+	if $Player.player_hit == true:
+		$AnimationPlayer.play("WhiteFlash")
 	
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = 2.25 * $Player.player_health_percent
 	if $Player.player_health_percent == 0:
@@ -158,3 +160,8 @@ func _on_QuitButton_pressed():
 
 func _on_BulletDespawnPoint_area_entered(area):
 	area.queue_free()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "WhiteFlash":
+		$Player.player_hit = false

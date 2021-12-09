@@ -11,6 +11,7 @@ var is_paused: bool = true
 var fire_rate_cooldown := "10"
 var evade_cooldown := "5"
 var can_player_shoot: bool = true
+var player_hit : bool = false
 
 var _ship_velocity := Vector2(0,0)
 var _remaining_player_health: float = player_health
@@ -130,6 +131,7 @@ func _fire_rate_ability():
 
 func _on_Hitbox_area_entered(area):
 	if _is_player_invulnerable == false:
+		player_hit = true
 		area.remove_bullet()
 		_remaining_player_health -= 10
 		_is_player_invulnerable = true
