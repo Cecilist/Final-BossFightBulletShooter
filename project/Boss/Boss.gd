@@ -79,7 +79,8 @@ func _on_PatternSwitcher_timeout():
 	if _pattern_counter >= 2:
 		_pattern_counter = 0
 	_pattern_counter += 1
-	
+
+
 func _pattern_3_spinner():
 	if spinners_count < 2:
 		var spinner1: KinematicBody2D = load("res://Boss/Spinner/CannonSpinner.tscn").instance()
@@ -122,9 +123,5 @@ func _pattern_n_way_Burst():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
-		area.queue_free()
+		area.remove_bullet()
 		_remaining_boss_health -= 5
-		
-
-
-

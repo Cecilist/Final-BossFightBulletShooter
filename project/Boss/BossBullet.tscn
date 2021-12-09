@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Boss/BossBullet.gd" type="Script" id=1]
 [ext_resource path="res://Boss/BossBullet.png" type="Texture" id=2]
+[ext_resource path="res://Explosion/Explosion.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.44323
@@ -16,3 +17,10 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.35244, 1.58598 )
 shape = SubResource( 1 )
+
+[node name="Explosion" parent="." instance=ExtResource( 3 )]
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.75
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_DespawnTimer_timeout"]

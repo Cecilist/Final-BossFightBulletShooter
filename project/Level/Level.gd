@@ -47,6 +47,7 @@ func _process(_delta):
 	
 	$Overlay/HUD/PlayerHUD/PlayerHealth.scale.x = 2.25 * $Player.player_health_percent
 	if $Player.player_health_percent == 0:
+		$Player.player_death()
 		show_game_over()
 	
 	$Overlay/HUD/BossHUD/BossHealth.scale.x = 2.25 * $Boss.boss_health_percent
