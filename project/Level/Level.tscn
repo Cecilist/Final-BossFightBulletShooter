@@ -132,7 +132,7 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 360, 1000 )
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.15, 0.15 )
 
 [node name="Boss" parent="." instance=ExtResource( 2 )]
 position = Vector2( 360, 225.907 )
