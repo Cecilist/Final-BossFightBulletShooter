@@ -1,5 +1,7 @@
 # Final Project
 
+Game is hosted at https://cecilist.itch.io/starcry
+
 ## Description
 Made By: 
 Jacob Cecil and Lucas Harris
